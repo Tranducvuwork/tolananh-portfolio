@@ -3,20 +3,18 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { 
-  ArrowRight, Download, Phone, Mail, Sofa, Coffee, 
-  Briefcase, Wrench, CheckCircle2, Star, Sparkles, ExternalLink 
+  ArrowRight, Download, Phone, Mail, Coffee, 
+  Briefcase, Wrench, CheckCircle2, Star, Sparkles, ExternalLink,
+  Zap, Compass, Bike, Sofa, Award
 } from 'lucide-react';
-import { profileData, featuredVideos } from '@/app/data';
-
-const furniturePreview = featuredVideos.filter(v => v.category === 'furniture').slice(0, 2);
-const fnbPreview = featuredVideos.filter(v => v.category === 'fnb').slice(0, 2);
+import { profileData, tiktokChannels } from '@/app/data';
 
 export default function Home() {
   const homeTabs = [
     {
       kicker: 'Hạng Mục 01',
-      title: 'Dự án (Work)',
-      desc: 'Minh Huy Furniture, La Cà Một Chút, IMC & 13 Slide HD',
+      title: 'Các Kênh TikTok & Dự Án',
+      desc: 'Toạ Độ Gen Z, La Cà Một Chút, Datbike Hồng Phương & IMC',
       href: '/work',
     },
     {
@@ -64,10 +62,10 @@ export default function Home() {
                 </h1>
                 <p className="page-lead">
                   Xin chào, mình là <strong className="text-[#14110F] font-bold">Tô Lan Anh</strong>. 
-                  Mình chuyên xây dựng kịch bản và sản xuất video TikTok xưởng nội thất 
-                  <strong className="text-[#8C5A3C] font-semibold"> Minh Huy Furniture</strong>, 
-                  định hình phong cách kênh F&amp;B ấm áp nữ tính 
-                  <strong className="text-[#8C5A3C] font-semibold"> @la.camotchut</strong> và lập kế hoạch truyền thông tích hợp.
+                  Mình chuyên lên ý tưởng kịch bản, quay dựng short-form video và phát triển các kênh TikTok đa dạng chủ đề: 
+                  từ trào lưu giới trẻ <strong className="text-[#8C5A3C] font-semibold">@toadogenz</strong>, 
+                  phong cách cafe &amp; ẩm thực tone Be ấm áp <strong className="text-[#8C5A3C] font-semibold">@la.camotchut</strong>, 
+                  đến xe máy điện thông minh <strong className="text-[#8C5A3C] font-semibold">@datbikehongphuong</strong> và lập kế hoạch truyền thông tích hợp (IMC).
                 </p>
               </div>
 
@@ -75,22 +73,26 @@ export default function Home() {
               <div className="flex flex-wrap gap-2 pt-1">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                  Kịch bản &amp; Hậu kỳ CapCut Pro
+                  Bắt Trend TikTok &amp; Kịch bản Gen Z
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                  Tone Be &amp; Thẩm mỹ F&amp;B Cafe
+                  Tone Be &amp; Thẩm mỹ Cafe F&amp;B
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                  Tư duy Pitching &amp; Đồ án IMC
+                  Truyền Thông Xe Điện Dat Bike
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                  Hoạch Định Kế Hoạch IMC
                 </span>
               </div>
 
               {/* Actions */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Link href="/work" className="btn btn-primary">
-                  <span>Xem Các Hạng Mục Dự Án</span>
+                  <span>Khám Phá Các Kênh &amp; Dự Án</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="/working-experience" className="btn btn-secondary">
@@ -110,12 +112,12 @@ export default function Home() {
               {/* Stats Bar */}
               <div className="pt-8 border-t border-[rgba(20,17,15,0.08)] grid grid-cols-2 sm:grid-cols-4 gap-6">
                 <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">20+</div>
-                  <div className="text-xs text-[#635952] font-medium mt-0.5">Video xưởng triệu view</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">3+</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Kênh TikTok chủ lực</div>
                 </div>
                 <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">4+</div>
-                  <div className="text-xs text-[#635952] font-medium mt-0.5">Năm học tập &amp; làm việc</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">100K+</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Lượt tiếp cận người xem</div>
                 </div>
                 <div>
                   <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">100%</div>
@@ -171,7 +173,7 @@ export default function Home() {
 
           </div>
 
-          {/* Navigation Hub: Home Tabs linking to separate subpages */}
+          {/* Navigation Hub: Home Tabs */}
           <div className="home-tabs">
             {homeTabs.map((tab, idx) => (
               <Link key={idx} href={tab.href} className="home-tab group">
@@ -189,85 +191,192 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Highlight (Isolated Categories Preview) */}
+      {/* Featured TikTok Channels Showcase (Replaced Minh Huy spotlight!) */}
       <section className="py-20 bg-white border-y border-[rgba(20,17,15,0.08)]">
         <div className="container">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
             <div>
-              <p className="eyebrow">HẠNG MỤC DỰ ÁN NỔI BẬT</p>
+              <p className="eyebrow">CÁC KÊNH TIKTOK CHỦ LỰC</p>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight mt-1">
-                Hai phân mảng nội dung chính
+                Phát triển nội dung &amp; Định hình phong cách
               </h2>
             </div>
             <Link href="/work" className="btn btn-secondary btn-sm">
-              <span>Xem Toàn Bộ Dự Án (Work)</span>
+              <span>Xem Toàn Bộ Dự Án &amp; Video</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* 3 Channels Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* Category 1: Minh Huy Furniture */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-semibold text-[#8C5A3C]">
-                  <Sofa className="w-3.5 h-3.5" />
-                  <span>Dự Án Nội Thất B2B</span>
+            {/* Channel 1: Toạ Độ Gen Z */}
+            <div className="p-7 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6 hover:shadow-[0_10px_30px_rgba(20,17,15,0.05)] transition-all">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold">
+                    <Compass className="w-3.5 h-3.5" />
+                    <span>Xu Hướng Gen Z</span>
+                  </div>
+                  <span className="text-xs font-semibold text-[#8C5A3C]">@toadogenz</span>
                 </div>
+
                 <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
-                  Minh Huy Furniture — TikTok Xưởng Sản Xuất
+                  Toạ Độ Gen Z — Đời Sống &amp; Trào Lưu Giới Trẻ
                 </h3>
                 <p className="text-sm text-[#635952] leading-relaxed">
-                  20+ video short-form khai thác quy trình thợ mộc, kiểm tra chất lượng gỗ và tư vấn nội thất công trình. Tạo lòng tin thực tế và chuyển đổi đơn hàng trực tiếp qua TikTok.
+                  Bắt nhịp các trào lưu mới nhất, phỏng vấn góc nhìn giới trẻ, văn hóa sinh viên Văn Lang và những câu chuyện hài hước, năng động với tỷ lệ tương tác cao.
                 </p>
+
+                <div className="space-y-2 pt-2 border-t border-[rgba(20,17,15,0.06)] text-xs text-[#2D2723]">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Kịch bản bắt trend &amp; hook giữ chân</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Nhịp điệu cắt dựng CapCut vui tươi</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[rgba(20,17,15,0.06)] flex items-center justify-between">
-                <div>
-                  <div className="text-xs text-[#635952]">Tư liệu dự án:</div>
-                  <div className="text-sm font-bold text-[#14110F]">Google Drive 20+ Video Gốc</div>
-                </div>
+              <div className="pt-4 border-t border-[rgba(20,17,15,0.06)] flex items-center justify-between">
+                <a
+                  href="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#14110F] hover:text-[#8C5A3C] inline-flex items-center gap-1"
+                >
+                  <span>Mở TikTok</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
                 <Link
-                  href="/work?tab=furniture"
+                  href="/work?tab=genz"
                   className="btn btn-primary btn-sm !px-3"
                 >
-                  <span>Xem Chi Tiết</span>
+                  <span>Chi Tiết</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </div>
 
-            {/* Category 2: La Cà Một Chút */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-semibold text-[#8C5A3C]">
-                  <Coffee className="w-3.5 h-3.5" />
-                  <span>Kênh TikTok F&amp;B</span>
+            {/* Channel 2: La Cà Một Chút */}
+            <div className="p-7 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6 hover:shadow-[0_10px_30px_rgba(20,17,15,0.05)] transition-all">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">
+                    <Coffee className="w-3.5 h-3.5" />
+                    <span>F&amp;B Tone Be</span>
+                  </div>
+                  <span className="text-xs font-semibold text-[#8C5A3C]">@la.camotchut</span>
                 </div>
+
                 <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
-                  La Cà Một Chút (@la.camotchut) — Cafe &amp; Ẩm Thực
+                  La Cà Một Chút — Cafe, Bánh &amp; Lifestyle
                 </h3>
                 <p className="text-sm text-[#635952] leading-relaxed">
-                  Định hình tone màu Be nữ tính, ấm áp và nhẹ nhàng. Review trải nghiệm quán cafe, món ngon đường phố và lifestyle với phong cách tự nhiên, gần gũi.
+                  Định hình tone màu Be nữ tính, dịu dàng và ấm áp. Khám phá các quán cafe hidden gems, tiệm bánh và trải nghiệm ẩm thực thư thái giữa lòng phố thị.
                 </p>
+
+                <div className="space-y-2 pt-2 border-t border-[rgba(20,17,15,0.06)] text-xs text-[#2D2723]">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Bảng màu Be ấm áp, góc quay thẩm mỹ</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Voiceover truyền cảm &amp; ASMR ẩm thực</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[rgba(20,17,15,0.06)] flex items-center justify-between">
-                <div>
-                  <div className="text-xs text-[#635952]">Kênh chính thức:</div>
-                  <div className="text-sm font-bold text-[#14110F]">tiktok.com/@la.camotchut</div>
-                </div>
+              <div className="pt-4 border-t border-[rgba(20,17,15,0.06)] flex items-center justify-between">
+                <a
+                  href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#14110F] hover:text-[#8C5A3C] inline-flex items-center gap-1"
+                >
+                  <span>Mở TikTok</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
                 <Link
                   href="/work?tab=fnb"
                   className="btn btn-primary btn-sm !px-3"
                 >
-                  <span>Xem Chi Tiết</span>
+                  <span>Chi Tiết</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </div>
 
+            {/* Channel 3: Datbike Hồng Phương */}
+            <div className="p-7 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6 hover:shadow-[0_10px_30px_rgba(20,17,15,0.05)] transition-all">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-100 text-teal-900 text-xs font-bold">
+                    <Bike className="w-3.5 h-3.5" />
+                    <span>Xe Điện Dat Bike</span>
+                  </div>
+                  <span className="text-xs font-semibold text-[#8C5A3C]">@datbikehongphuong</span>
+                </div>
+
+                <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
+                  Datbike Hồng Phương — Xe Máy Điện Thông Minh
+                </h3>
+                <p className="text-sm text-[#635952] leading-relaxed">
+                  Truyền thông giải pháp di chuyển xanh của dòng xe điện công nghệ Dat Bike tại Hồng Phương: tính năng bứt tốc, sạc nhanh và phong cách sống hiện đại.
+                </p>
+
+                <div className="space-y-2 pt-2 border-t border-[rgba(20,17,15,0.06)] text-xs text-[#2D2723]">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Trải nghiệm bứt tốc &amp; công nghệ pin</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                    <span>Điều hướng đăng ký lái thử trực tiếp</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[rgba(20,17,15,0.06)] flex items-center justify-between">
+                <a
+                  href="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9BjNL1MnE9q"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-[#14110F] hover:text-[#8C5A3C] inline-flex items-center gap-1"
+                >
+                  <span>Mở TikTok</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <Link
+                  href="/work?tab=datbike"
+                  className="btn btn-primary btn-sm !px-3"
+                >
+                  <span>Chi Tiết</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Secondary projects note: Minh Huy & IMC */}
+          <div className="mt-8 p-5 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C]">
+                Các dự án thực chiến khác
+              </span>
+              <p className="text-xs sm:text-sm text-[#635952]">
+                Case study B2B xưởng sản xuất <strong>Minh Huy Furniture</strong>, Chiến dịch pitching <strong>Suzuki &amp; Hải Phi TVC</strong> và <strong>Bộ 13 Slide HD</strong> nguyên bản.
+              </p>
+            </div>
+            <Link href="/work" className="btn btn-secondary btn-sm flex-shrink-0">
+              <span>Xem Thêm Dự Án (Work)</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#8C5A3C]" />
+            </Link>
           </div>
 
         </div>
@@ -279,7 +388,7 @@ export default function Home() {
           <p className="eyebrow">LIÊN HỆ &amp; HỢP TÁC</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14110F] tracking-tight">
             Bạn đang cần lên kế hoạch truyền thông <br />
-            hoặc sản xuất video ngắn TikTok?
+            hoặc sáng tạo nội dung short-form TikTok?
           </h2>
           <p className="text-base text-[#635952]">
             Hãy liên hệ trực tiếp với mình qua điện thoại hoặc email để cùng trao đổi về dự án của bạn.

@@ -46,7 +46,7 @@ export default function WorkingExperiencePage() {
               </h1>
 
               <p className="page-lead">
-                Nền tảng đào tạo bài bản từ chuyên ngành <strong className="text-[#14110F] font-semibold">Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp kinh nghiệm thực chiến trong sản xuất video short-form xưởng nội thất Minh Huy, phát triển kênh F&amp;B @la.camotchut và quản trị truyền thông thương hiệu.
+                Nền tảng đào tạo bài bản từ chuyên ngành <strong className="text-[#14110F] font-semibold">Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp kinh nghiệm thực chiến trong phát triển nội dung đa dạng trên TikTok (Toạ Độ Gen Z @toadogenz, kênh F&amp;B @la.camotchut tone Be, Datbike Hồng Phương @datbikehongphuong) và hoạch định chiến dịch truyền thông tích hợp (IMC).
               </p>
 
               {/* Action Buttons */}

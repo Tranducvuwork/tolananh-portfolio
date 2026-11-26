@@ -17,14 +17,14 @@ export default function Skills() {
     {
       title: 'Sản Xuất Short-Form Video',
       icon: Video,
-      desc: 'Quy trình sản xuất video ngắn toàn diện từ ý tưởng, kịch bản chi tiết, chỉ đạo bối cảnh đến hậu kỳ dựng nhịp điệu.',
-      tags: ['Kịch bản xưởng B2B', 'Dựng CapCut Pro', 'Thu âm & Voiceover', 'Âm thanh & Hiệu ứng', 'Tối ưu 3s đầu (Hook)']
+      desc: 'Quy trình sản xuất video ngắn toàn diện từ ý tưởng, kịch bản chi tiết, chỉ đạo bối cảnh đến hậu kỳ dựng nhịp điệu cuốn hút.',
+      tags: ['Kịch bản TikTok đa chủ đề', 'Dựng CapCut Pro', 'Thu âm & Voiceover', 'Âm thanh & Hiệu ứng', 'Tối ưu 3s đầu (Hook)']
     },
     {
       title: 'Sáng Tạo Nội Dung & Storytelling',
       icon: Sparkles,
-      desc: 'Khai thác câu chuyện đời thực tại xưởng sản xuất hoặc không gian quán cà phê để tạo sự gắn kết tự nhiên với khán giả.',
-      tags: ['Tone Be & Ấm áp', 'Kịch bản viral', 'Storytelling thực tế', 'Bắt trend có chọn lọc', 'Chuyển đổi đơn hàng']
+      desc: 'Bắt nhịp xu hướng Gen Z, khai thác không gian cafe tone Be ấm áp và trải nghiệm thực tế để tạo sự gắn kết tự nhiên với khán giả.',
+      tags: ['Bắt trend Gen Z', 'Tone Be & Ấm áp', 'Kịch bản viral', 'Storytelling thực tế', 'Xe điện Dat Bike']
     },
     {
       title: 'Thiết Kế Đồ Họa & Visual Branding',

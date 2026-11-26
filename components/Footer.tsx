@@ -56,16 +56,18 @@ export default function Footer() {
           {/* Navigation Links: Focus Tracks (3 cols) */}
           <div className="md:col-span-3 space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-[#C7B198]">
-              Hạng Mục Tiêu Biểu
+              Các Kênh TikTok
             </div>
             <div className="grid grid-cols-1 gap-2 text-sm">
-              <Link href="/work?tab=furniture" className="hover:text-white transition-colors flex items-center gap-1.5">
-                <Sofa className="w-3.5 h-3.5 text-[#C7B198]" />
-                <span>Nội Thất Minh Huy B2B</span>
+              <Link href="/work?tab=genz" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Toạ Độ Gen Z (@toadogenz)</span>
               </Link>
               <Link href="/work?tab=fnb" className="hover:text-white transition-colors flex items-center gap-1.5">
                 <Coffee className="w-3.5 h-3.5 text-[#C7B198]" />
-                <span>Kênh F&amp;B La Cà Một Chút</span>
+                <span>La Cà Một Chút (@la.camotchut)</span>
+              </Link>
+              <Link href="/work?tab=datbike" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <span>Datbike Hồng Phương</span>
               </Link>
               <a 
                 href={profileData.cvPdf} 

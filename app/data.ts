@@ -1,7 +1,7 @@
 export interface VideoItem {
   id: string;
   title: string;
-  category: 'furniture' | 'fnb' | 'lifestyle';
+  category: 'genz' | 'fnb' | 'datbike' | 'furniture' | 'lifestyle';
   channel: string;
   channelHandle: string;
   avatar: string;
@@ -21,6 +21,107 @@ export interface VideoItem {
   tiktokUrl?: string;
   highlights: string[];
 }
+
+export interface TikTokChannel {
+  id: string;
+  name: string;
+  handle: string;
+  url: string;
+  category: string;
+  badge: string;
+  desc: string;
+  highlights: string[];
+  metrics: { value: string; label: string }[];
+  tag: string;
+  themeColor: string;
+}
+
+export const tiktokChannels: TikTokChannel[] = [
+  {
+    id: 'toadogenz',
+    name: 'Toạ Độ Gen Z',
+    handle: '@toadogenz',
+    url: 'https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc',
+    category: 'Gen Z Trends & Lifestyle',
+    badge: 'Kênh Xu Hướng',
+    desc: 'Kênh nội dung bắt nhịp đời sống, xu hướng, câu chuyện học đường và phong cách sống của người trẻ Gen Z với năng lượng tích cực, hài hước và gần gũi.',
+    highlights: [
+      'Bắt trend TikTok nhanh nhạy & sáng tạo kịch bản viral',
+      'Định dạng phỏng vấn, đời sống sinh viên & văn hóa Gen Z',
+      'Tương tác tự nhiên, nhịp điệu cắt dựng nhanh và cuốn hút'
+    ],
+    metrics: [
+      { value: 'Trending', label: 'Xu hướng giới trẻ' },
+      { value: '100%', label: 'Kịch bản & dựng Gen Z' },
+      { value: 'Daily', label: 'Cập nhật trào lưu' },
+    ],
+    tag: 'Gen Z & Trends',
+    themeColor: '#D35400'
+  },
+  {
+    id: 'lacamotchut',
+    name: 'La Cà Một Chút',
+    handle: '@la.camotchut',
+    url: 'https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM',
+    category: 'F&B & Cafe Lifestyle',
+    badge: 'Tone Be Ấm Áp',
+    desc: 'Định hình phong cách nữ tính, thẩm mỹ với tone màu Be ấm áp. Review các quán cafe phong cách, địa điểm ẩm thực và vlog lifestyle đời thường thư thái.',
+    highlights: [
+      'Bảng màu Be latte, ánh sáng tự nhiên dịu nhẹ',
+      'Góc quay cận cảnh ẩm thực & không gian quán cafe đẹp',
+      'Voiceover nhẹ nhàng, truyền cảm và chỉn chu'
+    ],
+    metrics: [
+      { value: 'Aesthetic', label: 'Tone Be ấm áp' },
+      { value: 'Cafe & F&B', label: 'Review trải nghiệm' },
+      { value: 'High Save', label: 'Tỷ lệ lưu video cao' },
+    ],
+    tag: 'F&B & Lifestyle',
+    themeColor: '#8C5A3C'
+  },
+  {
+    id: 'datbike',
+    name: 'Datbike Hồng Phương',
+    handle: '@datbikehongphuong',
+    url: 'https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9BjNL1MnE9q',
+    category: 'Xe Điện Công Nghệ & Green Mobility',
+    badge: 'Xe Điện Thông Minh',
+    desc: 'Kênh truyền thông dòng xe máy điện thông minh Dat Bike tại đại lý Hồng Phương. Nội dung tập trung vào công nghệ bứt tốc, sạc nhanh, trải nghiệm lái xe xanh và tiết kiệm chi phí cho người trẻ.',
+    highlights: [
+      'Khai thác tính năng công nghệ & trải nghiệm thực tế xe máy điện',
+      'Nội dung so sánh chi phí vận hành xe điện vs xe xăng',
+      'Tư vấn trực tiếp, điều hướng khách hàng đăng ký lái thử'
+    ],
+    metrics: [
+      { value: 'Công Nghệ', label: 'Xe máy điện xanh' },
+      { value: 'Hồng Phương', label: 'Kênh đại lý ủy quyền' },
+      { value: 'Lái Thử', label: 'Chuyển đổi quan tâm' },
+    ],
+    tag: 'Tech & Mobility',
+    themeColor: '#1A535C'
+  },
+  {
+    id: 'minhhuy',
+    name: 'Minh Huy Furniture',
+    handle: '@minhhuyfurniture',
+    url: 'https://drive.google.com/drive/folders/1rNL3_Asy9z306dMLTe0G2PAtys_-QW0V',
+    category: 'B2B Manufacturing & Crafts',
+    badge: 'Dự Án B2B',
+    desc: 'Dự án sản xuất short-form video hậu trường xưởng gỗ thủ công và gia công sắt nghệ thuật. Khai thác quy trình kiểm tra chất lượng sản phẩm và chuyển đổi đơn hàng B2B.',
+    highlights: [
+      '20+ kịch bản quay dựng tại xưởng sản xuất thực tế',
+      'Góc quay cận cảnh máy móc cơ khí & quy trình làm mộc',
+      'Tạo niềm tin thương hiệu và chốt đơn công trình'
+    ],
+    metrics: [
+      { value: '20+', label: 'Video xưởng sản xuất' },
+      { value: 'B2B', label: 'Đơn hàng công trình' },
+      { value: 'Thực Chiến', label: 'Hậu kỳ CapCut Pro' },
+    ],
+    tag: 'B2B Xưởng Sản Xuất',
+    themeColor: '#5C4D43'
+  }
+];
 
 export interface CaseStudy {
   id: string;
@@ -54,16 +155,16 @@ export const profileData = {
   cvPdf: '/ToLanAnh_CV.pdf',
   avatar: '/images/avatar.jpg',
   portrait: '/images/lananh_portrait.jpg',
-  intro: 'Tôi là Tô Lan Anh (sinh ngày 24.02.2004), sinh viên ngành Quan hệ Công chúng - Truyền thông (PR) tại Đại Học Văn Lang (2022 - 2026), định hướng phát triển chuyên sâu thành một Creative Planner. Với tư duy thẩm mỹ nữ tính, tinh tế cùng năng lực sản xuất nội dung đa nền tảng (đặc biệt là short-form video TikTok), tôi luôn chủ động học hỏi và tích lũy kinh nghiệm thực chiến qua các dự án thương hiệu, từ sản xuất nội thất thủ công B2B đến các kênh F&B phong cách ấm áp.',
+  intro: 'Tôi là Tô Lan Anh, sinh viên chuyên ngành Quan hệ Công chúng - Truyền thông (PR) tại Đại Học Văn Lang (2022 - 2026), định hướng phát triển chuyên sâu thành một Creative Planner & Social Media Specialist. Với tư duy sáng tạo nhạy bén, tôi trực tiếp lên ý tưởng kịch bản và sản xuất nội dung đa dạng trên nền tảng TikTok: từ kênh xu hướng giới trẻ Toạ Độ Gen Z (@toadogenz), kênh trải nghiệm ẩm thực tone Be ấm áp La Cà Một Chút (@la.camotchut), đến kênh công nghệ xe điện thông minh Datbike Hồng Phương (@datbikehongphuong), kết hợp năng lực hoạch định chiến dịch truyền thông tích hợp (IMC).',
   goals: {
-    shortTerm: 'Trong 2 tháng: Làm chủ các kiến thức chuyên môn cơ bản về xây dựng nội dung, vận hành mạng xã hội và sử dụng các công cụ truyền thông kỹ thuật số.',
-    longTerm: 'Trong 2 năm: Trở thành Creative Planner chuyên nghiệp. Có khả năng dẫn dắt một nhóm nhỏ, tham gia vào các chiến dịch truyền thông tích hợp thực tiễn.'
+    shortTerm: 'Làm chủ các quy trình sản xuất nội dung short-form chuyên sâu, tối ưu hóa thuật toán phân phối đa kênh và nâng cao hiệu quả tương tác tự nhiên.',
+    longTerm: 'Trở thành Creative Planner chuyên nghiệp, chủ trì các chiến dịch truyền thông tích hợp (IMC) và dẫn dắt đội ngũ sáng tạo nội dung.'
   },
   keyMetrics: [
-    { value: '250%+', label: 'Tăng trưởng tương tác tự nhiên' },
-    { value: '50K+', label: 'Lượt xem trung bình mỗi video' },
-    { value: '20+', label: 'Kịch bản TikTok xưởng sản xuất hoàn thành' },
-    { value: '100%', label: 'Thắng Pitching dự án thực tế kiến tập' },
+    { value: '3+', label: 'Kênh TikTok đa dạng chủ đề' },
+    { value: '100K+', label: 'Lượt tiếp cận người xem' },
+    { value: '100%', label: 'Tự biên kịch & dựng CapCut' },
+    { value: 'Văn Lang', label: 'Cử nhân Quan hệ Công chúng' },
   ],
   education: [
     {
@@ -155,25 +256,25 @@ export const profileData = {
 
 export const featuredVideos: VideoItem[] = [
   {
-    id: 'mh-1',
-    title: 'Quy trình tạo ra chiếc ghế thô & Máy uốn sắt tự động',
-    category: 'furniture',
-    channel: 'Minh Huy Furniture',
-    channelHandle: '@minhhuyfurniture',
-    avatar: '🛋️',
-    views: '84.5K',
-    likes: '6.2K',
-    comments: '412',
-    shares: '280',
-    duration: '00:38',
-    hook: 'Liệu bạn có biết: Một chiếc ghế bền 10 năm bắt đầu từ những đường uốn thép này?',
-    description: 'Thước phim cận cảnh quy trình uốn sắt công nghiệp và hàn laser bù tại xưởng Minh Huy Furniture. Âm thanh cơ khí sống động, góc máy macro chân thực thu hút người xem từ giây đầu tiên.',
+    id: 'genz-1',
+    title: 'Góc nhìn Gen Z: Những thói quen đặc trưng mùa đồ án của sinh viên Văn Lang',
+    category: 'genz',
+    channel: 'Toạ Độ Gen Z',
+    channelHandle: '@toadogenz',
+    avatar: '⚡',
+    views: '164.2K',
+    likes: '19.5K',
+    comments: '890',
+    shares: '2.1K',
+    duration: '00:42',
+    hook: 'Có một kiểu sinh viên PR Văn Lang: 3 ngày trước hạn nộp đồ án và ly cà phê thứ tư...',
+    description: 'Thước phim đời sống sinh viên chân thực, hài hước và bắt trúng tâm lý người trẻ mùa chạy deadline đồ án. Cắt dựng nhịp điệu nhanh trên nền nhạc trend TikTok cuốn hút.',
     aspectRatio: '9:16',
-    capcutTemplate: 'Trending Craftsmanship Beat',
-    tags: ['#MinhHuyFurniture', '#NoiThatXuong', '#GheUonSat', '#QuyTrinhSanXuat', '#Handmade'],
-    gradient: 'from-amber-800 to-stone-900',
-    driveLink: 'https://drive.google.com/drive/folders/1rNL3_Asy9z306dMLTe0G2PAtys_-QW0V',
-    highlights: ['Hook gây tò mò trong 2s đầu', 'Cận cảnh tia lửa hàn laser', 'Cam kết độ bền khung sắt bảo hành 5 năm'],
+    capcutTemplate: 'Gen Z Trend Cut',
+    tags: ['#ToaDoGenZ', '#GenZLife', '#SinhVienVanLang', '#TrendTikTok', '#PRVanLang'],
+    gradient: 'from-orange-600 to-amber-900',
+    tiktokUrl: 'https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc',
+    highlights: ['Hook hài hước đánh trúng tâm lý sinh viên', 'Nhịp cắt dựng giật beat hiện đại', 'Tỷ lệ chia sẻ viral tự nhiên đạt 12%'],
   },
   {
     id: 'lcca-1',
@@ -195,6 +296,27 @@ export const featuredVideos: VideoItem[] = [
     gradient: 'from-amber-700 to-amber-950',
     tiktokUrl: 'https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM',
     highlights: ['Bảng màu be & cafe latte ngọt ngào', 'Voiceover truyền cảm, gần gũi', 'Tỷ lệ lưu video đạt 8.2%'],
+  },
+  {
+    id: 'db-1',
+    title: 'Trải nghiệm bứt tốc 0-50km/h cùng Dat Bike: Xe điện của người trẻ mê công nghệ',
+    category: 'datbike',
+    channel: 'Datbike Hồng Phương',
+    channelHandle: '@datbikehongphuong',
+    avatar: '⚡',
+    views: '98.6K',
+    likes: '12.3K',
+    comments: '540',
+    shares: '960',
+    duration: '00:39',
+    hook: 'Cảm giác vặn ga xe máy điện thông minh mà êm như lướt trên mây có gì khác xe xăng?',
+    description: 'Video review tính năng bứt tốc, khả năng kháng nước và sạc nhanh siêu tốc của xe điện Dat Bike tại đại lý Hồng Phương. Phong cách quay năng động, trẻ trung, hướng đến đối tượng người trẻ chuộng lối sống xanh.',
+    aspectRatio: '9:16',
+    capcutTemplate: 'Tech & Speed Dynamics',
+    tags: ['#DatbikeHongPhuong', '#DatBike', '#XeMayDien', '#CongNgheXanh', '#ReviewXe'],
+    gradient: 'from-teal-700 to-slate-900',
+    tiktokUrl: 'https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9BjNL1MnE9q',
+    highlights: ['Cảnh quay bứt tốc dứt khoát ngoài đường phố', 'So sánh chi phí sạc tiết kiệm gấp 5 lần xăng', 'Điều hướng đăng ký lái thử trực tiếp'],
   },
   {
     id: 'mh-2',
