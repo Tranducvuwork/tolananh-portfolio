@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import CategorySpotlight from '@/components/CategorySpotlight';
 import TiktokShowcase from '@/components/TiktokShowcase';
 import CaseStudies from '@/components/CaseStudies';
 import ScrapbookExperience from '@/components/ScrapbookExperience';
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col">
       <Navbar />
       <Hero />
+      <CategorySpotlight />
       <TiktokShowcase />
       <CaseStudies />
       <ScrapbookExperience />
