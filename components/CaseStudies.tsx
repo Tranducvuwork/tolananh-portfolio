@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { 
   FolderDown, ExternalLink, Sparkles, TrendingUp, CheckCircle, 
-  Layers, Hammer, ShieldCheck, Truck, Coffee, Cake, Users, Lightbulb, ChevronRight
+  Layers, Hammer, ShieldCheck, Truck, Coffee, Cake, Users, Lightbulb
 } from 'lucide-react';
 import { caseStudies, CaseStudy } from '@/app/data';
 
@@ -29,7 +30,7 @@ export default function CaseStudies() {
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2E8DC] text-[#84674C] text-xs font-semibold tracking-wide uppercase">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2E8DC] text-[#84674C] text-xs font-semibold tracking-wide uppercase font-sans">
             <Layers className="w-3.5 h-3.5" />
             <span>Chi Tiết Dự Án & Kế Hoạch Truyền Thông</span>
           </div>
@@ -39,7 +40,7 @@ export default function CaseStudies() {
             <span className="font-serif italic text-[#8A6748] font-normal">& Định Hướng Sáng Tạo</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#655243] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#655243] leading-relaxed font-sans">
             Mỗi dự án là một câu chuyện từ nghiên cứu insight, xây dựng thông điệp, sản xuất nội dung đến đo lường chuyển đổi thực tế.
           </p>
         </div>
@@ -58,7 +59,7 @@ export default function CaseStudies() {
                     : 'bg-white text-[#655243] border border-[#E8DEC8] hover:bg-[#F9F5EC]'
                 }`}
               >
-                <span>{cs.id === 'minh-huy-furniture' ? '🛋️' : cs.id === 'la-ca-mot-chut' ? '☕' : cs.id === 'xe-khach-phat' ? '🚌' : '🏆'}</span>
+                <span>{cs.id === 'minh-huy-furniture' ? '🛋️' : cs.id === 'la-ca-mot-chut' ? '☕' : cs.id === 'hai-phi-pitching' ? '🏆' : cs.id === 'suzuki-hong-phuong' ? '🚗' : '🚌'}</span>
                 <span>{cs.client}</span>
               </button>
             );
@@ -107,6 +108,24 @@ export default function CaseStudies() {
               </div>
             ))}
           </div>
+
+          {/* Real Slide Presentation Image Preview if available */}
+          {selectedCase.slideImage && (
+            <div className="space-y-3">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#84674C] font-sans flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Ấn Phẩm Thực Tế Từ Portfolio Gốc</span>
+              </div>
+              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-[#E5D6C3] bg-[#FAF6F0] shadow-md group">
+                <Image
+                  src={selectedCase.slideImage}
+                  alt={selectedCase.title}
+                  fill
+                  className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Overview & Solution */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">

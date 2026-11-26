@@ -39,20 +39,22 @@ export interface CaseStudy {
   externalUrl?: string;
   driveUrl?: string;
   badge: string;
+  slideImage?: string;
   featuredVideos?: VideoItem[];
 }
 
 export const profileData = {
   name: 'Tô Lan Anh',
   title: 'Social Media & Creative Planner',
-  subtitle: 'Content Marketing Intern | F&B & Lifestyle TikTok Specialist',
+  subtitle: 'Content Marketing | F&B & Lifestyle TikTok Specialist',
+  birthday: '24.02.2004',
   phone: '0942.077.335',
   email: 'lananhto2402@gmail.com',
   address: 'Lê Tấn Bê, Phường An Lạc, Bình Tân, TP.HCM',
   cvPdf: '/ToLanAnh_CV.pdf',
   avatar: '/images/avatar.jpg',
   portrait: '/images/lananh_portrait.jpg',
-  intro: 'Tôi là Tô Lan Anh, sinh viên ngành Quan hệ Công chúng - Truyền thông (PR) tại Đại Học Văn Lang, định hướng phát triển chuyên sâu thành một Creative Planner. Với tư duy thẩm mỹ nữ tính, tinh tế cùng năng lực sản xuất nội dung đa nền tảng (đặc biệt là short-form video TikTok), tôi luôn chủ động học hỏi và tích lũy kinh nghiệm thực chiến qua các dự án thương hiệu, từ sản xuất nội thất thủ công B2B đến các kênh F&B phong cách ấm áp.',
+  intro: 'Tôi là Tô Lan Anh (sinh ngày 24.02.2004), sinh viên ngành Quan hệ Công chúng - Truyền thông (PR) tại Đại Học Văn Lang (2022 - 2026), định hướng phát triển chuyên sâu thành một Creative Planner. Với tư duy thẩm mỹ nữ tính, tinh tế cùng năng lực sản xuất nội dung đa nền tảng (đặc biệt là short-form video TikTok), tôi luôn chủ động học hỏi và tích lũy kinh nghiệm thực chiến qua các dự án thương hiệu, từ sản xuất nội thất thủ công B2B đến các kênh F&B phong cách ấm áp.',
   goals: {
     shortTerm: 'Trong 2 tháng: Làm chủ các kiến thức chuyên môn cơ bản về xây dựng nội dung, vận hành mạng xã hội và sử dụng các công cụ truyền thông kỹ thuật số.',
     longTerm: 'Trong 2 năm: Trở thành Creative Planner chuyên nghiệp. Có khả năng dẫn dắt một nhóm nhỏ, tham gia vào các chiến dịch truyền thông tích hợp thực tiễn.'
@@ -81,14 +83,25 @@ export const profileData = {
   ],
   experience: [
     {
-      role: 'Social Media Executive',
-      company: 'DN Vận Tải - Xe Khách Phát',
+      role: 'Social Media Coordinator',
+      company: 'Phat-Thuy Company (DN Vận Tải Xe Khách Phát)',
       period: '2024 - 2025',
-      focus: 'Vận hành fanpage, sáng tạo nội dung & tối ưu chuyển đổi',
+      focus: 'Vận hành fanpage, sáng tạo nội dung & bài đăng tuyển dụng',
       points: [
         'Quản lý nội dung và trực tiếp vận hành kênh Facebook Fanpage của doanh nghiệp.',
         'Lên ý tưởng, thiết kế hình ảnh và viết copywriting cho toàn bộ tuyến bài đăng thường nhật và mùa cao điểm lễ/Tết.',
         'Phân tích hiệu quả bài đăng qua Meta Business Suite, tối ưu chiến lược nội dung giúp tăng tương tác và thu hút khách hàng đặt vé mới.',
+      ]
+    },
+    {
+      role: 'Social Media & Media Publications',
+      company: 'Suzuki Hồng Phương',
+      period: '2024 - 2025',
+      focus: 'Quản lý & đăng bài trên nền tảng Facebook & Instagram',
+      points: [
+        'Trực tiếp quản lý và đăng tải nội dung truyền thông cho đại lý ô tô / xe máy Suzuki Hồng Phương.',
+        'Thiết kế ấn phẩm truyền thông, thông báo khuyến mãi, giới thiệu xe và dịch vụ bảo dưỡng.',
+        'Tương tác và hỗ trợ khách hàng tiềm năng gửi tin nhắn quan tâm các dòng xe.',
       ]
     },
     {
@@ -103,10 +116,10 @@ export const profileData = {
       ]
     },
     {
-      role: 'Pitching Project Leader',
+      role: 'Pitching Project Leader (Winner)',
       company: 'TNHH Hải Phi Company (Dự án kiến tập)',
       period: '06/2025',
-      focus: 'Chiến dịch truyền thông thương hiệu TV HXY',
+      focus: 'Chiến dịch truyền thông thương hiệu TV HXY & TikTok Channel',
       points: [
         'Thắng Pitching dự án kiến tập với ý tưởng truyền thông sáng tạo cho dòng tivi HXY.',
         'Chủ trì nghiên cứu thị trường, phân tích insight khách hàng mục tiêu và xây dựng concept chiến dịch.',
@@ -125,7 +138,7 @@ export const profileData = {
     ],
     technical: [
       { name: 'CapCut', level: 'Thành thạo (Dựng video, hiệu ứng, âm thanh, trend)' },
-      { name: 'Adobe Photoshop', level: 'Chứng chỉ ColorMe (Chỉnh sửa ảnh, layout)' },
+      { name: 'Adobe Photoshop', level: 'Chứng chỉ ColorMe (Chỉnh sửa ảnh, layout, mockup)' },
       { name: 'Canva Pro', level: 'Thành thạo (Poster, feed design, template)' },
       { name: 'Facebook Page & Meta Suite', level: 'Vận hành, kiểm duyệt, theo dõi chỉ số' },
       { name: 'TikTok Studio & Analytics', level: 'Lên lịch, tối ưu SEO TikTok, đọc metric' },
@@ -254,7 +267,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Minh Huy Furniture — Chiếm Lĩnh Thị Trường B2B Bằng Nội Dung Short-Form Xưởng Sản Xuất',
     subtitle: 'Chiến dịch TikTok Marketing chuyển đổi số cho cơ sở sản xuất gia công nội thất kim khí & sofa',
     category: 'TikTok Content & Video Production',
-    client: 'Minh Huy Furniture Co.',
+    client: 'Minh Huy Furniture',
     role: 'Creative Planner, Kịch bản & Dựng video CapCut',
     timeline: '10/2026 - 11/2026',
     badge: 'Dự án trọng điểm',
@@ -303,7 +316,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Kênh TikTok F&B: La Cà Một Chút — Không Gian Ấm Áp Cùng Tone Màu Be Nhẹ Nhàng',
     subtitle: 'Xây dựng thương hiệu cá nhân & Kênh review trải nghiệm cafe, ẩm thực phong cách thẩm mỹ',
     category: 'Brand Identity & Short-form Storytelling',
-    client: 'Kênh La Cà Một Chút (@la.camotchut)',
+    client: 'Kênh La Cà Một Chút',
     role: 'Channel Owner, Creative Director & Content Strategist',
     timeline: '2025 - Nay',
     badge: 'Kênh TikTok F&B',
@@ -343,64 +356,24 @@ export const caseStudies: CaseStudy[] = [
     featuredVideos: featuredVideos.filter(v => v.category === 'fnb')
   },
   {
-    id: 'xe-khach-phat',
-    title: 'DN Vận Tải Xe Khách Phát — Trẻ Hóa Hình Ảnh & Tối Ưu Lượng Khách Đặt Vé Qua Fanpage',
-    subtitle: 'Chiến dịch quản trị nội dung fanpage Facebook cho doanh nghiệp vận tải hành khách liên tỉnh',
-    category: 'Social Media Management',
-    client: 'DN Vận Tải Xe Khách Phát',
-    role: 'Social Media Executive & Content Creator',
-    timeline: '2024 - 2025',
-    badge: 'Social Media B2C',
-    metrics: [
-      { value: '45%+', label: 'Tăng lượng tương tác tự nhiên' },
-      { value: '3x', label: 'Tăng lượng inbox đặt vé trực tiếp' },
-      { value: '4.9/5', label: 'Đánh giá hài lòng về tư vấn' },
-      { value: '30+ Banner', label: 'Thiết kế POSM & Digital' },
-    ],
-    overview: 'Vận hành toàn diện fanpage Facebook của doanh nghiệp xe khách liên tỉnh. Đổi mới phong cách truyền thông từ cứng nhắc sang hình ảnh hiện đại, cung cấp lịch trình rõ ràng, chia sẻ cẩm nang du lịch và thông báo an toàn kịp thời.',
-    challenge: 'Ngành vận tải hành khách thường gặp rào cản về phàn nàn dịch vụ mùa lễ Tết và đối tượng khách hàng rất đa dạng từ học sinh sinh viên đến người lớn tuổi.',
-    solution: 'Xây dựng quy chuẩn hình ảnh bảng giờ chạy minh bạch, thiết kế đồ họa dễ đọc trên điện thoại, đồng thời xây dựng kịch bản phản hồi tin nhắn tự động hỗ trợ khách 24/7.',
-    contentPillars: [
-      {
-        title: 'Lịch Trình & Đặt Vé Tiện Lợi',
-        desc: 'Banner trực quan các khung giờ khởi hành, giá vé niêm yết rõ ràng, chương trình ưu đãi.',
-        icon: 'Calendar'
-      },
-      {
-        title: 'Cẩm Nang Hành Trình',
-        desc: 'Gợi ý điểm ăn uống ngon tại các bến đỗ, kinh nghiệm đi xe tránh say xe cho hành khách.',
-        icon: 'Compass'
-      },
-      {
-        title: 'Phản Hồi & Câu Chuyện Lái Xe',
-        desc: 'Ghi lại những khoảnh khắc ấm lòng của đội ngũ tài xế và hành khách, xây dựng niềm tin thương hiệu.',
-        icon: 'HeartHandshake'
-      }
-    ],
-    deliverables: [
-      'Lập kế hoạch phát sóng bài viết định kỳ 4-5 post/tuần',
-      'Thiết kế banner truyền thông bằng Photoshop & Canva',
-      'Quản lý hộp thư tương tác và xử lý khủng hoảng phản hồi khách hàng',
-    ]
-  },
-  {
     id: 'hai-phi-pitching',
-    title: 'Pitching Campaign TNHH Hải Phi — Thắng Thầu Ý Tưởng Truyền Thông Dòng Tivi HXY',
+    title: 'Winner – Pitching Project tại HAI PHI Company (Tivi HXY Campaign)',
     subtitle: 'Dự án kiến tập xuất sắc: Khám phá insight người tiêu dùng và lập kế hoạch truyền thông tích hợp',
     category: 'Integrated Marketing Communication (IMC)',
     client: 'TNHH Hải Phi Company',
-    role: 'Pitching Team Leader & Creative Planner',
+    role: 'Winner - Pitching Team Leader & Creative Planner',
     timeline: '06/2025',
-    badge: 'Giải Nhất Pitching Kiến Tập',
+    badge: 'Giải Nhất Pitching',
+    slideImage: '/images/slides/slide_3.png',
     metrics: [
       { value: 'Top 1', label: 'Đội thi thắng giải pitching' },
       { value: '95/100', label: 'Điểm sáng tạo ban giám khảo' },
       { value: '200+', label: 'Khảo sát người tiêu dùng thực tế' },
       { value: '1 Kế hoạch', label: 'Chiến dịch IMC hoàn chỉnh 3 giai đoạn' },
     ],
-    overview: 'Chiến dịch pitching bài bản mô phỏng môi trường agency thực tế. Nhóm đã tiến hành khảo sát hành vi mua sắm thiết bị nghe nhìn của các gia đình trẻ, từ đó đề xuất thông điệp truyền thông "Gắn Kết Từng Khung Hình" cho sản phẩm Smart TV HXY.',
-    challenge: 'Thị trường tivi thông minh bị chi phối bởi các ông lớn công nghệ toàn cầu. Thương hiệu HXY cần một góc tiếp cận đầy tính nhân văn và ấm áp để chạm vào cảm xúc người mua.',
-    solution: 'Khai thác insight: Chiếc tivi trong phòng khách không chỉ là công cụ giải trí mà là "trọng tâm gắn kết các thành viên trong gia đình sum vầy sau ngày dài". Đề xuất kịch bản viral video gia đình ấm áp kết hợp activation tại chuỗi siêu thị điện máy.',
+    overview: 'Chiến dịch pitching bài bản mô phỏng môi trường agency thực tế. Nhóm đã tiến hành khảo sát hành vi mua sắm thiết bị nghe nhìn của các gia đình trẻ, từ đó đề xuất thông điệp truyền thông "Gắn Kết Từng Khung Hình" cho sản phẩm Smart TV HXY cùng kênh TikTok Channel TVC lan tỏa mạnh mẽ.',
+    challenge: 'Thị trường tivi thông minh bị chi phối bởi các thương hiệu lớn. Dự án HXY cần một góc tiếp cận đầy tính nhân văn và ấm áp để chạm vào cảm xúc người mua gia đình trẻ.',
+    solution: 'Khai thác insight: Chiếc tivi trong phòng khách không chỉ là công cụ giải trí mà là "trọng tâm gắn kết các thành viên trong gia đình sum vầy sau ngày dài". Đề xuất kịch bản TikTok & TVC gia đình ấm áp kết hợp activation tại điểm bán.',
     contentPillars: [
       {
         title: 'Insight Khách Hàng Mục Tiêu',
@@ -420,8 +393,92 @@ export const caseStudies: CaseStudy[] = [
     ],
     deliverables: [
       'Bản kế hoạch chiến lược truyền thông IMC dài 45 trang',
-      'Bộ slide thuyết trình pitching visual ấn tượng thiết kế chuyên nghiệp',
-      'Bản storyboard kịch bản TVC / Viral Video 60s',
+      'Bộ slide thuyết trình pitching visual ấn tượng thiết kế chuyên nghiệp (Slide 3 & 4)',
+      'Bản storyboard kịch bản TikTok Channel & TVC 60s',
+    ]
+  },
+  {
+    id: 'suzuki-hong-phuong',
+    title: 'Suzuki Hồng Phương — Quản Lý & Xuất Bản Ấn Phẩm Đa Nền Tảng Facebook & Instagram',
+    subtitle: 'Quản trị và phát triển nội dung số cho đại lý phân phối chính hãng xe ô tô & xe máy',
+    category: 'Social Media & Visual Publications',
+    client: 'Suzuki Hồng Phương',
+    role: 'Social Media Management & Graphic Designer',
+    timeline: '2024 - 2025',
+    badge: 'Ô tô & Xe máy',
+    slideImage: '/images/slides/slide_6.png',
+    metrics: [
+      { value: '2 Nền tảng', label: 'Facebook & Instagram' },
+      { value: '50+ Post', label: 'Xuất bản định kỳ hàng tháng' },
+      { value: '+60%', label: 'Tương tác tương tác khách hỏi xe' },
+      { value: 'Photoshop', label: 'Thiết kế ấn phẩm chuẩn nhận diện' },
+    ],
+    overview: 'Trực tiếp phụ trách lên ý tưởng nội dung, thiết kế ấn phẩm đồ họa và lên lịch đăng tải trên Facebook Page và Instagram của Suzuki Hồng Phương. Xây dựng các tuyến bài giới thiệu tính năng xe, bảng giá lăn bánh, cẩm nang bảo dưỡng và chương trình lái thử.',
+    challenge: 'Ngành xe cần hình ảnh chỉn chu, thông số kỹ thuật chính xác nhưng không gây cảm giác khô khan nhằm kích thích khách hàng đăng ký lái thử.',
+    solution: 'Thiết kế bố cục hình ảnh hiện đại bằng Photoshop, áp dụng màu sắc nhận diện thương hiệu Suzuki xanh - đỏ nổi bật, lồng ghép feedback khách hàng nhận xe mới để tăng độ tin cậy.',
+    contentPillars: [
+      {
+        title: 'Giới Thiệu Dòng Xe & Giá Lăn Bánh',
+        desc: 'Cập nhật bảng giá, tính năng an toàn nổi trội và khuyến mãi hàng tháng.',
+        icon: 'Sparkles'
+      },
+      {
+        title: 'Khoảnh Khắc Bàn Giao Xe',
+        desc: 'Hình ảnh khách hàng nhận xe kèm lời chúc chân thành tạo hiệu ứng lan tỏa niềm tin.',
+        icon: 'Users'
+      },
+      {
+        title: 'Cẩm Nang Bảo Dưỡng',
+        desc: 'Lời khuyên chăm sóc xe mùa mưa, kiểm tra lốp và thay dầu định kỳ tại xưởng dịch vụ.',
+        icon: 'Layers'
+      }
+    ],
+    deliverables: [
+      'Lịch biên tập nội dung phát sóng hàng tuần (Content Calendar)',
+      'Thiết kế ấn phẩm banner, carousels, story Facebook/Instagram bằng Photoshop',
+      'Quản lý tương tác và phản hồi khách hàng gửi tin nhắn tư vấn lái thử',
+    ]
+  },
+  {
+    id: 'phat-thuy-social',
+    title: 'Phat-Thuy Company (Xe Khách Phát) — Nội Dung Fanpage & Tuyển Dụng Chuyên Nghiệp',
+    subtitle: 'Chiến dịch quản trị nội dung fanpage Facebook cho doanh nghiệp vận tải hành khách liên tỉnh',
+    category: 'Social Media Coordinator',
+    client: 'Phat-Thuy Company',
+    role: 'Social Media Coordinator & Content Creator',
+    timeline: '2024 - 2025',
+    badge: 'Social Media & HR',
+    slideImage: '/images/slides/slide_8.png',
+    metrics: [
+      { value: '45%+', label: 'Tăng lượng tương tác tự nhiên' },
+      { value: '3x', label: 'Tăng lượng inbox đặt vé trực tiếp' },
+      { value: '100%', label: 'Đạt chỉ tiêu tuyển dụng tài xế' },
+      { value: '30+ Banner', label: 'Thiết kế POSM & Digital' },
+    ],
+    overview: 'Vận hành toàn diện fanpage Facebook của doanh nghiệp xe khách liên tỉnh. Đổi mới phong cách truyền thông từ cứng nhắc sang hình ảnh hiện đại, cung cấp lịch trình rõ ràng, chia sẻ cẩm nang du lịch, thông báo an toàn và thực hiện các chiến dịch bài đăng tuyển dụng tài xế/nhân viên.',
+    challenge: 'Ngành vận tải hành khách thường gặp rào cản về phàn nàn dịch vụ mùa lễ Tết và đối tượng khách hàng rất đa dạng từ học sinh sinh viên đến người lớn tuổi.',
+    solution: 'Xây dựng quy chuẩn hình ảnh bảng giờ chạy minh bạch, thiết kế đồ họa dễ đọc trên điện thoại, đồng thời xây dựng kịch bản phản hồi tin nhắn tự động hỗ trợ khách 24/7.',
+    contentPillars: [
+      {
+        title: 'Lịch Trình & Đặt Vé Tiện Lợi',
+        desc: 'Banner trực quan các khung giờ khởi hành, giá vé niêm yết rõ ràng, chương trình ưu đãi.',
+        icon: 'Layers'
+      },
+      {
+        title: 'Cẩm Nang Hành Trình',
+        desc: 'Gợi ý điểm ăn uống ngon tại các bến đỗ, kinh nghiệm đi xe tránh say xe cho hành khách.',
+        icon: 'Coffee'
+      },
+      {
+        title: 'Tuyển Dụng & Đội Ngũ Bác Tài',
+        desc: 'Thiết kế bài tuyển dụng chuyên nghiệp, ghi lại những khoảnh khắc ấm lòng của đội ngũ tài xế.',
+        icon: 'Users'
+      }
+    ],
+    deliverables: [
+      'Lập kế hoạch phát sóng bài viết định kỳ 4-5 post/tuần',
+      'Thiết kế banner truyền thông & tuyển dụng bằng Photoshop & Canva (Slide 8 & 9)',
+      'Quản lý hộp thư tương tác và xử lý khủng hoảng phản hồi khách hàng',
     ]
   }
 ];
