@@ -1,17 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { 
   Play, Pause, Volume2, VolumeX, Heart, MessageCircle, Share2, 
-  ExternalLink, Sparkles, FolderDown, Video, Music, Flame, Check
+  ExternalLink, Sparkles, FolderDown, Video, Music, Check, Star, 
+  Flame, Film, Coffee, Sofa, Eye, ArrowUpRight
 } from 'lucide-react';
 import { featuredVideos, VideoItem } from '@/app/data';
 
-interface TiktokShowcaseProps {
-  onSelectVideo?: (video: VideoItem) => void;
-}
-
-export default function TiktokShowcase({ onSelectVideo }: TiktokShowcaseProps) {
+export default function TiktokShowcase() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'furniture' | 'fnb'>('all');
   const [activeVideo, setActiveVideo] = useState<VideoItem>(featuredVideos[0]);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -19,6 +17,7 @@ export default function TiktokShowcase({ onSelectVideo }: TiktokShowcaseProps) {
   const [likeCount, setLikeCount] = useState<number>(6240);
   const [hasLiked, setHasLiked] = useState<boolean>(false);
   const [showHearts, setShowHearts] = useState<boolean>(false);
+  const [copiedLink, setCopiedLink] = useState<boolean>(false);
 
   const filteredVideos = activeCategory === 'all' 
     ? featuredVideos 
@@ -44,132 +43,231 @@ export default function TiktokShowcase({ onSelectVideo }: TiktokShowcaseProps) {
     }
   };
 
+  const handleShare = () => {
+    navigator.clipboard?.writeText(activeVideo.tiktokUrl || window.location.href);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
   return (
-    <section id="tiktok-showcase" className="py-20 bg-[#F7F2EA] relative border-y border-[#E8DEC8]/80 overflow-hidden">
+    <section id="tiktok-showcase" className="py-24 bg-[#F4EFE6] relative border-y border-[#ECE4D8] overflow-hidden">
       
-      {/* Background aesthetic blobs */}
-      <div className="absolute top-0 right-10 w-72 h-72 rounded-full bg-[#EAE0D2]/70 blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-[#F2E8DC]/80 blur-3xl -z-10" />
+      {/* Background radial ambiance */}
+      <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-[#EAE1D5]/50 blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-96 h-96 rounded-full bg-[#FAF7F2]/80 blur-3xl -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EAE0D2] text-[#84674C] text-xs font-semibold tracking-wide uppercase">
-            <Video className="w-3.5 h-3.5" />
-            <span>TikTok Short-Form Video Hub</span>
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] shadow-xs">
+            <Film className="w-3.5 h-3.5 text-[#9E6B47]" />
+            <span className="text-xs font-mono font-medium tracking-wider text-[#7D5133] uppercase">
+              TikTok & Short-Form Video Hub
+            </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#2D231C] tracking-tight">
-            Trải Nghiệm Trực Tiếp <br />
-            <span className="font-serif italic text-[#8A6748] font-normal">Định Dạng Video TikTok</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1611] tracking-tight">
+            Trải Nghiệm Thực Tế <br />
+            <span className="font-serif italic text-[#9E6B47] font-normal">
+              Định Dạng Video TikTok
+            </span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#655243] leading-relaxed">
-            Mỗi khung hình đều được tính toán từ <strong className="text-[#2D231C]">Hook 3 giây đầu</strong>, âm thanh bắt tai, 
-            kỹ thuật dựng <strong className="text-[#2D231C]">CapCut</strong> nhịp điệu cao đến bảng màu be ấm cúng mang lại tỷ lệ giữ chân khán giả vượt trội.
+          <p className="text-sm sm:text-base text-[#5C4D43] leading-relaxed max-w-2xl mx-auto">
+            Mỗi thước phim đều được tính toán từ <strong className="text-[#1E1611]">Hook 3 giây đầu</strong> giữ chân người xem, 
+            kỹ thuật dựng CapCut nhịp điệu cao đến bảng màu be ấm áp đem lại tỷ lệ chuyển đổi vượt trội.
           </p>
 
-          {/* Filter Categories */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-3">
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-mono font-medium transition-all ${
                 activeCategory === 'all'
-                  ? 'bg-[#84674C] text-white shadow-sm'
-                  : 'bg-white/90 text-[#655243] hover:bg-white'
+                  ? 'bg-[#1E1611] text-white shadow-sm'
+                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
               }`}
             >
               Tất cả video ({featuredVideos.length})
             </button>
             <button
               onClick={() => setActiveCategory('furniture')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-medium transition-all ${
                 activeCategory === 'furniture'
-                  ? 'bg-[#84674C] text-white shadow-sm'
-                  : 'bg-white/90 text-[#655243] hover:bg-white'
+                  ? 'bg-[#1E1611] text-white shadow-sm'
+                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
               }`}
             >
-              <span>🛋️ Minh Huy Furniture</span>
+              <Sofa className="w-3.5 h-3.5 text-[#9E6B47]" />
+              <span>Minh Huy Furniture (B2B)</span>
             </button>
             <button
               onClick={() => setActiveCategory('fnb')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-medium transition-all ${
                 activeCategory === 'fnb'
-                  ? 'bg-[#84674C] text-white shadow-sm'
-                  : 'bg-white/90 text-[#655243] hover:bg-white'
+                  ? 'bg-[#1E1611] text-white shadow-sm'
+                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
               }`}
             >
-              <span>☕ La Cà Một Chút (Tone Be)</span>
+              <Coffee className="w-3.5 h-3.5 text-[#9E6B47]" />
+              <span>La Cà Một Chút (Tone Be)</span>
             </button>
           </div>
         </div>
 
-        {/* Main Interactive Showcase Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Channel Analytics Strip (Inspired by Wix Studio reference) */}
+        <div className="editorial-card p-6 sm:p-8 mb-12 bg-white">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-[#ECE4D8]">
+            <div className="flex items-center gap-4 text-left">
+              <div className="w-14 h-14 rounded-full bg-[#1E1611] text-[#FAF7F2] flex items-center justify-center font-serif text-xl font-bold border-2 border-[#DECFC0]">
+                {activeVideo.category === 'furniture' ? 'MH' : 'LC'}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-serif text-xl font-bold text-[#1E1611]">
+                    {activeVideo.category === 'furniture' ? 'Minh Huy Furniture Official' : 'La Cà Một Chút (Tone Be)'}
+                  </h3>
+                  <span className="w-4 h-4 rounded-full bg-[#9E6B47] text-white flex items-center justify-center text-[10px]">
+                    ✓
+                  </span>
+                </div>
+                <p className="text-xs font-mono text-[#7D5133] mt-0.5">
+                  {activeVideo.category === 'furniture' ? '@minhhuyfurniture • 20+ Video Xưởng B2B' : '@la.camotchut • F&B Lifestyle & Cafe Review'}
+                </p>
+              </div>
+            </div>
+
+            {/* Direct Channel Buttons */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://drive.google.com/drive/folders/1rNL3_Asy9z306dMLTe0G2PAtys_-QW0V"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-mono font-medium bg-[#FAF7F2] border border-[#DECFC0] text-[#1E1611] hover:bg-[#ECE4D8] transition-all"
+              >
+                <FolderDown className="w-3.5 h-3.5 text-[#9E6B47]" />
+                <span>Mở Google Drive Xưởng (20+ Video)</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-mono font-medium bg-[#1E1611] text-white hover:bg-[#9E6B47] transition-all"
+              >
+                <span>Khám Phá Kênh @la.camotchut</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#DECFC0]" />
+              </a>
+            </div>
+          </div>
+
+          {/* Key Metrics Counters */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 text-center sm:text-left">
+            <div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">58K+</div>
+              <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Followers Kênh</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">3.9M+</div>
+              <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Tổng Lượt Thích</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">5.3M+</div>
+              <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Lượt Xem / Tháng</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#9E6B47]">14.8%</div>
+              <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Tỷ Lệ Tương Tác (Cao Hơn 80%)</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Interactive Showcase: Phone Mockup on Left + Video Details on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          {/* Left Column: Interactive TikTok Phone (5 cols) */}
+          {/* Left Column: Ultra-Realistic Phone Mockup (5 cols) */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="phone-mockup relative select-none">
+            <div className="phone-mockup-pro select-none relative group">
               
               {/* Dynamic Island */}
-              <div className="phone-island flex items-center justify-center">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#181818] mr-2" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14202c]" />
+              <div className="phone-dynamic-island flex items-center justify-between px-3">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
+                <div className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[9px] font-mono text-zinc-400">9:16</span>
+                </div>
               </div>
 
-              {/* TikTok Video Screen Content */}
+              {/* Phone Screen Viewport */}
               <div 
-                className={`w-full h-full bg-gradient-to-br ${activeVideo.gradient} relative flex flex-col justify-between p-4 pt-12 text-white overflow-hidden`}
                 onClick={() => setIsPlaying(!isPlaying)}
+                className="phone-screen cursor-pointer relative bg-zinc-950 flex flex-col justify-between"
               >
-                {/* Background Ambient Visual Effect */}
-                <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
-                
-                {/* Floating Hearts Animation */}
-                {showHearts && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-                    <Heart className="w-24 h-24 text-rose-500 fill-rose-500 animate-ping opacity-90" />
+                {/* Simulated High-Res Video Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${activeVideo.gradient} opacity-90 transition-all duration-700`} />
+
+                {/* Animated video content representation */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none">
+                  {/* Subtle video ambient effect */}
+                  <div className="w-32 h-32 rounded-full bg-white/10 blur-2xl animate-pulse" />
+                  <div className="relative z-10 space-y-3">
+                    <span className="inline-block px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-[10px] font-mono text-amber-200 border border-white/15">
+                      {activeVideo.category === 'furniture' ? 'MINH HUY WORKSHOP BTS' : 'LA CÀ MỘT CHÚT • CAFE VLOG'}
+                    </span>
+                    <h4 className="text-lg font-serif font-bold text-white leading-tight px-2 drop-shadow-md">
+                      {activeVideo.title}
+                    </h4>
+                    <p className="text-xs text-zinc-300 font-sans italic line-clamp-3 px-3 drop-shadow">
+                      "{activeVideo.hook}"
+                    </p>
+                  </div>
+                </div>
+
+                {/* Play/Pause Center Indicator */}
+                {!isPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-30 pointer-events-none">
+                    <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">
+                      <Play className="w-7 h-7 fill-current translate-x-0.5" />
+                    </div>
                   </div>
                 )}
 
-                {/* Top Bar: Following / For You */}
-                <div className="relative z-10 flex items-center justify-between text-xs font-semibold px-2 text-white/80 font-sans">
-                  <div className="flex items-center gap-3">
-                    <span className="text-white/60">Đang theo dõi</span>
-                    <span className="text-white border-b-2 border-white pb-0.5">Dành cho bạn</span>
+                {/* Floating Heart Particle on Like */}
+                {showHearts && (
+                  <div className="absolute right-4 bottom-32 pointer-events-none z-40 animate-float-heart">
+                    <Heart className="w-12 h-12 text-rose-500 fill-rose-500 drop-shadow-lg" />
+                  </div>
+                )}
+
+                {/* Top Video Status Overlay */}
+                <div className="relative z-20 pt-12 px-4 flex items-center justify-between text-white/90">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[10px] font-mono uppercase tracking-wider text-white">
+                      LIVE FEED
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-300">{activeVideo.duration}</span>
                   </div>
 
-                  {/* Sound Toggle Button */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setIsMuted(!isMuted);
                     }}
-                    className="w-7 h-7 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-black/60 transition-colors"
+                    className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 transition-colors"
                   >
-                    {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   </button>
                 </div>
 
-                {/* Central Play/Pause State Indicator */}
-                {!isPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[1px] z-20 pointer-events-none">
-                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                      <Play className="w-8 h-8 fill-current translate-x-0.5" />
-                    </div>
-                  </div>
-                )}
-
-                {/* Right Action Sidebar (Like, Comment, Share, Sound disc) */}
-                <div className="absolute right-3 bottom-20 flex flex-col items-center gap-4 z-20 font-sans">
+                {/* Right Action Icons (Like, Comment, Share, Sound disk) */}
+                <div className="relative z-20 self-end mr-3 mb-6 flex flex-col items-center gap-4 text-white">
                   
-                  {/* Channel Avatar with Follow Plus */}
-                  <div className="relative group">
-                    <div className="w-11 h-11 rounded-full border-2 border-white bg-amber-100 flex items-center justify-center text-lg shadow-md">
-                      {activeVideo.avatar}
+                  {/* Creator Avatar with Follow Button */}
+                  <div className="relative mb-1">
+                    <div className="w-10 h-10 rounded-full border-2 border-white bg-zinc-800 flex items-center justify-center text-xs font-bold text-white overflow-hidden shadow-lg">
+                      {activeVideo.category === 'furniture' ? 'MH' : 'LC'}
                     </div>
-                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#FE2C55] text-white flex items-center justify-center text-[10px] font-bold shadow">
+                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] font-bold">
                       +
                     </div>
                   </div>
@@ -180,198 +278,193 @@ export default function TiktokShowcase({ onSelectVideo }: TiktokShowcaseProps) {
                       e.stopPropagation();
                       toggleLike();
                     }}
-                    className="flex flex-col items-center gap-1 group"
+                    className="flex flex-col items-center gap-1 group/btn"
                   >
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-transform active:scale-125 ${
-                      hasLiked ? 'text-[#FE2C55]' : 'text-white/90'
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                      hasLiked ? 'text-rose-500 scale-110' : 'text-white hover:scale-105'
                     }`}>
-                      <Heart className={`w-7 h-7 ${hasLiked ? 'fill-[#FE2C55]' : 'fill-white/20'}`} />
+                      <Heart className={`w-7 h-7 drop-shadow ${hasLiked ? 'fill-rose-500' : 'fill-black/30'}`} />
                     </div>
-                    <span className="text-[11px] font-semibold tracking-tight">
-                      {hasLiked ? `${(likeCount / 1000).toFixed(1)}K` : activeVideo.likes}
+                    <span className="text-[10px] font-mono font-semibold drop-shadow">
+                      {(likeCount / 1000).toFixed(1)}K
                     </span>
                   </button>
 
                   {/* Comment Button */}
                   <div className="flex flex-col items-center gap-1">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white/90">
-                      <MessageCircle className="w-7 h-7 fill-white/20" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white">
+                      <MessageCircle className="w-7 h-7 fill-black/30 drop-shadow" />
                     </div>
-                    <span className="text-[11px] font-semibold">{activeVideo.comments}</span>
+                    <span className="text-[10px] font-mono font-semibold drop-shadow">{activeVideo.comments}</span>
                   </div>
 
                   {/* Share Button */}
-                  <div className="flex flex-col items-center gap-1">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white/90">
-                      <Share2 className="w-7 h-7 fill-white/20" />
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare();
+                    }}
+                    className="flex flex-col items-center gap-1"
+                  >
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white">
+                      <Share2 className="w-7 h-7 fill-black/30 drop-shadow" />
                     </div>
-                    <span className="text-[11px] font-semibold">{activeVideo.shares}</span>
-                  </div>
+                    <span className="text-[10px] font-mono font-semibold drop-shadow">
+                      {copiedLink ? 'Copied' : activeVideo.shares}
+                    </span>
+                  </button>
 
-                  {/* Rotating Sound Disc */}
-                  <div className={`w-9 h-9 rounded-full bg-gradient-to-tr from-stone-900 to-amber-700 p-1 border border-white/40 flex items-center justify-center shadow-lg ${
-                    isPlaying ? 'animate-spin [animation-duration:5s]' : ''
-                  }`}>
-                    <Music className="w-4 h-4 text-amber-200" />
+                  {/* Spinning Audio Disk */}
+                  <div className="w-10 h-10 rounded-full bg-zinc-900 border-2 border-zinc-700 flex items-center justify-center text-amber-200 mt-2 animate-spin-slow">
+                    <Music className="w-4 h-4" />
                   </div>
                 </div>
 
-                {/* Bottom Video Metadata */}
-                <div className="relative z-10 pr-14 space-y-2 mt-auto font-sans">
-                  {/* CapCut Badge */}
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/40 backdrop-blur-md text-[10px] text-amber-300 font-semibold border border-amber-300/30">
-                    <Sparkles className="w-2.5 h-2.5" />
-                    <span>CapCut • {activeVideo.capcutTemplate}</span>
+                {/* Bottom Video Meta Overlay */}
+                <div className="relative z-20 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold">{activeVideo.channelHandle}</span>
+                    <span className="text-[10px] text-amber-300 font-mono">Tô Lan Anh (Planner)</span>
                   </div>
-
-                  {/* Creator handle */}
-                  <div className="flex items-center gap-1.5 font-bold text-sm tracking-tight">
-                    <span>{activeVideo.channelHandle}</span>
-                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 font-medium">
-                      Tác giả
-                    </span>
-                  </div>
-
-                  {/* Hook & description */}
-                  <p className="text-xs text-white/90 font-normal leading-relaxed line-clamp-3">
-                    <strong className="text-amber-200 block text-xs mb-0.5 font-semibold">{activeVideo.hook}</strong>
+                  <p className="text-xs text-zinc-200 line-clamp-2 leading-snug">
                     {activeVideo.description}
                   </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1 text-[10px] text-amber-200/90 font-medium">
-                    {activeVideo.tags.map((tag, i) => (
-                      <span key={i}>{tag}</span>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {activeVideo.tags.map((t, idx) => (
+                      <span key={idx} className="text-[10px] font-mono text-amber-200/90">
+                        {t}
+                      </span>
                     ))}
                   </div>
 
-                  {/* Music Track Marquee */}
-                  <div className="flex items-center gap-1.5 text-[11px] text-white/80 pt-1">
-                    <Music className="w-3 h-3 flex-shrink-0 animate-bounce" />
-                    <span className="truncate">Âm thanh gốc - Tô Lan Anh x {activeVideo.channel}</span>
+                  {/* Video Progress Scrubber */}
+                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden mt-2">
+                    <div className={`h-full bg-white transition-all duration-300 ${isPlaying ? 'w-2/3' : 'w-1/3'}`} />
                   </div>
                 </div>
 
-                {/* Simulated Progress Bar */}
-                <div className="relative z-10 w-full bg-white/30 h-1 rounded-full mt-3 overflow-hidden">
-                  <div className={`h-full bg-white rounded-full ${isPlaying ? 'w-2/3 transition-all duration-1000' : 'w-1/3'}`} />
-                </div>
-
               </div>
-
             </div>
           </div>
 
-          {/* Right Column: Playlist & Video Details (7 cols) */}
+          {/* Right Column: Detailed Breakdown & Playlist (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs uppercase tracking-wider font-bold text-[#84674C] font-sans">
-                  Đang phát trên mô phỏng:
-                </span>
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#EAE0D2] font-semibold text-[#644D38]">
-                  {activeVideo.category === 'furniture' ? 'Nội thất Minh Huy' : 'F&B La Cà'}
-                </span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D231C]">
-                {activeVideo.title}
-              </h3>
-            </div>
-
-            {/* Video Script Analysis Box */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#E5D6C3] shadow-sm space-y-3">
-              <div className="text-xs font-bold uppercase tracking-wider text-[#84674C] flex items-center gap-1.5 font-sans">
-                <Flame className="w-4 h-4 text-orange-500" />
-                <span>Chiến Lược Kịch Bản & Điểm Sáng Video (Hook 3s)</span>
+            {/* Active Video Intelligence Card */}
+            <div className="editorial-card p-6 bg-white space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#ECE4D8]">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-[#FAF7F2] border border-[#DECFC0] text-xs font-mono font-semibold text-[#7D5133]">
+                    {activeVideo.category === 'furniture' ? 'Nội thất Minh Huy' : 'Kênh F&B La Cà'}
+                  </span>
+                  <span className="text-xs font-mono text-[#5C4D43]">
+                    CapCut: {activeVideo.capcutTemplate}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-mono text-[#9E6B47]">
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>{activeVideo.views} views</span>
+                </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#FAF6F0] border-l-4 border-[#84674C] text-sm text-[#3E3027] font-medium leading-relaxed font-sans">
-                &ldquo;{activeVideo.hook}&rdquo;
+              {/* Hook Analysis */}
+              <div className="space-y-1.5">
+                <div className="text-xs font-mono uppercase tracking-wider text-[#9E6B47] font-semibold">
+                  Hook 3 giây đầu giữ chân khán giả:
+                </div>
+                <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm text-[#1E1611] font-serif italic">
+                  "{activeVideo.hook}"
+                </blockquote>
               </div>
 
-              <div className="space-y-1.5 pt-1">
-                <div className="text-xs font-semibold text-[#655243] font-sans">Các yếu tố giữ chân người xem:</div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {/* Highlights */}
+              <div className="space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-[#7D5133] font-semibold">
+                  Kỹ thuật sản xuất & Giá trị chuyển đổi:
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {activeVideo.highlights.map((h, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-[#4A3B30] font-sans">
-                      <div className="w-4 h-4 rounded-full bg-[#EFE6DA] flex items-center justify-center text-[#84674C] flex-shrink-0">
-                        <Check className="w-2.5 h-2.5" />
-                      </div>
-                      <span>{h}</span>
+                    <div key={i} className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] text-xs text-[#4A3A2C]">
+                      <span className="text-[#9E6B47] font-bold mr-1">✓</span>
+                      {h}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Action Links */}
-              <div className="pt-2 flex flex-wrap items-center gap-3">
+              {/* External Direct Links */}
+              <div className="pt-2 flex flex-wrap gap-3">
                 {activeVideo.driveLink && (
                   <a
                     href={activeVideo.driveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#FAF2E8] border border-[#D5BEA4] text-xs font-semibold text-[#84674C] hover:bg-[#F2E8DC] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-medium bg-[#1E1611] text-white hover:bg-[#9E6B47] transition-all"
                   >
                     <FolderDown className="w-3.5 h-3.5" />
-                    <span>Mở thư mục Google Drive (Minh Huy)</span>
-                    <ExternalLink className="w-3 h-3 ml-0.5" />
+                    <span>Mở Folder Google Drive Dự Án</span>
                   </a>
                 )}
-
                 {activeVideo.tiktokUrl && (
                   <a
                     href={activeVideo.tiktokUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#FAF2E8] border border-[#D5BEA4] text-xs font-semibold text-[#84674C] hover:bg-[#F2E8DC] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-medium border border-[#DECFC0] bg-white text-[#1E1611] hover:bg-[#FAF7F2] transition-all"
                   >
-                    <span>Xem trên TikTok @la.camotchut</span>
-                    <ExternalLink className="w-3 h-3 ml-0.5" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#9E6B47]" />
+                    <span>Xem Trên Ứng Dụng TikTok</span>
                   </a>
                 )}
               </div>
             </div>
 
-            {/* Video List Carousel / Selector */}
+            {/* Video Playlist Grid */}
             <div className="space-y-3">
-              <div className="text-xs font-bold text-[#655243] uppercase tracking-wider flex items-center justify-between font-sans">
-                <span>Chọn video để xem thử ({filteredVideos.length}):</span>
-                <span className="text-[11px] text-[#A38466] font-normal italic">
-                  Nhấp để chuyển kênh trên điện thoại
-                </span>
+              <div className="flex items-center justify-between text-xs font-mono text-[#7D5133]">
+                <span className="uppercase tracking-wider font-semibold">Danh Sách Video ({filteredVideos.length})</span>
+                <span>Bấm vào thẻ để phát trên điện thoại</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[290px] overflow-y-auto pr-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {filteredVideos.map((video) => {
                   const isSelected = activeVideo.id === video.id;
                   return (
-                    <button
+                    <div
                       key={video.id}
                       onClick={() => handleSelectVideo(video)}
-                      className={`text-left p-3.5 rounded-2xl border transition-all flex items-start gap-3 group font-sans ${
+                      className={`p-3.5 rounded-2xl cursor-pointer transition-all border text-left ${
                         isSelected
-                          ? 'bg-[#F2E8DC] border-[#84674C] shadow-sm ring-1 ring-[#84674C]/30'
-                          : 'bg-white/90 border-[#E8DEC8] hover:bg-white hover:border-[#C4AF9A]'
+                          ? 'bg-white border-[#9E6B47] shadow-md ring-1 ring-[#9E6B47]'
+                          : 'bg-white/80 border-[#ECE4D8] hover:bg-white hover:border-[#DECFC0]'
                       }`}
                     >
-                      <div className={`w-10 h-14 rounded-xl bg-gradient-to-br ${video.gradient} flex-shrink-0 flex items-center justify-center text-white text-xs shadow-xs`}>
-                        <Play className={`w-4 h-4 fill-current ${isSelected ? 'text-amber-300' : 'text-white/80'}`} />
-                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className={`w-12 h-16 rounded-xl flex-shrink-0 bg-gradient-to-br ${video.gradient} flex items-center justify-center text-white shadow-xs relative overflow-hidden`}>
+                          <Play className="w-4 h-4 fill-current drop-shadow" />
+                          <span className="absolute bottom-1 right-1 text-[8px] font-mono bg-black/60 px-1 rounded text-white">
+                            {video.duration}
+                          </span>
+                        </div>
 
-                      <div className="flex-1 min-w-0 space-y-1">
-                        <div className="text-xs font-bold text-[#2D231C] line-clamp-1 group-hover:text-[#84674C]">
-                          {video.title}
-                        </div>
-                        <div className="text-[11px] text-[#7A6453] truncate">
-                          {video.channel} • {video.duration}
-                        </div>
-                        <div className="flex items-center gap-2 text-[10px] font-semibold text-[#84674C]">
-                          <span>👁️ {video.views}</span>
-                          <span>❤️ {video.likes}</span>
+                        <div className="flex-1 min-w-0 space-y-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-mono text-[#9E6B47] uppercase font-semibold">
+                              {video.category === 'furniture' ? 'Nội Thất' : 'F&B Cafe'}
+                            </span>
+                            <span className="text-[10px] font-mono text-[#7D5133]">
+                              {video.views}
+                            </span>
+                          </div>
+                          <h5 className="text-xs font-serif font-bold text-[#1E1611] line-clamp-1">
+                            {video.title}
+                          </h5>
+                          <p className="text-[11px] text-[#5C4D43] line-clamp-2 leading-snug">
+                            {video.hook}
+                          </p>
                         </div>
                       </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>

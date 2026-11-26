@@ -9,56 +9,60 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        beige: {
+        espresso: {
+          DEFAULT: '#1E1611',
+          light: '#2E221B',
+          dark: '#140E0A',
+        },
+        warm: {
           50: '#FDFBF7',
-          100: '#F9F5EC',
-          200: '#F2E8DC',
-          300: '#E5D6C3',
-          400: '#D5BEA4',
-          500: '#BFA285',
-          600: '#A38466',
-          700: '#84674C',
-          800: '#644D38',
-          900: '#463526',
+          100: '#FAF6F0',
+          200: '#F4EFE6',
+          300: '#ECE4D8',
+          400: '#DECFC0',
+          500: '#C8B49F',
+          600: '#A68C72',
+          700: '#876D55',
+          800: '#67513E',
+          900: '#4A3A2C',
         },
-        cream: {
-          light: '#FFFDF9',
-          DEFAULT: '#FBF7EE',
-          dark: '#F3ECE0',
+        terracotta: {
+          DEFAULT: '#A45D3D',
+          hover: '#8E4D30',
+          light: '#F8EDE7',
         },
-        latte: {
-          100: '#F5EBE1',
-          200: '#E6D5C3',
-          300: '#CFBAA1',
-          500: '#9E7E62',
+        caramel: {
+          DEFAULT: '#9E6B47',
+          light: '#BA845D',
+          dark: '#7D5133',
         },
-        rosewood: {
-          DEFAULT: '#A45D5D',
-          light: '#C07D7D',
-          dark: '#823D3D',
+        sand: {
+          50: '#FDFCFA',
+          100: '#FAF8F4',
+          200: '#F3EFE7',
+          300: '#EAE3D6',
+          400: '#D8CEBE',
+          500: '#C4B7A2',
         },
-        sage: {
-          50: '#F4F6F4',
-          100: '#E6EAE5',
-          200: '#CAD4C8',
-          500: '#7F937B',
-        }
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
-        sans: ['var(--font-sans)', 'Be Vietnam Pro', '-apple-system', 'sans-serif'],
-        script: ['var(--font-script)', 'Dancing Script', 'cursive'],
-        handwriting: ['var(--font-handwriting)', 'Caveat', 'cursive'],
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'Be Vietnam Pro', 'sans-serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
+        script: ['var(--font-script)', 'Playfair Display', 'Georgia', 'serif'],
       },
       boxShadow: {
-        'soft': '0 4px 20px -2px rgba(132, 103, 76, 0.08), 0 2px 6px -1px rgba(132, 103, 76, 0.04)',
-        'card': '0 10px 30px -5px rgba(100, 77, 56, 0.1), 0 4px 10px -2px rgba(100, 77, 56, 0.05)',
-        'phone': '0 25px 50px -12px rgba(70, 53, 38, 0.25)',
+        'luxury': '0 20px 40px -15px rgba(30, 22, 17, 0.07)',
+        'luxury-hover': '0 28px 50px -15px rgba(30, 22, 17, 0.12)',
+        'card': '0 4px 20px -2px rgba(30, 22, 17, 0.05), 0 2px 6px -1px rgba(30, 22, 17, 0.03)',
+        'phone': '0 30px 60px -15px rgba(20, 14, 10, 0.35)',
+        'badge': '0 2px 8px rgba(158, 107, 71, 0.12)',
       },
       borderRadius: {
+        '2xl': '1.25rem',
         '3xl': '1.75rem',
         '4xl': '2.25rem',
-      }
+      },
     },
   },
   plugins: [],

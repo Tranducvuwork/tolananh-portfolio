@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Menu, X, Sparkles, Send } from 'lucide-react';
+import { Download, Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { profileData } from '@/app/data';
 
 export default function Navbar() {
@@ -10,7 +10,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -18,110 +18,110 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Về tôi', href: '#about' },
-    { name: 'TikTok & Video', href: '#tiktok-showcase' },
-    { name: 'Dự án (Case Studies)', href: '#case-studies' },
-    { name: 'Kinh nghiệm', href: '#experience' },
-    { name: 'Kỹ năng', href: '#skills' },
+    { name: 'TikTok Showcase', href: '#tiktok-showcase' },
+    { name: 'Case Studies', href: '#case-studies' },
+    { name: 'Học vấn & Kinh nghiệm', href: '#experience' },
+    { name: 'Kỹ năng & Tools', href: '#skills' },
     { name: 'Liên hệ', href: '#contact' },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#FAF6F0]/95 backdrop-blur-md shadow-sm border-b border-[#E8DEC8]/80 py-3'
-          : 'bg-transparent py-5'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Brand Logo */}
-        <a href="#" className="group flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#C4AF9A] to-[#E8DEC8] flex items-center justify-center text-[#2D231C] font-serif font-bold text-lg shadow-inner group-hover:scale-105 transition-transform">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
+      <div
+        className={`max-w-6xl mx-auto rounded-full transition-all duration-300 flex items-center justify-between px-5 sm:px-6 py-2.5 sm:py-3 ${
+          scrolled
+            ? 'glass-editorial shadow-luxury border border-[#ECE4D8]'
+            : 'bg-[#FAF7F2]/80 backdrop-blur-md border border-[#EAE1D5]/60'
+        }`}
+      >
+        {/* Brand Identity */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-full bg-[#1E1611] text-[#FAF7F2] flex items-center justify-center font-serif text-sm font-semibold tracking-wide group-hover:bg-[#9E6B47] transition-colors">
             LA
           </div>
           <div className="flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#2D231C] group-hover:text-[#84674C] transition-colors">
+            <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
               {profileData.name}
             </span>
-            <span className="text-[10px] tracking-widest uppercase font-semibold text-[#84674C] -mt-0.5 font-sans">
+            <span className="text-[10px] tracking-[0.18em] uppercase font-mono font-medium text-[#9E6B47] -mt-0.5">
               Creative Planner
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7">
+        {/* Desktop Nav Items */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-semibold text-[#5A493C] hover:text-[#84674C] transition-colors relative py-1 tracking-wide after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#84674C] hover:after:w-full after:transition-all after:duration-300"
+              className="text-xs font-medium text-[#5C4D43] hover:text-[#1E1611] transition-colors relative py-1 tracking-wide"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right Action Buttons */}
+        <div className="hidden sm:flex items-center gap-2.5">
           <a
             href={profileData.cvPdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#BFA285] text-xs font-semibold text-[#644D38] hover:bg-[#F2E8DC] transition-all shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium text-[#5C4D43] border border-[#DECFC0] hover:bg-[#F4EFE6] transition-all"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Tải CV PDF</span>
+            <Download className="w-3 h-3 text-[#9E6B47]" />
+            <span>CV PDF</span>
           </a>
           <a
             href="#contact"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#84674C] text-xs font-semibold text-white hover:bg-[#644D38] transition-all shadow-sm shadow-[#84674C]/20 hover:shadow-md hover:scale-[1.02]"
+            className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium text-white bg-[#1E1611] hover:bg-[#9E6B47] shadow-sm transition-all"
           >
-            <Send className="w-3.5 h-3.5" />
-            <span>Kết nối ngay</span>
+            <span>Hợp tác</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Hamburger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg text-[#5A493C] hover:bg-[#F2E8DC] transition-colors"
-          aria-label="Toggle Menu"
+          className="md:hidden p-2 rounded-full text-[#1E1611] hover:bg-[#F4EFE6] transition-colors"
+          aria-label="Toggle navigation"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAF6F0] border-b border-[#E8DEC8] px-4 pt-3 pb-6 space-y-3 shadow-lg">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-semibold text-[#2D231C] hover:text-[#84674C]"
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="pt-2 flex flex-col gap-2">
+        <div className="md:hidden mt-2 max-w-6xl mx-auto rounded-3xl glass-editorial border border-[#ECE4D8] p-5 shadow-luxury space-y-3">
+          <div className="grid grid-cols-1 gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2.5 rounded-xl text-sm font-medium text-[#1E1611] hover:bg-[#F4EFE6] transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+          <div className="pt-3 border-t border-[#ECE4D8] flex gap-2">
             <a
               href={profileData.cvPdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-full border border-[#BFA285] text-xs font-semibold text-[#644D38]"
+              className="flex-1 text-center py-2.5 rounded-full text-xs font-mono font-medium border border-[#DECFC0] text-[#1E1611]"
             >
-              <Download className="w-4 h-4" />
-              <span>Tải CV PDF</span>
+              Tải CV PDF
             </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-[#84674C] text-xs font-semibold text-white"
+              className="flex-1 text-center py-2.5 rounded-full text-xs font-medium bg-[#1E1611] text-white"
             >
-              <Send className="w-4 h-4" />
-              <span>Liên hệ hợp tác</span>
+              Hợp tác ngay
             </a>
           </div>
         </div>

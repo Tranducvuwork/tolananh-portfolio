@@ -3,24 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
-  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-script: 'Dancing Script', 'Caveat', cursive;
-  --font-handwriting: 'Caveat', 'Dancing Script', cursive;
-  --bg-sand: #FAF6F0;
-  --color-beige-warm: #F4ECE1;
-  --color-cream: #FCFAF7;
-  --color-latte: #8A6E55;
-  --color-text-main: #2D231C;
+  --font-serif: 'Playfair Display', Georgia, Cambria, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --bg-primary: #FAF7F2;
+  --bg-secondary: #F4EFE6;
+  --border-light: #EAE1D5;
+  --text-main: #1E1611;
+  --text-muted: #5C4D43;
+  --accent-caramel: #9E6B47;
+  --accent-terracotta: #A45D3D;
 }
 
 body {
-  background-color: var(--bg-sand);
-  color: var(--color-text-main);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  background-image: radial-gradient(rgba(191, 162, 133, 0.12) 1px, transparent 0);
-  background-size: 28px 28px;
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(222, 207, 192, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 0% 50%, rgba(244, 239, 230, 0.6) 0%, transparent 50%),
+    radial-gradient(rgba(180, 150, 120, 0.08) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 32px 32px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,111 +32,143 @@ body {
 
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-serif);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
-.font-script {
-  font-family: var(--font-script);
-}
-
-.font-handwriting {
-  font-family: var(--font-handwriting);
-}
-
-/* Custom aesthetic scrollbar */
+/* Custom refined luxury scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4ECE1;
+  background: #FAF7F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C4AF9A;
-  border-radius: 4px;
+  background: #D8CEBE;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A38466;
+  background: #9E6B47;
 }
 
-/* Scrapbook tape effect */
-.washi-tape {
-  background: rgba(243, 236, 224, 0.85);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(2px);
-  position: absolute;
-  height: 24px;
-  width: 90px;
-  transform: rotate(-3deg);
-  border-left: 2px dashed rgba(160, 130, 100, 0.3);
-  border-right: 2px dashed rgba(160, 130, 100, 0.3);
-  z-index: 10;
+/* Glassmorphism token */
+.glass-editorial {
+  background: rgba(253, 251, 248, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(222, 207, 192, 0.65);
 }
 
-.washi-tape-right {
-  transform: rotate(4deg);
+.glass-dark {
+  background: rgba(20, 14, 10, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Polaroid style card */
-.polaroid-card {
+/* Luxury card container */
+.editorial-card {
   background: #FFFFFF;
-  padding: 12px 12px 28px 12px;
-  box-shadow: 0 10px 25px -5px rgba(110, 85, 60, 0.12), 0 4px 10px -2px rgba(110, 85, 60, 0.06);
-  border-radius: 4px;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  border: 1px solid #ECE4D8;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(30, 22, 17, 0.04), 0 2px 6px -1px rgba(30, 22, 17, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.polaroid-card:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  box-shadow: 0 16px 35px -5px rgba(110, 85, 60, 0.2);
+.editorial-card:hover {
+  border-color: #DECFC0;
+  box-shadow: 0 20px 40px -15px rgba(30, 22, 17, 0.09);
+  transform: translateY(-2px);
 }
 
-/* Glass beige container */
-.glass-beige {
-  background: rgba(253, 251, 247, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 214, 195, 0.6);
-}
-
-/* iPhone Mockup frame */
-.phone-mockup {
-  position: relative;
+/* Ultra-Realistic iPhone 16 Pro mockup frame */
+.phone-mockup-pro {
   width: 320px;
-  height: 640px;
-  border-radius: 44px;
-  border: 10px solid #2B231D;
-  background: #111111;
-  overflow: hidden;
-  box-shadow: 0 25px 60px -15px rgba(60, 45, 30, 0.45);
+  height: 650px;
+  background: #000000;
+  border-radius: 48px;
+  padding: 11px;
+  position: relative;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 0 4px #26211C,
+    0 30px 60px -12px rgba(20, 14, 10, 0.45);
 }
 
-@media (max-width: 640px) {
-  .phone-mockup {
-    width: 290px;
-    height: 580px;
+@media (min-width: 640px) {
+  .phone-mockup-pro {
+    width: 340px;
+    height: 690px;
   }
 }
 
-.phone-island {
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 38px;
+  overflow: hidden;
+  position: relative;
+  background: #000000;
+}
+
+/* Dynamic Island */
+.phone-dynamic-island {
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 22px;
+  width: 100px;
+  height: 28px;
   background: #000000;
-  border-radius: 12px;
-  z-index: 30;
+  border-radius: 20px;
+  z-index: 50;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 
-/* Smooth fade in animation */
-@keyframes softPulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.02); }
+/* Smooth disk spin animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.animate-soft-pulse {
-  animation: softPulse 4s infinite ease-in-out;
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Floating heart animation */
+@keyframes float-heart {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-10px, -40px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(15px, -80px) scale(0.9);
+  }
+}
+
+.animate-float-heart {
+  animation: float-heart 1.2s ease-out forwards;
+}
+
+/* Drop cap for editorial story */
+.editorial-dropcap::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 3.5rem;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  padding-top: 0.15rem;
+  color: var(--accent-caramel);
+  font-weight: 700;
 }
