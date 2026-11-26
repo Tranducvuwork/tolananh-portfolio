@@ -14,7 +14,7 @@ export default function CategorySpotlight() {
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#9E6B47]">
               Phân Nhóm Theo Hạng Mục Riêng Biệt (Không Trộn Lẫn)
             </span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611]">
               2 Lĩnh Vực Chuyên Môn Trọng Điểm
             </h2>
           </div>
@@ -43,7 +43,7 @@ export default function CategorySpotlight() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
+                <h3 className="text-2xl font-sans font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
                   Minh Huy Furniture
                 </h3>
                 <p className="text-xs font-mono text-[#7D5133] mt-0.5">
@@ -59,15 +59,15 @@ export default function CategorySpotlight() {
               {/* Stat badges */}
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#ECE4D8] text-center">
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#1E1611]">20+</div>
+                  <div className="text-base font-sans font-bold text-[#1E1611]">20+</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Video Xưởng</div>
                 </div>
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#1E1611]">115K</div>
+                  <div className="text-base font-sans font-bold text-[#1E1611]">115K</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Views Thử Tải</div>
                 </div>
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#9E6B47]">4.8x</div>
+                  <div className="text-base font-sans font-bold text-[#9E6B47]">4.8x</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Lead Khách Sỉ</div>
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function CategorySpotlight() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
+                <h3 className="text-2xl font-sans font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
                   Kênh La Cà Một Chút
                 </h3>
                 <p className="text-xs font-mono text-[#7D5133] mt-0.5">
@@ -123,15 +123,15 @@ export default function CategorySpotlight() {
               {/* Stat badges */}
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#ECE4D8] text-center">
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#1E1611]">58K+</div>
+                  <div className="text-base font-sans font-bold text-[#1E1611]">58K+</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Followers</div>
                 </div>
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#1E1611]">3.9M+</div>
+                  <div className="text-base font-sans font-bold text-[#1E1611]">3.9M+</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Lượt Thích</div>
                 </div>
                 <div className="p-2 rounded-xl bg-[#FAF7F2]">
-                  <div className="text-base font-serif font-bold text-[#9E6B47]">5.3M+</div>
+                  <div className="text-base font-sans font-bold text-[#9E6B47]">5.3M+</div>
                   <div className="text-[10px] font-mono text-[#5C4D43]">Views / Tháng</div>
                 </div>
               </div>

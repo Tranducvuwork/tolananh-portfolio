@@ -23,9 +23,9 @@ export default function ScrapbookExperience() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1611] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold text-[#1E1611] tracking-tight">
             Học Vấn & Hành Trình <br />
-            <span className="font-serif italic font-normal text-[#9E6B47]">
+            <span className="font-sans italic font-normal text-[#9E6B47]">
               Kinh Nghiệm Thực Chiến
             </span>
           </h2>
@@ -46,7 +46,7 @@ export default function ScrapbookExperience() {
               <div className="space-y-4">
                 <div className="flex items-center gap-2.5 pb-3 border-b border-[#ECE4D8]">
                   <GraduationCap className="w-5 h-5 text-[#9E6B47]" />
-                  <h3 className="text-xl font-serif font-bold text-[#1E1611]">
+                  <h3 className="text-xl font-sans font-bold text-[#1E1611]">
                     Học Vấn & Chứng Chỉ
                   </h3>
                 </div>
@@ -63,7 +63,7 @@ export default function ScrapbookExperience() {
                           {edu.badge}
                         </span>
                       </div>
-                      <div className="text-base font-serif font-bold text-[#1E1611]">{edu.school}</div>
+                      <div className="text-base font-sans font-bold text-[#1E1611]">{edu.school}</div>
                       <div className="text-xs font-semibold text-[#7D5133] font-mono">{edu.major}</div>
                       <p className="text-xs text-[#5C4D43] leading-relaxed pt-1">
                         {edu.details}
@@ -77,7 +77,7 @@ export default function ScrapbookExperience() {
               <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#ECE4D8] space-y-4">
                 <div className="flex items-center gap-2">
                   <Target className="w-5 h-5 text-[#9E6B47]" />
-                  <h4 className="text-lg font-serif font-bold text-[#1E1611]">
+                  <h4 className="text-lg font-sans font-bold text-[#1E1611]">
                     Mục Tiêu Nghề Nghiệp
                   </h4>
                 </div>
@@ -109,7 +109,7 @@ export default function ScrapbookExperience() {
             <div className="lg:col-span-6 space-y-6">
               <div className="flex items-center gap-2.5 pb-3 border-b border-[#ECE4D8]">
                 <Briefcase className="w-5 h-5 text-[#9E6B47]" />
-                <h3 className="text-xl font-serif font-bold text-[#1E1611]">
+                <h3 className="text-xl font-sans font-bold text-[#1E1611]">
                   Kinh Nghiệm Thực Tế
                 </h3>
               </div>
@@ -130,7 +130,7 @@ export default function ScrapbookExperience() {
                     </div>
 
                     <div>
-                      <div className="text-base font-serif font-bold text-[#1E1611]">
+                      <div className="text-base font-sans font-bold text-[#1E1611]">
                         {exp.role}
                       </div>
                       <div className="text-xs text-[#7D5133] font-medium mt-0.5">

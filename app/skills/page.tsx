@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1E1611]">
+    <main className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#14110F]">
       <Navbar />
 
-      <section className="pt-32 pb-4 md:pt-40 md:pb-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <section className="pt-8 pb-2">
+        <div className="container flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-[#7D5133] hover:text-[#1E1611] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#8C5A3C] hover:text-[#14110F] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Quay lại Trang Chủ</span>
@@ -27,7 +27,7 @@ export default function SkillsPage() {
 
           <Link
             href="/work"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#1E1611] hover:text-[#9E6B47] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#14110F] hover:text-[#8C5A3C] transition-colors"
           >
             <span>Xem Các Dự Án Thực Tế</span>
             <ArrowRight className="w-3.5 h-3.5" />

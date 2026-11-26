@@ -30,39 +30,24 @@ export default function WorkingExperiencePage() {
       <Navbar />
 
       {/* Page Hero: Working Experience */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute top-10 left-1/3 w-96 h-96 rounded-full bg-[#EAE1D5]/40 blur-3xl -z-10 pointer-events-none" />
-        <div className="absolute bottom-0 right-10 w-96 h-96 rounded-full bg-[#F4EFE6]/70 blur-3xl -z-10 pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="page-banner border-b border-[rgba(20,17,15,0.08)] bg-white">
+        <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* Left Column: Heading & Description (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] shadow-xs">
-                <Briefcase className="w-3.5 h-3.5 text-[#9E6B47]" />
-                <span className="text-xs font-mono font-medium tracking-wider text-[#7D5133] uppercase">
-                  Working Experience & Education
-                </span>
-              </div>
+            <div className="lg:col-span-7 space-y-4">
+              <p className="eyebrow">
+                KINH NGHIỆM LÀM VIỆC &amp; HỌC VẤN
+              </p>
 
-              {/* Title */}
-              <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1E1611] tracking-tight leading-[1.14]">
-                  Học Vấn & Hành Trình <br />
-                  <span className="italic font-normal text-[#9E6B47] font-serif">
-                    Kinh Nghiệm Thực Chiến
-                  </span>
-                </h1>
-                <p className="text-base sm:text-lg text-[#5C4D43] leading-relaxed max-w-xl">
-                  Rèn luyện tư duy hoạch định chiến lược sáng tạo từ chuyên ngành 
-                  <strong className="text-[#1E1611]"> Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp cọ xát thực tiễn qua các dự án 
-                  sản xuất video xưởng nội thất B2B, kênh F&B lifestyle và quản trị fanpage thương hiệu.
-                </p>
-              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight leading-[1.15]">
+                Học vấn &amp; Hành trình <br />
+                Kinh nghiệm thực chiến
+              </h1>
+
+              <p className="page-lead">
+                Nền tảng đào tạo bài bản từ chuyên ngành <strong className="text-[#14110F] font-semibold">Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp kinh nghiệm thực chiến trong sản xuất video short-form xưởng nội thất Minh Huy, phát triển kênh F&amp;B @la.camotchut và quản trị truyền thông thương hiệu.
+              </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -70,18 +55,18 @@ export default function WorkingExperiencePage() {
                   href={profileData.cvPdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1E1611] text-white text-xs sm:text-sm font-medium hover:bg-[#9E6B47] shadow-luxury transition-all"
+                  className="btn btn-primary"
                 >
-                  <Download className="w-4 h-4 text-[#DECFC0]" />
+                  <Download className="w-4 h-4 text-[#D5CEBE]" />
                   <span>Tải Bản CV Đầy Đủ (PDF)</span>
                 </a>
 
                 <Link
-                  href="/projects"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#DECFC0] text-[#1E1611] text-xs sm:text-sm font-medium hover:bg-[#F4EFE6] transition-all"
+                  href="/work"
+                  className="btn btn-secondary"
                 >
                   <span>Xem Các Hạng Mục Dự Án</span>
-                  <ArrowRight className="w-4 h-4 text-[#9E6B47]" />
+                  <ArrowRight className="w-4 h-4 text-[#8C5A3C]" />
                 </Link>
               </div>
 
@@ -102,7 +87,7 @@ export default function WorkingExperiencePage() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-bold text-[#1E1611]">{profileData.name}</h3>
+                    <h3 className="font-sans text-lg font-bold text-[#1E1611]">{profileData.name}</h3>
                     <p className="text-xs font-mono text-[#9E6B47]">Creative Planner • Social Media</p>
                     <span className="text-[11px] text-[#5C4D43] font-mono">Văn Lang University (2022-2026)</span>
                   </div>
@@ -155,7 +140,7 @@ export default function WorkingExperiencePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {profileData.keyMetrics.map((item, idx) => (
               <div key={idx} className="p-4 rounded-2xl bg-white border border-[#ECE4D8] space-y-1">
-                <div className="text-3xl sm:text-4xl font-serif font-bold text-[#1E1611]">
+                <div className="text-3xl sm:text-4xl font-sans font-bold text-[#1E1611]">
                   {item.value}
                 </div>
                 <div className="text-xs font-mono text-[#5C4D43] leading-snug">
@@ -179,7 +164,7 @@ export default function WorkingExperiencePage() {
                   <Briefcase className="w-4 h-4" />
                   <span>Kinh Nghiệm Làm Việc Thực Tế</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] mt-1">
+                <h2 className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611] mt-1">
                   Doanh Nghiệp & Dự Án Đã Triển Khai
                 </h2>
               </div>
@@ -198,7 +183,7 @@ export default function WorkingExperiencePage() {
                     </div>
 
                     <div>
-                      <h3 className="font-serif text-lg font-bold text-[#1E1611]">{exp.role}</h3>
+                      <h3 className="font-sans text-lg font-bold text-[#1E1611]">{exp.role}</h3>
                       <p className="text-xs font-medium text-[#7D5133] mt-0.5">{exp.focus}</p>
                     </div>
 
@@ -224,7 +209,7 @@ export default function WorkingExperiencePage() {
                   <GraduationCap className="w-4 h-4" />
                   <span>Nền Tảng Học Vấn</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] mt-1">
+                <h2 className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611] mt-1">
                   Đại Học Chính Quy & Chứng Chỉ Thiết Kế
                 </h2>
               </div>
@@ -243,7 +228,7 @@ export default function WorkingExperiencePage() {
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-[#1E1611]">{edu.school}</h3>
+                  <h3 className="font-sans text-xl font-bold text-[#1E1611]">{edu.school}</h3>
                   <div className="text-xs font-mono text-[#7D5133] font-semibold">{edu.major}</div>
                   
                   <p className="text-xs text-[#5C4D43] leading-relaxed pt-2 border-t border-[#ECE4D8]">
@@ -262,7 +247,7 @@ export default function WorkingExperiencePage() {
                   <Palette className="w-4 h-4" />
                   <span>Hệ Thống Công Cụ</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] mt-1">
+                <h2 className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611] mt-1">
                   Phần Mềm & Ứng Dụng Chuyên Sâu
                 </h2>
               </div>
@@ -282,7 +267,7 @@ export default function WorkingExperiencePage() {
                     <div className="w-12 h-12 mx-auto rounded-2xl bg-[#FAF7F2] border border-[#DECFC0] flex items-center justify-center text-[#1E1611]">
                       <IconComp className="w-5 h-5 text-[#9E6B47]" />
                     </div>
-                    <div className="text-xs font-serif font-bold text-[#1E1611]">{tool.name}</div>
+                    <div className="text-xs font-sans font-bold text-[#1E1611]">{tool.name}</div>
                     <div className="text-[11px] text-[#5C4D43] leading-tight line-clamp-2">{tool.desc}</div>
                     <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#FAF7F2] text-[10px] font-mono text-[#7D5133]">
                       {tool.tag}
@@ -297,7 +282,7 @@ export default function WorkingExperiencePage() {
           <div className="editorial-card p-8 bg-white space-y-6">
             <div className="flex items-center gap-2 pb-3 border-b border-[#ECE4D8]">
               <Target className="w-5 h-5 text-[#9E6B47]" />
-              <h3 className="text-xl font-serif font-bold text-[#1E1611]">
+              <h3 className="text-xl font-sans font-bold text-[#1E1611]">
                 Lộ Trình & Định Hướng Nghề Nghiệp (Career Roadmap)
               </h3>
             </div>
@@ -329,7 +314,7 @@ export default function WorkingExperiencePage() {
               <span className="text-xs font-mono text-[#DECFC0] uppercase tracking-wider">
                 Khám Phá Các Dự Án Thực Tế
               </span>
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white">
+              <h3 className="text-xl sm:text-2xl font-sans font-bold text-white">
                 Xem 2 Hạng Mục Riêng Biệt: Nội Thất Minh Huy & Kênh La Cà
               </h3>
             </div>

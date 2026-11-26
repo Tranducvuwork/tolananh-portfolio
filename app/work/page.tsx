@@ -58,33 +58,30 @@ export default function WorkPage() {
     <main className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1E1611]">
       <Navbar />
 
-      {/* Page Header */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-[#F4EFE6] border-b border-[#ECE4D8]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#DECFC0] shadow-xs">
-            <Layers className="w-3.5 h-3.5 text-[#9E6B47]" />
-            <span className="text-xs font-mono font-medium tracking-wider text-[#7D5133] uppercase">
-              Portfolio & Featured Projects
-            </span>
-          </div>
+      {/* Page Header - Clean Editorial Page Banner */}
+      <section className="page-banner border-b border-[rgba(20,17,15,0.08)] bg-white">
+        <div className="container space-y-3">
+          <p className="eyebrow">
+            HẠNG MỤC DỰ ÁN (WORK)
+          </p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1E1611] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight">
             Dự Án Đã Thực Hiện
           </h1>
 
-          <p className="text-sm sm:text-base text-[#5C4D43] leading-relaxed max-w-2xl mx-auto">
-            Bấm chọn danh mục bên dưới để xem riêng từng hạng mục dự án (không trộn lẫn): 
-            Video xưởng B2B, Kênh review F&B tone Be, Chiến dịch Brand Pitching hoặc Bộ slide 13 trang.
+          <p className="page-lead">
+            Chọn danh mục bên dưới để xem riêng từng hạng mục dự án (không trộn lẫn): 
+            TikTok Xưởng B2B Minh Huy Furniture, Kênh Review F&amp;B tone Be (@la.camotchut), Chiến dịch Brand Pitching &amp; IMC, hoặc Bộ 13 Slide HD nguyên bản.
           </p>
 
-          {/* Interactive Category Switcher - Shows only selected category when clicked */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
+          {/* Interactive Category Switcher */}
+          <div className="flex flex-wrap items-center gap-2 pt-4">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === 'all'
-                  ? 'bg-[#1E1611] text-white shadow-sm'
-                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
               }`}
             >
               Tất Cả Danh Mục
@@ -92,49 +89,49 @@ export default function WorkPage() {
 
             <button
               onClick={() => setSelectedCategory('furniture')}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === 'furniture'
-                  ? 'bg-[#1E1611] text-white shadow-sm'
-                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
               }`}
             >
-              <Sofa className="w-3.5 h-3.5 text-[#9E6B47]" />
+              <Sofa className="w-3.5 h-3.5 text-[#8C5A3C]" />
               <span>Nội Thất Minh Huy (Xưởng B2B)</span>
             </button>
 
             <button
               onClick={() => setSelectedCategory('fnb')}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === 'fnb'
-                  ? 'bg-[#1E1611] text-white shadow-sm'
-                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
               }`}
             >
-              <Coffee className="w-3.5 h-3.5 text-[#9E6B47]" />
-              <span>Kênh La Cà Một Chút (F&B Tone Be)</span>
+              <Coffee className="w-3.5 h-3.5 text-[#8C5A3C]" />
+              <span>Kênh La Cà Một Chút (F&amp;B Tone Be)</span>
             </button>
 
             <button
               onClick={() => setSelectedCategory('brand')}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === 'brand'
-                  ? 'bg-[#1E1611] text-white shadow-sm'
-                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
               }`}
             >
-              <Award className="w-3.5 h-3.5 text-[#9E6B47]" />
-              <span>Brand Pitching & IMC</span>
+              <Award className="w-3.5 h-3.5 text-[#8C5A3C]" />
+              <span>Brand Pitching &amp; IMC</span>
             </button>
 
             <button
               onClick={() => setSelectedCategory('slides')}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === 'slides'
-                  ? 'bg-[#1E1611] text-white shadow-sm'
-                  : 'bg-white text-[#5C4D43] border border-[#DECFC0] hover:bg-[#FAF7F2]'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-[#9E6B47]" />
+              <Layers className="w-3.5 h-3.5 text-[#8C5A3C]" />
               <span>13 Slide Gốc HD</span>
             </button>
           </div>
@@ -154,7 +151,7 @@ export default function WorkPage() {
                   <Sofa className="w-3.5 h-3.5 text-[#9E6B47]" />
                   <span>HẠNG MỤC: SẢN XUẤT NỘI THẤT B2B</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1E1611]">
+                <h2 className="text-3xl sm:text-4xl font-sans font-bold text-[#1E1611]">
                   Minh Huy Furniture — Video Xưởng Sản Xuất
                 </h2>
                 <p className="text-xs sm:text-sm text-[#5C4D43] leading-relaxed">
@@ -197,7 +194,7 @@ export default function WorkPage() {
                       <span className="inline-block px-3 py-1 rounded-full bg-black/50 text-[10px] font-mono text-amber-200 border border-white/20 mb-2">
                         XƯỞNG MINH HUY • B2B BTS
                       </span>
-                      <h4 className="text-lg font-serif font-bold text-white leading-tight drop-shadow">
+                      <h4 className="text-lg font-sans font-bold text-white leading-tight drop-shadow">
                         {activeFurnVideo.title}
                       </h4>
                       <p className="text-xs text-zinc-300 font-sans italic line-clamp-3 mt-2 px-2">
@@ -276,7 +273,7 @@ export default function WorkPage() {
                     <span className="text-xs font-mono text-[#5C4D43]">{activeFurnVideo.views} views</span>
                   </div>
 
-                  <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm font-serif italic text-[#1E1611]">
+                  <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm font-sans italic text-[#1E1611]">
                     "{activeFurnVideo.hook}"
                   </blockquote>
 
@@ -306,7 +303,7 @@ export default function WorkPage() {
                           </div>
                           <div className="flex-1 min-w-0 space-y-1">
                             <span className="text-[10px] font-mono text-[#9E6B47] font-bold">{v.views} views</span>
-                            <h5 className="text-xs font-serif font-bold text-[#1E1611] line-clamp-1">{v.title}</h5>
+                            <h5 className="text-xs font-sans font-bold text-[#1E1611] line-clamp-1">{v.title}</h5>
                             <p className="text-[11px] text-[#5C4D43] line-clamp-2">{v.hook}</p>
                           </div>
                         </div>
@@ -336,7 +333,7 @@ export default function WorkPage() {
                   <Coffee className="w-3.5 h-3.5 text-[#9E6B47]" />
                   <span>HẠNG MỤC: F&B LIFESTYLE & CAFE REVIEW</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1E1611]">
+                <h2 className="text-3xl sm:text-4xl font-sans font-bold text-[#1E1611]">
                   Kênh La Cà Một Chút — Tone Màu Be & ASMR Ẩm Thực
                 </h2>
                 <p className="text-xs sm:text-sm text-[#5C4D43] leading-relaxed">
@@ -379,7 +376,7 @@ export default function WorkPage() {
                       <span className="inline-block px-3 py-1 rounded-full bg-black/50 text-[10px] font-mono text-amber-200 border border-white/20 mb-2">
                         LA CÀ MỘT CHÚT • TONE BE F&B
                       </span>
-                      <h4 className="text-lg font-serif font-bold text-white leading-tight drop-shadow">
+                      <h4 className="text-lg font-sans font-bold text-white leading-tight drop-shadow">
                         {activeFnbVideo.title}
                       </h4>
                       <p className="text-xs text-zinc-300 font-sans italic line-clamp-3 mt-2 px-2">
@@ -458,7 +455,7 @@ export default function WorkPage() {
                     <span className="text-xs font-mono text-[#5C4D43]">{activeFnbVideo.views} views</span>
                   </div>
 
-                  <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm font-serif italic text-[#1E1611]">
+                  <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm font-sans italic text-[#1E1611]">
                     "{activeFnbVideo.hook}"
                   </blockquote>
 
@@ -488,7 +485,7 @@ export default function WorkPage() {
                           </div>
                           <div className="flex-1 min-w-0 space-y-1">
                             <span className="text-[10px] font-mono text-[#9E6B47] font-bold">{v.views} views</span>
-                            <h5 className="text-xs font-serif font-bold text-[#1E1611] line-clamp-1">{v.title}</h5>
+                            <h5 className="text-xs font-sans font-bold text-[#1E1611] line-clamp-1">{v.title}</h5>
                             <p className="text-[11px] text-[#5C4D43] line-clamp-2">{v.hook}</p>
                           </div>
                         </div>
@@ -517,7 +514,7 @@ export default function WorkPage() {
                 <Award className="w-3.5 h-3.5 text-[#9E6B47]" />
                 <span>HẠNG MỤC: CHIẾN DỊCH BRAND PITCHING & IMC</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1E1611]">
+              <h2 className="text-3xl sm:text-4xl font-sans font-bold text-[#1E1611]">
                 Chiến Dịch IMC & Social Media Doanh Nghiệp
               </h2>
               <p className="text-xs sm:text-sm text-[#5C4D43]">
@@ -536,7 +533,7 @@ export default function WorkPage() {
                       <span className="text-[#5C4D43]">{cs.timeline}</span>
                     </div>
 
-                    <h3 className="font-serif text-lg font-bold text-[#1E1611] leading-snug">
+                    <h3 className="font-sans text-lg font-bold text-[#1E1611] leading-snug">
                       {cs.title}
                     </h3>
                     <p className="text-xs text-[#5C4D43] line-clamp-3">
@@ -546,7 +543,7 @@ export default function WorkPage() {
                     <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#ECE4D8]">
                       {cs.metrics.slice(0, 2).map((m, mi) => (
                         <div key={mi} className="p-2.5 rounded-xl bg-[#FAF7F2] text-center">
-                          <div className="font-serif text-base font-bold text-[#1E1611]">{m.value}</div>
+                          <div className="font-sans text-base font-bold text-[#1E1611]">{m.value}</div>
                           <div className="text-[10px] font-mono text-[#5C4D43] line-clamp-1">{m.label}</div>
                         </div>
                       ))}
@@ -580,7 +577,7 @@ export default function WorkPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#ECE4D8]">
               <div>
-                <h3 className="font-serif text-2xl font-bold text-[#1E1611]">
+                <h3 className="font-sans text-2xl font-bold text-[#1E1611]">
                   Bộ Sưu Tập 13 Trang Slide Gốc (Portfolio PDF)
                 </h3>
                 <p className="text-xs text-[#5C4D43] mt-0.5">
@@ -605,7 +602,7 @@ export default function WorkPage() {
                       Trang {slide.index}
                     </div>
                   </div>
-                  <div className="p-2.5 bg-white text-[11px] font-serif font-medium text-[#1E1611] line-clamp-1 border-t border-[#ECE4D8]">
+                  <div className="p-2.5 bg-white text-[11px] font-sans font-medium text-[#1E1611] line-clamp-1 border-t border-[#ECE4D8]">
                     {slide.title}
                   </div>
                 </div>

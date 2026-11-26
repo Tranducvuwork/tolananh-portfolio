@@ -27,9 +27,9 @@ export default function Hero() {
 
             {/* Main Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1E1611] leading-[1.14] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold text-[#1E1611] leading-[1.14] tracking-tight">
                 Biến Ý Tưởng Thành <br />
-                <span className="italic font-normal text-[#9E6B47] font-serif">
+                <span className="italic font-normal text-[#9E6B47] font-sans">
                   Những Câu Chuyện Chạm
                 </span> <br />
                 Đến Trái Tim Khán Giả.
@@ -91,7 +91,7 @@ export default function Hero() {
             <div className="pt-8 border-t border-[#EAE1D5] grid grid-cols-2 sm:grid-cols-4 gap-6">
               {profileData.keyMetrics.map((item, index) => (
                 <div key={index} className="space-y-1">
-                  <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] tracking-tight">
+                  <div className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611] tracking-tight">
                     {item.value}
                   </div>
                   <div className="text-xs text-[#5C4D43] font-medium leading-snug">
@@ -126,7 +126,7 @@ export default function Hero() {
                 {/* Floating Bottom Nameplate */}
                 <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl glass-dark text-white flex items-center justify-between">
                   <div>
-                    <div className="font-serif text-base font-semibold tracking-wide">
+                    <div className="font-sans text-base font-semibold tracking-wide">
                       {profileData.name}
                     </div>
                     <div className="text-[11px] font-mono tracking-wider uppercase text-[#DECFC0]">

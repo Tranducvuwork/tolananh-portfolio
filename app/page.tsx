@@ -3,297 +3,297 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { 
-  ArrowRight, Download, Phone, Mail, Sparkles, Sofa, Coffee, 
-  Briefcase, Wrench, ArrowUpRight, CheckCircle2, Film, Star 
+  ArrowRight, Download, Phone, Mail, Sofa, Coffee, 
+  Briefcase, Wrench, CheckCircle2, Star, Sparkles, ExternalLink 
 } from 'lucide-react';
-import { profileData } from '@/app/data';
+import { profileData, featuredVideos } from '@/app/data';
+
+const furniturePreview = featuredVideos.filter(v => v.category === 'furniture').slice(0, 2);
+const fnbPreview = featuredVideos.filter(v => v.category === 'fnb').slice(0, 2);
 
 export default function Home() {
+  const homeTabs = [
+    {
+      kicker: 'Hạng Mục 01',
+      title: 'Dự án (Work)',
+      desc: 'Minh Huy Furniture, La Cà Một Chút, IMC & 13 Slide HD',
+      href: '/work',
+    },
+    {
+      kicker: 'Hạng Mục 02',
+      title: 'Kinh nghiệm & Học vấn',
+      desc: 'PR Đại học Văn Lang, ColorMe & các dự án thực tế',
+      href: '/working-experience',
+    },
+    {
+      kicker: 'Hạng Mục 03',
+      title: 'Kỹ năng & Tools',
+      desc: 'CapCut, Photoshop, Canva, Meta Suite, TikTok Studio',
+      href: '/skills',
+    },
+    {
+      kicker: 'Hạng Mục 04',
+      title: 'Liên hệ & Hợp tác',
+      desc: 'Hotline 0942 077 335, Email & thông tin kết nối',
+      href: '/contact',
+    },
+  ];
+
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1E1611]">
+    <main className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#14110F]">
       <Navbar />
 
-      {/* Hero Section: Giới thiệu Tô Lan Anh */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
-        {/* Ambient background glow */}
-        <div className="absolute top-16 left-1/3 w-[500px] h-[500px] rounded-full bg-[#EAE1D5]/40 blur-3xl -z-10 pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] rounded-full bg-[#F3EFE7]/60 blur-3xl -z-10 pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      {/* Hero Section */}
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Left Column: Intro (7 cols) */}
-            <div className="lg:col-span-7 space-y-7">
-              
-              {/* Status Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-mono font-medium tracking-wide text-[#7D5133] uppercase">
-                  Available for Projects • PR Văn Lang
+            {/* Left Content (7 cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="eyebrow !text-xs !tracking-wider">
+                  Tô Lan Anh · PR Đại Học Văn Lang
                 </span>
               </div>
 
-              {/* Main Headline */}
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1E1611] leading-[1.14] tracking-tight">
-                  Biến Ý Tưởng Thành <br />
-                  <span className="italic font-normal text-[#9E6B47] font-serif">
-                    Những Câu Chuyện Chạm
-                  </span> <br />
-                  Đến Trái Tim Khán Giả.
+              <div className="space-y-3">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight leading-[1.15]">
+                  Sáng tạo nội dung short-form &amp; <br />
+                  Kế hoạch truyền thông đa kênh
                 </h1>
-                <p className="text-base sm:text-lg text-[#5C4D43] leading-relaxed max-w-xl font-normal">
-                  Xin chào, mình là <strong className="text-[#1E1611] font-semibold">{profileData.name}</strong>. 
-                  Mình chuyên xây dựng concept nội dung viral, kịch bản short-form video TikTok xưởng sản xuất 
-                  <span className="text-[#9E6B47] font-medium"> Minh Huy Furniture</span> và định hình phong cách kênh F&B ngọt ngào, 
-                  ấm áp như <span className="text-[#9E6B47] font-medium">@la.camotchut</span>.
+                <p className="page-lead">
+                  Xin chào, mình là <strong className="text-[#14110F] font-bold">Tô Lan Anh</strong>. 
+                  Mình chuyên xây dựng kịch bản và sản xuất video TikTok xưởng nội thất 
+                  <strong className="text-[#8C5A3C] font-semibold"> Minh Huy Furniture</strong>, 
+                  định hình phong cách kênh F&amp;B ấm áp nữ tính 
+                  <strong className="text-[#8C5A3C] font-semibold"> @la.camotchut</strong> và lập kế hoạch truyền thông tích hợp.
                 </p>
               </div>
 
-              {/* Core value props */}
-              <div className="flex flex-wrap gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] text-xs font-medium text-[#4A3A2C]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#9E6B47]" />
-                  Kịch bản & Dựng CapCut chuyên sâu
+              {/* Core capabilities tags */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                  Kịch bản &amp; Hậu kỳ CapCut Pro
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] text-xs font-medium text-[#4A3A2C]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#9E6B47]" />
-                  Tone màu Be & Aesthetic Cafe
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                  Tone Be &amp; Thẩm mỹ F&amp;B Cafe
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-[#EAE1D5] text-xs font-medium text-[#4A3A2C]">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#9E6B47]" />
-                  Tư duy Pitching & Truyền thông IMC
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-medium text-[#2D2723]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                  Tư duy Pitching &amp; Đồ án IMC
                 </span>
               </div>
 
-              {/* Navigation CTAs to separate pages */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1E1611] text-white text-xs sm:text-sm font-medium hover:bg-[#9E6B47] shadow-luxury transition-all hover:scale-[1.02]"
-                >
-                  <span>Xem Các Hạng Mục Dự Án (Work)</span>
-                  <ArrowRight className="w-4 h-4 text-[#DECFC0]" />
+              {/* Actions */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Link href="/work" className="btn btn-primary">
+                  <span>Xem Các Hạng Mục Dự Án</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-
-                <Link
-                  href="/working-experience"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#DECFC0] text-[#1E1611] text-xs sm:text-sm font-medium hover:bg-[#F4EFE6] transition-all shadow-sm"
-                >
-                  <Briefcase className="w-4 h-4 text-[#9E6B47]" />
-                  <span>Kinh Nghiệm & Học Vấn</span>
+                <Link href="/working-experience" className="btn btn-secondary">
+                  <span>Kinh Nghiệm &amp; Học Vấn</span>
                 </Link>
-
                 <a
                   href={profileData.cvPdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-3.5 rounded-full text-xs font-mono font-medium text-[#7D5133] hover:text-[#1E1611] transition-colors"
+                  className="btn btn-secondary !px-4"
                 >
-                  <Download className="w-4 h-4 text-[#9E6B47]" />
-                  <span>Tải CV PDF</span>
+                  <Download className="w-4 h-4 text-[#8C5A3C]" />
+                  <span>CV PDF</span>
                 </a>
               </div>
 
-              {/* Quick Metrics */}
-              <div className="pt-8 border-t border-[#EAE1D5] grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {profileData.keyMetrics.map((item, index) => (
-                  <div key={index} className="space-y-1">
-                    <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] tracking-tight">
-                      {item.value}
-                    </div>
-                    <div className="text-xs text-[#5C4D43] font-medium leading-snug">
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
+              {/* Stats Bar */}
+              <div className="pt-8 border-t border-[rgba(20,17,15,0.08)] grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">20+</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Video xưởng triệu view</div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">4+</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Năm học tập &amp; làm việc</div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">100%</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Tự lên kịch bản &amp; dựng</div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">Văn Lang</div>
+                  <div className="text-xs text-[#635952] font-medium mt-0.5">Cử nhân PR chuyên nghiệp</div>
+                </div>
               </div>
 
             </div>
 
-            {/* Right Column: High-End Editorial Portrait (5 cols) */}
-            <div className="lg:col-span-5 flex justify-center relative">
-              <div className="relative w-full max-w-sm rounded-3xl overflow-hidden border border-[#ECE4D8] bg-white shadow-luxury group">
-                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F4EFE6]">
+            {/* Right Portrait (5 cols) */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-[rgba(20,17,15,0.1)] bg-white shadow-[0_12px_40px_rgba(20,17,15,0.08)]">
+                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EFECE4]">
                   <Image
                     src={profileData.portrait}
                     alt={profileData.name}
                     fill
                     priority
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
-
-                  <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl glass-dark text-white flex items-center justify-between">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-black/60 backdrop-blur-md text-white flex items-center justify-between">
                     <div>
-                      <div className="font-serif text-base font-semibold tracking-wide">
+                      <div className="text-sm font-bold tracking-tight">
                         {profileData.name}
                       </div>
-                      <div className="text-[11px] font-mono tracking-wider uppercase text-[#DECFC0]">
-                        Creative Planner • 2026
+                      <div className="text-[11px] text-[#D5CEBE]">
+                        Creative Planner · Social Media
                       </div>
                     </div>
-                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-amber-300">
-                      <Star className="w-4 h-4 fill-current" />
-                    </div>
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-white/20 font-medium">
+                      PR Văn Lang
+                    </span>
                   </div>
                 </div>
-
-                <div className="p-4 bg-white flex items-center justify-between border-t border-[#F4EFE6]">
-                  <span className="text-xs font-mono text-[#7D5133]">
-                    Content Marketing & Strategy
+                <div className="p-4 bg-white flex items-center justify-between border-t border-[rgba(20,17,15,0.06)]">
+                  <span className="text-xs text-[#635952]">
+                    Khu vực làm việc: TP. Hồ Chí Minh
                   </span>
-                  <span className="text-xs font-mono text-[#9E6B47] font-semibold">
-                    Đại Học Văn Lang
-                  </span>
+                  <a
+                    href={`tel:${profileData.phone.replace(/[^0-9]/g, '')}`}
+                    className="text-xs font-bold text-[#8C5A3C] hover:underline"
+                  >
+                    {profileData.phone}
+                  </a>
                 </div>
-              </div>
-
-              {/* Floating Pills */}
-              <div className="absolute -bottom-5 -left-3 sm:-left-6 glass-editorial p-3.5 rounded-2xl shadow-luxury flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#1E1611] text-[#FAF7F2] flex items-center justify-center">
-                  <Film className="w-4 h-4 text-[#C8B49F]" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-[#1E1611]">20+ Video Xưởng</div>
-                  <div className="text-[11px] text-[#5C4D43] font-mono">Minh Huy Furniture</div>
-                </div>
-              </div>
-
-              <div className="absolute top-6 -right-3 sm:-right-6 glass-editorial px-3.5 py-2 rounded-full shadow-luxury flex items-center gap-2">
-                <Coffee className="w-4 h-4 text-[#9E6B47]" />
-                <span className="text-xs font-mono font-semibold text-[#1E1611]">@la.camotchut</span>
               </div>
             </div>
 
           </div>
+
+          {/* Navigation Hub: Home Tabs linking to separate subpages */}
+          <div className="home-tabs">
+            {homeTabs.map((tab, idx) => (
+              <Link key={idx} href={tab.href} className="home-tab group">
+                <span>{tab.kicker}</span>
+                <div className="text-[#14110F] group-hover:text-[#8C5A3C] transition-colors font-bold">
+                  {tab.title}
+                </div>
+                <div className="text-xs text-[#635952] font-normal leading-relaxed line-clamp-2">
+                  {tab.desc}
+                </div>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </section>
 
-      {/* Section: Phân nhóm 4 Trang Độc Lập (Chỉ mục trang chuyên biệt) */}
-      <section className="py-20 bg-[#F4EFE6] border-t border-[#ECE4D8]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+      {/* Featured Projects Highlight (Isolated Categories Preview) */}
+      <section className="py-20 bg-white border-y border-[rgba(20,17,15,0.08)]">
+        <div className="container">
           
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#9E6B47] font-bold">
-              Danh Mục Trang Chuyên Biệt
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1E1611]">
-              Khám Phá Hồ Sơ Năng Lực
-            </h2>
-            <p className="text-xs sm:text-sm text-[#5C4D43]">
-              Bấm chọn trang bạn muốn xem, mỗi trang được hiển thị độc lập với nội dung chuyên sâu:
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+            <div>
+              <p className="eyebrow">HẠNG MỤC DỰ ÁN NỔI BẬT</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight mt-1">
+                Hai phân mảng nội dung chính
+              </h2>
+            </div>
+            <Link href="/work" className="btn btn-secondary btn-sm">
+              <span>Xem Toàn Bộ Dự Án (Work)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            {/* Card 1: Dự án (Work) */}
-            <Link
-              href="/work"
-              className="editorial-card p-6 bg-white space-y-4 hover:border-[#9E6B47] transition-all group flex flex-col justify-between"
-            >
+            {/* Category 1: Minh Huy Furniture */}
+            <div className="p-7 sm:p-8 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6">
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DECFC0] text-[#9E6B47] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Sofa className="w-6 h-6" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-semibold text-[#8C5A3C]">
+                  <Sofa className="w-3.5 h-3.5" />
+                  <span>Dự Án Nội Thất B2B</span>
                 </div>
-                <div>
-                  <span className="text-[10px] font-mono text-[#9E6B47] uppercase font-bold">Hạng mục riêng</span>
-                  <h3 className="text-xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
-                    Dự Án (Work)
-                  </h3>
-                </div>
-                <p className="text-xs text-[#5C4D43] leading-relaxed">
-                  2 hạng mục độc lập: Xưởng nội thất Minh Huy B2B & Kênh F&B La Cà Một Chút tone Be.
+                <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
+                  Minh Huy Furniture — TikTok Xưởng Sản Xuất
+                </h3>
+                <p className="text-sm text-[#635952] leading-relaxed">
+                  20+ video short-form khai thác quy trình thợ mộc, kiểm tra chất lượng gỗ và tư vấn nội thất công trình. Tạo lòng tin thực tế và chuyển đổi đơn hàng trực tiếp qua TikTok.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#ECE4D8] flex items-center justify-between text-xs font-mono font-medium text-[#1E1611]">
-                <span>Xem trang Work</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#9E6B47] group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Card 2: Working Experience */}
-            <Link
-              href="/working-experience"
-              className="editorial-card p-6 bg-white space-y-4 hover:border-[#9E6B47] transition-all group flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DECFC0] text-[#9E6B47] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Briefcase className="w-6 h-6" />
-                </div>
+              <div className="p-4 rounded-xl bg-white border border-[rgba(20,17,15,0.06)] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-[#9E6B47] uppercase font-bold">Học vấn & Thực chiến</span>
-                  <h3 className="text-xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
-                    Kinh Nghiệm
-                  </h3>
+                  <div className="text-xs text-[#635952]">Tư liệu dự án:</div>
+                  <div className="text-sm font-bold text-[#14110F]">Google Drive 20+ Video Gốc</div>
                 </div>
-                <p className="text-xs text-[#5C4D43] leading-relaxed">
-                  Đại Học Văn Lang PR, ColorMe, Phát Thủy, Suzuki Hồng Phương, Hải Phi.
+                <Link
+                  href="/work?tab=furniture"
+                  className="btn btn-primary btn-sm !px-3"
+                >
+                  <span>Xem Chi Tiết</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Category 2: La Cà Một Chút */}
+            <div className="p-7 sm:p-8 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col justify-between space-y-6">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-semibold text-[#8C5A3C]">
+                  <Coffee className="w-3.5 h-3.5" />
+                  <span>Kênh TikTok F&amp;B</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
+                  La Cà Một Chút (@la.camotchut) — Cafe &amp; Ẩm Thực
+                </h3>
+                <p className="text-sm text-[#635952] leading-relaxed">
+                  Định hình tone màu Be nữ tính, ấm áp và nhẹ nhàng. Review trải nghiệm quán cafe, món ngon đường phố và lifestyle với phong cách tự nhiên, gần gũi.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#ECE4D8] flex items-center justify-between text-xs font-mono font-medium text-[#1E1611]">
-                <span>Xem kinh nghiệm</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#9E6B47] group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Card 3: Skills & Tools */}
-            <Link
-              href="/skills"
-              className="editorial-card p-6 bg-white space-y-4 hover:border-[#9E6B47] transition-all group flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DECFC0] text-[#9E6B47] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Wrench className="w-6 h-6" />
-                </div>
+              <div className="p-4 rounded-xl bg-white border border-[rgba(20,17,15,0.06)] flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-[#9E6B47] uppercase font-bold">Công cụ hàng ngày</span>
-                  <h3 className="text-xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
-                    Kỹ Năng & Tools
-                  </h3>
+                  <div className="text-xs text-[#635952]">Kênh chính thức:</div>
+                  <div className="text-sm font-bold text-[#14110F]">tiktok.com/@la.camotchut</div>
                 </div>
-                <p className="text-xs text-[#5C4D43] leading-relaxed">
-                  CapCut, Photoshop, Canva, Meta Business Suite, TikTok Studio, Google Workspace.
-                </p>
+                <Link
+                  href="/work?tab=fnb"
+                  className="btn btn-primary btn-sm !px-3"
+                >
+                  <span>Xem Chi Tiết</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
-
-              <div className="pt-3 border-t border-[#ECE4D8] flex items-center justify-between text-xs font-mono font-medium text-[#1E1611]">
-                <span>Xem kỹ năng</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#9E6B47] group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Card 4: Contact */}
-            <Link
-              href="/contact"
-              className="editorial-card p-6 bg-white space-y-4 hover:border-[#9E6B47] transition-all group flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DECFC0] text-[#9E6B47] flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono text-[#9E6B47] uppercase font-bold">Kết nối nhanh</span>
-                  <h3 className="text-xl font-serif font-bold text-[#1E1611] group-hover:text-[#9E6B47] transition-colors">
-                    Liên Hệ
-                  </h3>
-                </div>
-                <p className="text-xs text-[#5C4D43] leading-relaxed">
-                  Phone: 0942.077.335, Email: lananhto2402@gmail.com, Tải CV PDF chi tiết.
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-[#ECE4D8] flex items-center justify-between text-xs font-mono font-medium text-[#1E1611]">
-                <span>Gửi lời nhắn</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#9E6B47] group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
+            </div>
 
           </div>
 
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-[#F8F6F1]">
+        <div className="container text-center max-w-2xl mx-auto space-y-6">
+          <p className="eyebrow">LIÊN HỆ &amp; HỢP TÁC</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14110F] tracking-tight">
+            Bạn đang cần lên kế hoạch truyền thông <br />
+            hoặc sản xuất video ngắn TikTok?
+          </h2>
+          <p className="text-base text-[#635952]">
+            Hãy liên hệ trực tiếp với mình qua điện thoại hoặc email để cùng trao đổi về dự án của bạn.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <a href="tel:0942077335" className="btn btn-primary">
+              <Phone className="w-4 h-4" />
+              <span>Gọi 0942 077 335</span>
+            </a>
+            <a href="mailto:lananhto2402@gmail.com" className="btn btn-secondary">
+              <Mail className="w-4 h-4" />
+              <span>lananhto2402@gmail.com</span>
+            </a>
+          </div>
         </div>
       </section>
 

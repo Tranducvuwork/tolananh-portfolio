@@ -75,9 +75,9 @@ export default function CaseStudies() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1611] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold text-[#1E1611] tracking-tight">
             Dự Án Thực Chiến <br />
-            <span className="font-serif italic text-[#9E6B47] font-normal">
+            <span className="font-sans italic text-[#9E6B47] font-normal">
               & Bộ Slide Thuyết Trình
             </span>
           </h2>
@@ -149,7 +149,7 @@ export default function CaseStudies() {
                       {selectedCase.timeline} • {selectedCase.category}
                     </span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611] leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611] leading-snug">
                     {selectedCase.title}
                   </h3>
                   <p className="text-sm text-[#5C4D43] font-medium">
@@ -202,7 +202,7 @@ export default function CaseStudies() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {selectedCase.metrics.map((m, i) => (
                   <div key={i} className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#ECE4D8] space-y-1">
-                    <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">
+                    <div className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611]">
                       {m.value}
                     </div>
                     <div className="text-xs text-[#5C4D43] font-mono leading-snug">
@@ -244,7 +244,7 @@ export default function CaseStudies() {
 
               {/* Content Pillars */}
               <div className="space-y-4">
-                <h4 className="text-lg font-serif font-bold text-[#1E1611]">
+                <h4 className="text-lg font-sans font-bold text-[#1E1611]">
                   Tuyến Nội Dung Cốt Lõi (Content Pillars)
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -351,7 +351,7 @@ export default function CaseStudies() {
                   </div>
 
                   <div className="p-3.5 bg-white border-t border-[#ECE4D8] flex items-center justify-between">
-                    <span className="text-xs font-serif font-semibold text-[#1E1611] line-clamp-1">
+                    <span className="text-xs font-sans font-semibold text-[#1E1611] line-clamp-1">
                       {slide.title}
                     </span>
                     <span className="text-[10px] font-mono text-[#7D5133] uppercase">
@@ -376,7 +376,7 @@ export default function CaseStudies() {
               <span className="px-3 py-1 rounded-full bg-white/10 font-mono text-xs">
                 Trang {lightboxSlide} / {allSlides.length}
               </span>
-              <span className="font-serif text-sm sm:text-base font-semibold text-zinc-200">
+              <span className="font-sans text-sm sm:text-base font-semibold text-zinc-200">
                 {allSlides[lightboxSlide - 1]?.title}
               </span>
             </div>

@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1E1611]">
+    <main className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#14110F]">
       <Navbar />
 
-      <section className="pt-32 pb-6 md:pt-40 md:pb-8">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <section className="pt-8 pb-4">
+        <div className="container">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-[#7D5133] hover:text-[#1E1611] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#8C5A3C] hover:text-[#14110F] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Quay lại Trang Chủ</span>

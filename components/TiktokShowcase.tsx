@@ -67,9 +67,9 @@ export default function TiktokShowcase() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1611] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-bold text-[#1E1611] tracking-tight">
             Trải Nghiệm Thực Tế <br />
-            <span className="font-serif italic text-[#9E6B47] font-normal">
+            <span className="font-sans italic text-[#9E6B47] font-normal">
               Định Dạng Video TikTok
             </span>
           </h2>
@@ -120,12 +120,12 @@ export default function TiktokShowcase() {
         <div className="editorial-card p-6 sm:p-8 mb-12 bg-white">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-[#ECE4D8]">
             <div className="flex items-center gap-4 text-left">
-              <div className="w-14 h-14 rounded-full bg-[#1E1611] text-[#FAF7F2] flex items-center justify-center font-serif text-xl font-bold border-2 border-[#DECFC0]">
+              <div className="w-14 h-14 rounded-full bg-[#1E1611] text-[#FAF7F2] flex items-center justify-center font-sans text-xl font-bold border-2 border-[#DECFC0]">
                 {activeVideo.category === 'furniture' ? 'MH' : 'LC'}
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-serif text-xl font-bold text-[#1E1611]">
+                  <h3 className="font-sans text-xl font-bold text-[#1E1611]">
                     {activeVideo.category === 'furniture' ? 'Minh Huy Furniture Official' : 'La Cà Một Chút (Tone Be)'}
                   </h3>
                   <span className="w-4 h-4 rounded-full bg-[#9E6B47] text-white flex items-center justify-center text-[10px]">
@@ -164,19 +164,19 @@ export default function TiktokShowcase() {
           {/* Key Metrics Counters */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 text-center sm:text-left">
             <div>
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">58K+</div>
+              <div className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611]">58K+</div>
               <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Followers Kênh</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">3.9M+</div>
+              <div className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611]">3.9M+</div>
               <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Tổng Lượt Thích</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#1E1611]">5.3M+</div>
+              <div className="text-2xl sm:text-3xl font-sans font-bold text-[#1E1611]">5.3M+</div>
               <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Lượt Xem / Tháng</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-serif font-bold text-[#9E6B47]">14.8%</div>
+              <div className="text-2xl sm:text-3xl font-sans font-bold text-[#9E6B47]">14.8%</div>
               <div className="text-xs text-[#5C4D43] font-mono mt-0.5">Tỷ Lệ Tương Tác (Cao Hơn 80%)</div>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function TiktokShowcase() {
                     <span className="inline-block px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-[10px] font-mono text-amber-200 border border-white/15">
                       {activeVideo.category === 'furniture' ? 'MINH HUY WORKSHOP BTS' : 'LA CÀ MỘT CHÚT • CAFE VLOG'}
                     </span>
-                    <h4 className="text-lg font-serif font-bold text-white leading-tight px-2 drop-shadow-md">
+                    <h4 className="text-lg font-sans font-bold text-white leading-tight px-2 drop-shadow-md">
                       {activeVideo.title}
                     </h4>
                     <p className="text-xs text-zinc-300 font-sans italic line-clamp-3 px-3 drop-shadow">
@@ -372,7 +372,7 @@ export default function TiktokShowcase() {
                 <div className="text-xs font-mono uppercase tracking-wider text-[#9E6B47] font-semibold">
                   Hook 3 giây đầu giữ chân khán giả:
                 </div>
-                <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm text-[#1E1611] font-serif italic">
+                <blockquote className="p-3.5 rounded-xl bg-[#FAF7F2] border-l-4 border-[#9E6B47] text-sm text-[#1E1611] font-sans italic">
                   "{activeVideo.hook}"
                 </blockquote>
               </div>
@@ -456,7 +456,7 @@ export default function TiktokShowcase() {
                               {video.views}
                             </span>
                           </div>
-                          <h5 className="text-xs font-serif font-bold text-[#1E1611] line-clamp-1">
+                          <h5 className="text-xs font-sans font-bold text-[#1E1611] line-clamp-1">
                             {video.title}
                           </h5>
                           <p className="text-[11px] text-[#5C4D43] line-clamp-2 leading-snug">

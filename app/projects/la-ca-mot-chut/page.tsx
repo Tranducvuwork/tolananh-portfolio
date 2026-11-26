@@ -38,7 +38,7 @@ export default function LaCaPage() {
               <Coffee className="w-3.5 h-3.5 text-[#9E6B47]" />
               <span>HẠNG MỤC: F&B LIFESTYLE & CAFE REVIEW (TONE BE)</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#1E1611] leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-sans font-bold text-[#1E1611] leading-tight">
               {caseStudy.title}
             </h1>
             <p className="text-sm sm:text-base text-[#5C4D43] leading-relaxed max-w-3xl">
@@ -69,7 +69,7 @@ export default function LaCaPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {caseStudy.metrics.map((m, i) => (
               <div key={i} className="space-y-1">
-                <div className="text-3xl font-serif font-bold text-[#1E1611]">{m.value}</div>
+                <div className="text-3xl font-sans font-bold text-[#1E1611]">{m.value}</div>
                 <div className="text-xs font-mono text-[#5C4D43]">{m.label}</div>
               </div>
             ))}
@@ -98,13 +98,13 @@ export default function LaCaPage() {
 
           {/* Pillars */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-serif font-bold text-[#1E1611]">
+            <h3 className="text-2xl font-sans font-bold text-[#1E1611]">
               3 Tuyến Nội Dung Trọng Điểm Kênh La Cà
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {caseStudy.contentPillars.map((p, i) => (
                 <div key={i} className="editorial-card p-5 bg-white space-y-2">
-                  <div className="font-serif text-sm font-bold text-[#1E1611] flex items-center gap-2">
+                  <div className="font-sans text-sm font-bold text-[#1E1611] flex items-center gap-2">
                     <span className="w-6 h-6 rounded-lg bg-[#FAF7F2] text-[#9E6B47] flex items-center justify-center text-xs font-mono">
                       {i + 1}
                     </span>
@@ -118,7 +118,7 @@ export default function LaCaPage() {
 
           {/* Video List */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-serif font-bold text-[#1E1611]">
+            <h3 className="text-2xl font-sans font-bold text-[#1E1611]">
               Các Video Tiêu Biểu Được Yêu Thích Nhất
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -128,8 +128,8 @@ export default function LaCaPage() {
                     <span className="font-bold text-[#9E6B47]">{v.views} views</span>
                     <span className="text-[#5C4D43]">{v.duration}</span>
                   </div>
-                  <h4 className="font-serif text-base font-bold text-[#1E1611]">{v.title}</h4>
-                  <blockquote className="p-3 rounded-xl bg-[#FAF7F2] text-xs font-serif italic text-[#4A3A2C]">
+                  <h4 className="font-sans text-base font-bold text-[#1E1611]">{v.title}</h4>
+                  <blockquote className="p-3 rounded-xl bg-[#FAF7F2] text-xs font-sans italic text-[#4A3A2C]">
                     "{v.hook}"
                   </blockquote>
                   <p className="text-xs text-[#5C4D43]">{v.description}</p>
@@ -140,7 +140,7 @@ export default function LaCaPage() {
 
           {/* Deliverables */}
           <div className="editorial-card p-6 bg-white space-y-4">
-            <h4 className="text-lg font-serif font-bold text-[#1E1611]">Quy Chuẩn Nhận Diện Kênh Đã Hoàn Thành:</h4>
+            <h4 className="text-lg font-sans font-bold text-[#1E1611]">Quy Chuẩn Nhận Diện Kênh Đã Hoàn Thành:</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#4A3A2C]">
               {caseStudy.deliverables.map((d, i) => (
                 <div key={i} className="flex items-center gap-2 p-2.5 rounded-xl bg-[#FAF7F2]">

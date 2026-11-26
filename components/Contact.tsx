@@ -27,35 +27,30 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* Left Column: Heading & Vision (7 cols) */}
-            <div className="md:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2] border border-[#DECFC0] shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#9E6B47]" />
-                <span className="text-xs font-mono font-medium tracking-wider text-[#7D5133] uppercase">
-                  Let&apos;s Create Together
-                </span>
-              </div>
+            <div className="md:col-span-7 space-y-5">
+              <p className="eyebrow">
+                LIÊN HỆ &amp; HỢP TÁC
+              </p>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1611] leading-[1.15] tracking-tight">
-                Sẵn Sàng Đồng Hành <br />
-                <span className="font-serif italic text-[#9E6B47] font-normal">
-                  Cùng Chiến Dịch Của Bạn.
-                </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] leading-[1.15] tracking-tight">
+                Sẵn sàng đồng hành cùng <br />
+                dự án truyền thông của bạn
               </h2>
 
-              <p className="text-sm sm:text-base text-[#5C4D43] leading-relaxed">
-                Bạn đang tìm kiếm một <strong className="text-[#1E1611]">Creative Planner</strong> nhiệt huyết, 
-                có năng lực lên ý tưởng kịch bản và sản xuất short-form video TikTok thực chiến với phong cách ấm áp, thẩm mỹ? 
-                Hãy kết nối cùng mình ngay nhé!
+              <p className="text-sm sm:text-base text-[#635952] leading-relaxed">
+                Bạn đang tìm kiếm một <strong className="text-[#14110F]">Creative Planner</strong> bài bản, 
+                có năng lực lên ý tưởng kịch bản và sản xuất short-form video TikTok thực chiến với phong cách ấm áp, tinh tế? 
+                Hãy kết nối cùng mình ngay hôm nay.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href={`tel:${profileData.phone.replace(/[^0-9]/g, '')}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1E1611] text-white text-xs sm:text-sm font-medium hover:bg-[#9E6B47] shadow-luxury transition-all hover:scale-[1.02]"
+                  className="btn btn-primary"
                 >
-                  <Phone className="w-4 h-4 text-[#C8B49F]" />
-                  <span>Gọi ngay: {profileData.phone}</span>
+                  <Phone className="w-4 h-4 text-[#D5CEBE]" />
+                  <span>Gọi: {profileData.phone}</span>
                 </a>
 
                 <a
@@ -94,7 +89,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-[#7D5133]">Điện thoại / Zalo</div>
-                      <a href={`tel:${profileData.phone}`} className="text-sm font-serif font-bold text-[#1E1611] hover:text-[#9E6B47]">
+                      <a href={`tel:${profileData.phone}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47]">
                         {profileData.phone}
                       </a>
                     </div>
@@ -116,7 +111,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-[#7D5133]">Hòm thư Email</div>
-                      <a href={`mailto:${profileData.email}`} className="text-sm font-serif font-bold text-[#1E1611] hover:text-[#9E6B47] break-all">
+                      <a href={`mailto:${profileData.email}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47] break-all">
                         {profileData.email}
                       </a>
                     </div>
