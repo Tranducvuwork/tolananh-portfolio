@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Download, Menu, X, ArrowUpRight, Sparkles, ChevronDown } from 'lucide-react';
+import { Download, Menu, X, ArrowUpRight, Phone } from 'lucide-react';
 import { profileData } from '@/app/data';
 
 export default function Navbar() {
@@ -13,25 +13,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Trang Chủ', href: '/' },
-    { 
-      name: 'Dự Án Riêng Biệt', 
-      href: '/projects',
-      subLinks: [
-        { name: 'Nội Thất Minh Huy (B2B)', href: '/projects/minh-huy-furniture' },
-        { name: 'La Cà Một Chút (F&B)', href: '/projects/la-ca-mot-chut' },
-        { name: 'Tất Cả Dự Án & 13 Slides', href: '/projects' },
-      ]
-    },
-    { name: 'Working Experience', href: '/working-experience' },
-    { name: 'Liên Hệ', href: '/contact' },
+    { name: 'Giới thiệu', href: '/' },
+    { name: 'Dự án (Work)', href: '/work' },
+    { name: 'Kinh nghiệm', href: '/working-experience' },
+    { name: 'Kỹ năng & Tools', href: '/skills' },
+    { name: 'Liên hệ', href: '/contact' },
   ];
 
   const isActive = (href: string) => {
@@ -45,7 +38,7 @@ export default function Navbar() {
         className={`max-w-6xl mx-auto rounded-full transition-all duration-300 flex items-center justify-between px-5 sm:px-6 py-2.5 sm:py-3 ${
           scrolled
             ? 'glass-editorial shadow-luxury border border-[#ECE4D8]'
-            : 'bg-[#FAF7F2]/90 backdrop-blur-md border border-[#EAE1D5]/70 shadow-xs'
+            : 'bg-[#FAF7F2]/95 backdrop-blur-md border border-[#EAE1D5] shadow-xs'
         }`}
       >
         {/* Brand Logo & Name */}
@@ -63,41 +56,22 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+        {/* Desktop Navigation - Exact Multi-page links */}
+        <nav className="hidden md:flex items-center gap-2 lg:gap-3 bg-[#F4EFE6] px-3 py-1.5 rounded-full border border-[#ECE4D8]">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
-              <div key={link.name} className="relative group/nav">
-                <Link
-                  href={link.href}
-                  className={`text-xs font-mono font-medium tracking-wide transition-colors relative py-1 flex items-center gap-1 ${
-                    active
-                      ? 'text-[#1E1611] font-bold border-b-2 border-[#9E6B47]'
-                      : 'text-[#5C4D43] hover:text-[#1E1611]'
-                  }`}
-                >
-                  <span>{link.name}</span>
-                  {link.subLinks && (
-                    <ChevronDown className="w-3 h-3 text-[#9E6B47] group-hover/nav:rotate-180 transition-transform" />
-                  )}
-                </Link>
-
-                {/* Dropdown for Sublinks */}
-                {link.subLinks && (
-                  <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl glass-editorial border border-[#ECE4D8] p-2 shadow-luxury opacity-0 pointer-events-none group-hover/nav:opacity-100 group-hover/nav:pointer-events-auto transition-all duration-200">
-                    {link.subLinks.map((sub) => (
-                      <Link
-                        key={sub.name}
-                        href={sub.href}
-                        className="block px-3 py-2 rounded-xl text-xs font-mono text-[#5C4D43] hover:text-[#1E1611] hover:bg-[#FAF7F2] transition-colors"
-                      >
-                        {sub.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-xs font-mono font-medium px-3.5 py-1.5 rounded-full transition-all ${
+                  active
+                    ? 'bg-[#1E1611] text-white shadow-xs font-semibold'
+                    : 'text-[#5C4D43] hover:text-[#1E1611] hover:bg-white/60'
+                }`}
+              >
+                {link.name}
+              </Link>
             );
           })}
         </nav>
@@ -113,13 +87,13 @@ export default function Navbar() {
             <Download className="w-3 h-3 text-[#9E6B47]" />
             <span>CV PDF</span>
           </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium text-white bg-[#1E1611] hover:bg-[#9E6B47] shadow-sm transition-all"
+          <a
+            href={`tel:${profileData.phone.replace(/[^0-9]/g, '')}`}
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-mono font-medium text-white bg-[#1E1611] hover:bg-[#9E6B47] shadow-sm transition-all"
           >
-            <span>Hợp tác</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#DECFC0]" />
-          </Link>
+            <Phone className="w-3 h-3 text-[#C8B49F]" />
+            <span>{profileData.phone}</span>
+          </a>
         </div>
 
         {/* Mobile menu trigger */}
@@ -136,58 +110,24 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden mt-2 max-w-6xl mx-auto rounded-3xl glass-editorial border border-[#ECE4D8] p-5 shadow-luxury space-y-3">
           <div className="grid grid-cols-1 gap-1.5">
-            <Link
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2.5 rounded-xl text-xs font-mono font-medium text-[#1E1611] hover:bg-[#F4EFE6]"
-            >
-              Trang Chủ
-            </Link>
-            
-            <div className="pt-2 pb-1 px-4 text-[10px] font-mono uppercase tracking-wider text-[#9E6B47] font-bold">
-              Các Hạng Mục Dự Án:
-            </div>
-            <Link
-              href="/projects/minh-huy-furniture"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-mono text-[#5C4D43] hover:bg-[#F4EFE6] flex items-center justify-between"
-            >
-              <span>🛋️ Nội Thất Minh Huy (B2B)</span>
-              <span className="text-[10px] text-[#9E6B47]">Xưởng</span>
-            </Link>
-            <Link
-              href="/projects/la-ca-mot-chut"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-mono text-[#5C4D43] hover:bg-[#F4EFE6] flex items-center justify-between"
-            >
-              <span>☕ Kênh La Cà Một Chút</span>
-              <span className="text-[10px] text-[#9E6B47]">F&B</span>
-            </Link>
-            <Link
-              href="/projects"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-mono text-[#5C4D43] hover:bg-[#F4EFE6]"
-            >
-              📂 Tất Cả Dự Án & 13 Slide Gốc
-            </Link>
-
-            <div className="pt-2 pb-1 px-4 text-[10px] font-mono uppercase tracking-wider text-[#9E6B47] font-bold">
-              Hồ Sơ Năng Lực:
-            </div>
-            <Link
-              href="/working-experience"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2.5 rounded-xl text-xs font-mono font-medium text-[#1E1611] hover:bg-[#F4EFE6]"
-            >
-              Working Experience & Học Vấn
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-2.5 rounded-xl text-xs font-mono font-medium text-[#1E1611] hover:bg-[#F4EFE6]"
-            >
-              Liên Hệ Trực Tiếp
-            </Link>
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-colors flex items-center justify-between ${
+                    active
+                      ? 'bg-[#1E1611] text-white font-bold'
+                      : 'text-[#1E1611] hover:bg-[#F4EFE6] font-medium'
+                  }`}
+                >
+                  <span>{link.name}</span>
+                  {active && <span className="text-[10px] text-amber-200">● Đang xem</span>}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="pt-3 border-t border-[#ECE4D8] flex gap-2">
@@ -204,7 +144,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="flex-1 text-center py-2.5 rounded-full text-xs font-medium bg-[#1E1611] text-white"
             >
-              Hợp tác ngay
+              Liên hệ
             </Link>
           </div>
         </div>
