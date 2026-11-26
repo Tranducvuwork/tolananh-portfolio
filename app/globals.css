@@ -1,34 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-plus-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Dancing Script', 'Caveat', cursive;
+  --font-handwriting: 'Caveat', 'Dancing Script', cursive;
   --bg-sand: #FAF6F0;
   --color-beige-warm: #F4ECE1;
   --color-cream: #FCFAF7;
   --color-latte: #8A6E55;
-  --color-text-main: #3C2F2F;
+  --color-text-main: #2D231C;
 }
 
 body {
   background-color: var(--bg-sand);
-  color: #3B302A;
-  font-family: var(--font-plus-jakarta);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
   overflow-x: hidden;
   background-image: radial-gradient(rgba(191, 162, 133, 0.12) 1px, transparent 0);
   background-size: 28px 28px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, .font-serif {
-  font-family: var(--font-cormorant);
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+}
+
+.font-script {
+  font-family: var(--font-script);
 }
 
 .font-handwriting {
-  font-family: 'Caveat', cursive;
+  font-family: var(--font-handwriting);
 }
 
 /* Custom aesthetic scrollbar */
@@ -121,8 +129,8 @@ h1, h2, h3, .font-serif {
 
 /* Smooth fade in animation */
 @keyframes softPulse {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.03); }
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
 }
 
 .animate-soft-pulse {

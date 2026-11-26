@@ -34,18 +34,18 @@ export default function CaseStudies() {
             <span>Chi Tiết Dự Án & Kế Hoạch Truyền Thông</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#34261C]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#2D231C] tracking-tight">
             Case Studies Thực Chiến <br />
-            <span className="italic text-[#84674C] font-normal">& Định Hướng Sáng Tạo</span>
+            <span className="font-serif italic text-[#8A6748] font-normal">& Định Hướng Sáng Tạo</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#6E5A4B] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#655243] leading-relaxed">
             Mỗi dự án là một câu chuyện từ nghiên cứu insight, xây dựng thông điệp, sản xuất nội dung đến đo lường chuyển đổi thực tế.
           </p>
         </div>
 
         {/* Project Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 font-sans">
           {caseStudies.map((cs) => {
             const isActive = selectedCase.id === cs.id;
             return (
@@ -55,7 +55,7 @@ export default function CaseStudies() {
                 className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                   isActive
                     ? 'bg-[#84674C] text-white shadow-md shadow-[#84674C]/25 scale-[1.02]'
-                    : 'bg-white text-[#6E5A4B] border border-[#E8DEC8] hover:bg-[#F9F5EC]'
+                    : 'bg-white text-[#655243] border border-[#E8DEC8] hover:bg-[#F9F5EC]'
                 }`}
               >
                 <span>{cs.id === 'minh-huy-furniture' ? '🛋️' : cs.id === 'la-ca-mot-chut' ? '☕' : cs.id === 'xe-khach-phat' ? '🚌' : '🏆'}</span>
@@ -71,7 +71,7 @@ export default function CaseStudies() {
           {/* Top Info Banner */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#F0E6D8]">
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 font-sans">
                 <span className="px-3 py-1 rounded-full bg-[#F2E8DC] text-[#84674C] text-xs font-bold uppercase tracking-wide">
                   {selectedCase.badge}
                 </span>
@@ -79,18 +79,18 @@ export default function CaseStudies() {
                   {selectedCase.timeline} • {selectedCase.category}
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#34261C]">
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D231C]">
                 {selectedCase.title}
               </h3>
-              <p className="text-sm text-[#7A6453] font-medium">
+              <p className="text-sm text-[#705B4C] font-medium font-sans">
                 {selectedCase.subtitle}
               </p>
             </div>
 
             {/* Role Chip */}
-            <div className="flex-shrink-0 bg-[#FAF6F0] border border-[#E5D6C3] px-4 py-2 rounded-2xl">
+            <div className="flex-shrink-0 bg-[#FAF6F0] border border-[#E5D6C3] px-4 py-2.5 rounded-2xl font-sans">
               <div className="text-[10px] text-[#8C7665] uppercase font-bold tracking-wider">Vai trò đảm nhiệm:</div>
-              <div className="text-xs font-bold text-[#34261C] mt-0.5">{selectedCase.role}</div>
+              <div className="text-xs font-bold text-[#2D231C] mt-0.5">{selectedCase.role}</div>
             </div>
           </div>
 
@@ -98,10 +98,10 @@ export default function CaseStudies() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {selectedCase.metrics.map((m, i) => (
               <div key={i} className="p-4 rounded-2xl bg-[#FBF7F0] border border-[#EFE4D6] space-y-1">
-                <div className="text-2xl sm:text-3xl font-serif font-bold text-[#84674C]">
+                <div className="text-2xl sm:text-3xl font-serif font-bold text-[#84674C] tracking-tight">
                   {m.value}
                 </div>
-                <div className="text-xs text-[#6E5A4B] font-medium">
+                <div className="text-xs text-[#655243] font-medium font-sans">
                   {m.label}
                 </div>
               </div>
@@ -109,27 +109,27 @@ export default function CaseStudies() {
           </div>
 
           {/* Overview & Solution */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">
             <div className="p-6 rounded-2xl bg-[#FAF6F0] border border-[#E8DEC8] space-y-3">
-              <h4 className="text-base font-serif font-bold text-[#34261C] flex items-center gap-2">
+              <h4 className="text-base font-serif font-bold text-[#2D231C] flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-600" />
                 <span>Bối cảnh & Thách thức</span>
               </h4>
-              <p className="text-sm text-[#5E4D40] leading-relaxed">
+              <p className="text-sm text-[#554336] leading-relaxed">
                 {selectedCase.overview}
               </p>
-              <div className="p-3 rounded-xl bg-white/80 border border-[#E8DEC8] text-xs text-[#7A6453]">
-                <strong className="text-[#34261C]">Rào cản: </strong>
+              <div className="p-3.5 rounded-xl bg-white/90 border border-[#E8DEC8] text-xs text-[#705B4C]">
+                <strong className="text-[#2D231C]">Rào cản: </strong>
                 {selectedCase.challenge}
               </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#FAF6F0] border border-[#E8DEC8] space-y-3">
-              <h4 className="text-base font-serif font-bold text-[#34261C] flex items-center gap-2">
+              <h4 className="text-base font-serif font-bold text-[#2D231C] flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-600" />
                 <span>Giải pháp & Định hướng sáng tạo</span>
               </h4>
-              <p className="text-sm text-[#5E4D40] leading-relaxed">
+              <p className="text-sm text-[#554336] leading-relaxed">
                 {selectedCase.solution}
               </p>
             </div>
@@ -138,7 +138,7 @@ export default function CaseStudies() {
           {/* Content Pillars */}
           {selectedCase.contentPillars && selectedCase.contentPillars.length > 0 && (
             <div className="space-y-4">
-              <div className="text-sm font-bold uppercase tracking-wider text-[#84674C] flex items-center gap-2">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#84674C] flex items-center gap-2 font-sans">
                 <Layers className="w-4 h-4" />
                 <span>Các Tuyến Nội Dung Trọng Tâm (Content Pillars)</span>
               </div>
@@ -151,10 +151,10 @@ export default function CaseStudies() {
                       <div className="w-10 h-10 rounded-xl bg-[#F2E8DC] text-[#84674C] flex items-center justify-center group-hover:bg-[#84674C] group-hover:text-white transition-colors">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <div className="text-sm font-bold text-[#34261C] group-hover:text-[#84674C] transition-colors">
+                      <div className="text-sm font-bold text-[#2D231C] group-hover:text-[#84674C] transition-colors font-sans">
                         {pillar.title}
                       </div>
-                      <p className="text-xs text-[#6E5A4B] leading-relaxed">
+                      <p className="text-xs text-[#655243] leading-relaxed font-sans">
                         {pillar.desc}
                       </p>
                     </div>
@@ -165,14 +165,14 @@ export default function CaseStudies() {
           )}
 
           {/* Deliverables & Actions */}
-          <div className="p-6 rounded-2xl bg-[#FBF7EE] border border-[#E5D6C3] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="space-y-2 flex-1">
+          <div className="p-6 rounded-2xl bg-[#FBF7EE] border border-[#E5D6C3] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 font-sans">
+            <div className="space-y-2.5 flex-1">
               <div className="text-xs uppercase font-bold tracking-wider text-[#84674C]">
                 Sản phẩm bàn giao (Deliverables):
               </div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {selectedCase.deliverables.map((d, i) => (
-                  <li key={i} className="flex items-center gap-2 text-xs text-[#463526]">
+                  <li key={i} className="flex items-center gap-2 text-xs text-[#3E3027]">
                     <CheckCircle className="w-3.5 h-3.5 text-[#84674C] flex-shrink-0" />
                     <span>{d}</span>
                   </li>

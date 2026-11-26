@@ -45,9 +45,10 @@ const config: Config = {
         }
       },
       fontFamily: {
-        serif: ['var(--font-cormorant)', 'Playfair Display', 'Georgia', 'serif'],
-        sans: ['var(--font-plus-jakarta)', 'Inter', 'system-ui', 'sans-serif'],
-        handwriting: ['Caveat', 'Dancing Script', 'cursive'],
+        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'Be Vietnam Pro', '-apple-system', 'sans-serif'],
+        script: ['var(--font-script)', 'Dancing Script', 'cursive'],
+        handwriting: ['var(--font-handwriting)', 'Caveat', 'cursive'],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(132, 103, 76, 0.08), 0 2px 6px -1px rgba(132, 103, 76, 0.04)',

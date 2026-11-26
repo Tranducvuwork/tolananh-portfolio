@@ -1,6 +1,6 @@
 'use client';
 
-import { Phone, Mail, MapPin, Download, Send, Sparkles, MessageCircle, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Download, Send, Sparkles } from 'lucide-react';
 import { profileData } from '@/app/data';
 
 export default function Contact() {
@@ -19,24 +19,24 @@ export default function Contact() {
             
             {/* Left side: Heading & Message */}
             <div className="md:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2E8DC] text-[#84674C] text-xs font-semibold tracking-wide uppercase">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2E8DC] text-[#84674C] text-xs font-semibold tracking-wide uppercase font-sans">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Let&apos;s Work Together</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#34261C] leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#2D231C] leading-tight tracking-tight">
                 Sẵn Sàng Đồng Hành <br />
-                <span className="italic text-[#84674C] font-normal">Cùng Chiến Dịch Của Bạn.</span>
+                <span className="font-serif italic text-[#8A6748] font-normal">Cùng Chiến Dịch Của Bạn.</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-[#6E5A4B] leading-relaxed">
-                Bạn đang tìm kiếm một <strong>Creative Planner</strong> nhiệt huyết, có khả năng lên ý tưởng 
+              <p className="text-sm sm:text-base text-[#554336] leading-relaxed font-sans">
+                Bạn đang tìm kiếm một <strong className="text-[#2D231C]">Creative Planner</strong> nhiệt huyết, có khả năng lên ý tưởng 
                 và sản xuất short-form video TikTok thực chiến với phong cách chỉn chu, thẩm mỹ? 
                 Hãy liên hệ ngay với mình nhé!
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="flex flex-wrap items-center gap-3 pt-2 font-sans">
                 <a
                   href={`tel:${profileData.phone.replace(/[^0-9]/g, '')}`}
                   className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#84674C] text-white text-xs sm:text-sm font-semibold hover:bg-[#644D38] shadow-md shadow-[#84674C]/25 transition-all"
@@ -66,7 +66,7 @@ export default function Contact() {
             </div>
 
             {/* Right side: Contact Details Card */}
-            <div className="md:col-span-5 p-6 rounded-2xl bg-[#FAF6F0] border border-[#E8DEC8] space-y-4 shadow-sm">
+            <div className="md:col-span-5 p-6 rounded-2xl bg-[#FAF6F0] border border-[#E8DEC8] space-y-4 shadow-sm font-sans">
               <div className="text-xs font-bold uppercase tracking-wider text-[#84674C]">
                 Thông Tin Liên Hệ Trực Tiếp:
               </div>
@@ -78,7 +78,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] text-[#8C7665]">Điện thoại / Zalo</div>
-                    <a href={`tel:${profileData.phone}`} className="text-sm font-bold text-[#34261C] hover:text-[#84674C]">
+                    <a href={`tel:${profileData.phone}`} className="text-sm font-bold text-[#2D231C] hover:text-[#84674C]">
                       {profileData.phone}
                     </a>
                   </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] text-[#8C7665]">Địa chỉ Email</div>
-                    <a href={`mailto:${profileData.email}`} className="text-sm font-bold text-[#34261C] hover:text-[#84674C] break-all">
+                    <a href={`mailto:${profileData.email}`} className="text-sm font-bold text-[#2D231C] hover:text-[#84674C] break-all">
                       {profileData.email}
                     </a>
                   </div>
@@ -102,7 +102,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] text-[#8C7665]">Địa bàn hoạt động</div>
-                    <div className="text-sm font-bold text-[#34261C]">
+                    <div className="text-sm font-bold text-[#2D231C]">
                       {profileData.address}
                     </div>
                   </div>

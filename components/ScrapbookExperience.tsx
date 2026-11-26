@@ -21,12 +21,12 @@ export default function ScrapbookExperience() {
             <span>Journal & Milestones</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#34261C]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#2D231C] tracking-tight">
             Học Vấn & Hành Trình <br />
-            <span className="italic text-[#84674C] font-normal">Kinh Nghiệm Thực Chiến</span>
+            <span className="font-serif italic font-normal text-[#8A6748]">Kinh Nghiệm Thực Chiến</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#6E5A4B]">
+          <p className="text-sm sm:text-base text-[#655243]">
             Những dấu mốc học tập và cọ xát thực tế xây dựng nên tư duy lập kế hoạch sáng tạo và kỹ năng thực thi.
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function ScrapbookExperience() {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-[#E8DEC8]">
                   <GraduationCap className="w-5 h-5 text-[#84674C]" />
-                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#34261C]">
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2D231C]">
                     Học Vấn & Chứng Chỉ
                   </h3>
                 </div>
@@ -69,9 +69,9 @@ export default function ScrapbookExperience() {
                           {edu.badge}
                         </span>
                       </div>
-                      <div className="text-base font-bold text-[#34261C]">{edu.school}</div>
+                      <div className="text-base font-bold text-[#2D231C]">{edu.school}</div>
                       <div className="text-xs font-semibold text-[#84674C]">{edu.major}</div>
-                      <p className="text-xs text-[#6E5A4B] leading-relaxed pt-1">
+                      <p className="text-xs text-[#655243] leading-relaxed pt-1 font-normal">
                         {edu.details}
                       </p>
                     </div>
@@ -83,33 +83,33 @@ export default function ScrapbookExperience() {
               <div className="p-5 rounded-2xl bg-[#F7EFE3] border border-[#D8C7B2] space-y-3 relative">
                 <div className="flex items-center gap-2">
                   <Target className="w-5 h-5 text-[#84674C]" />
-                  <h4 className="text-lg font-serif font-bold text-[#34261C]">
+                  <h4 className="text-lg font-serif font-bold text-[#2D231C]">
                     Mục Tiêu Nghề Nghiệp
                   </h4>
                 </div>
 
                 <div className="space-y-2.5">
-                  <div className="p-3 rounded-xl bg-white/90 border border-[#E5D6C3] space-y-1">
+                  <div className="p-3.5 rounded-xl bg-white/95 border border-[#E5D6C3] space-y-1">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-[#84674C] bg-[#F2E8DC] px-2 py-0.5 rounded">
                       Mục tiêu 2 tháng tới
                     </span>
-                    <p className="text-xs text-[#463526] leading-relaxed font-medium">
+                    <p className="text-xs text-[#3E3027] leading-relaxed font-medium">
                       {profileData.goals.shortTerm}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/90 border border-[#E5D6C3] space-y-1">
+                  <div className="p-3.5 rounded-xl bg-white/95 border border-[#E5D6C3] space-y-1">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-[#84674C] bg-[#F2E8DC] px-2 py-0.5 rounded">
                       Mục tiêu 2 năm tới
                     </span>
-                    <p className="text-xs text-[#463526] leading-relaxed font-medium">
+                    <p className="text-xs text-[#3E3027] leading-relaxed font-medium">
                       {profileData.goals.longTerm}
                     </p>
                   </div>
                 </div>
 
-                {/* Cute Scrapbook Sticker */}
-                <div className="font-handwriting text-right text-lg text-[#84674C] -mb-1">
+                {/* Cute Scrapbook Sticker in dancing script */}
+                <div className="font-script text-right text-2xl text-[#84674C] pt-1">
                   ~ Tô Lan Anh with passion ✨
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default function ScrapbookExperience() {
               
               <div className="flex items-center gap-2 pb-2 border-b border-[#E8DEC8]">
                 <Briefcase className="w-5 h-5 text-[#84674C]" />
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#34261C]">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2D231C]">
                   Kinh Nghiệm Làm Việc
                 </h3>
               </div>
@@ -136,12 +136,12 @@ export default function ScrapbookExperience() {
                       <span className="text-xs font-bold text-[#84674C] bg-[#F9F5EC] px-2.5 py-1 rounded-full border border-[#E8DEC8]">
                         {exp.period}
                       </span>
-                      <span className="text-[11px] font-medium text-[#8C7665] italic">
+                      <span className="text-xs font-medium text-[#8C7665] italic">
                         {exp.focus}
                       </span>
                     </div>
 
-                    <div className="text-base font-bold text-[#34261C]">
+                    <div className="text-base font-bold text-[#2D231C]">
                       {exp.role}
                     </div>
                     <div className="text-xs font-semibold text-[#644D38]">
@@ -150,7 +150,7 @@ export default function ScrapbookExperience() {
 
                     <ul className="space-y-1.5 pt-1">
                       {exp.points.map((pt, pIdx) => (
-                        <li key={pIdx} className="flex items-start gap-2 text-xs text-[#5E4D40] leading-relaxed">
+                        <li key={pIdx} className="flex items-start gap-2 text-xs text-[#554336] leading-relaxed">
                           <span className="text-[#84674C] font-bold mt-0.5">•</span>
                           <span>{pt}</span>
                         </li>
@@ -167,7 +167,7 @@ export default function ScrapbookExperience() {
           {/* Bottom Journal Stickers Bar */}
           <div className="mt-8 pt-6 border-t border-[#E8DEC8] flex flex-wrap items-center justify-between gap-4 text-xs text-[#8C7665]">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1 font-handwriting text-xl text-[#6E5A4B]">
+              <span className="inline-flex items-center gap-1 font-script text-2xl text-[#6E5A4B]">
                 🌸 Vạn dặm khởi đầu từ một bước chân
               </span>
             </div>

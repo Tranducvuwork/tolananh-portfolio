@@ -20,20 +20,20 @@ export default function Hero() {
             {/* Tag badge with scrapbook feel */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F2E8DC] border border-[#D5BEA4] text-xs font-semibold text-[#84674C] shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#A38466]" />
-              <span>Social Media & Creative Planner • PR Văn Lang</span>
+              <span className="tracking-wide">Social Media & Creative Planner • PR Văn Lang</span>
             </div>
 
             {/* Main headline */}
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-[#34261C] leading-[1.15] tracking-tight">
+            <div className="space-y-3">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-[#2D231C] leading-[1.18] tracking-tight">
                 Biến Ý Tưởng Thành <br />
-                <span className="italic text-[#84674C] font-normal underline decoration-[#D5BEA4] decoration-wavy decoration-1 underline-offset-8">
+                <span className="font-serif italic font-normal text-[#8A6748] underline decoration-[#D5BEA4] decoration-wavy decoration-1 underline-offset-8">
                   Những Câu Chuyện Chạm
                 </span> <br />
                 Đến Trái Tim Khán Giả.
               </h1>
-              <p className="text-base sm:text-lg text-[#5E4D40] leading-relaxed pt-2 max-w-xl font-normal">
-                Xin chào, mình là <strong className="text-[#34261C] font-semibold">{profileData.name}</strong>. 
+              <p className="text-base sm:text-lg text-[#554336] leading-relaxed pt-2 max-w-xl font-normal">
+                Xin chào, mình là <strong className="text-[#2D231C] font-semibold">{profileData.name}</strong>. 
                 Mình chuyên xây dựng concept nội dung viral, kịch bản short-form video TikTok xưởng sản xuất 
                 <span className="text-[#84674C] font-medium"> Minh Huy Furniture</span> và định hình phong cách kênh F&B ngọt ngào, 
                 ấm áp như <span className="text-[#84674C] font-medium">@la.camotchut</span>.
@@ -42,19 +42,19 @@ export default function Hero() {
 
             {/* Quick value props / bullet chips */}
             <div className="flex flex-wrap gap-2.5 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/80 border border-[#E5D6C3] text-xs text-[#5E4D40]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-[#E5D6C3] text-xs font-medium text-[#554336] shadow-xs">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#84674C]" /> Kịch bản & Dựng CapCut chuyên sâu
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/80 border border-[#E5D6C3] text-xs text-[#5E4D40]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-[#E5D6C3] text-xs font-medium text-[#554336] shadow-xs">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#84674C]" /> Tone màu Be & Aesthetic Cafe
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/80 border border-[#E5D6C3] text-xs text-[#5E4D40]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 border border-[#E5D6C3] text-xs font-medium text-[#554336] shadow-xs">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#84674C]" /> Tư duy Pitching & Truyền thông IMC
               </span>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-4 pt-3">
               <a
                 href="#tiktok-showcase"
                 className="group flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#84674C] text-white font-medium text-sm shadow-md shadow-[#84674C]/25 hover:bg-[#644D38] hover:shadow-lg hover:scale-[1.02] transition-all"
@@ -76,10 +76,10 @@ export default function Hero() {
             <div className="pt-8 border-t border-[#E8DEC8]/80 grid grid-cols-2 sm:grid-cols-4 gap-4">
               {profileData.keyMetrics.map((item, index) => (
                 <div key={index} className="space-y-0.5">
-                  <div className="text-2xl sm:text-3xl font-serif font-bold text-[#84674C]">
+                  <div className="text-2xl sm:text-3xl font-serif font-bold text-[#84674C] tracking-tight">
                     {item.value}
                   </div>
-                  <div className="text-xs text-[#6E5A4B] font-medium leading-snug">
+                  <div className="text-xs text-[#6A5748] font-medium leading-snug">
                     {item.label}
                   </div>
                 </div>
@@ -116,10 +116,10 @@ export default function Hero() {
               {/* Polaroid Footer Handwritten Note */}
               <div className="px-2 pt-1 flex items-center justify-between">
                 <div>
-                  <div className="font-handwriting text-2xl text-[#5A4535] leading-none">
-                    ✨ Tô Lan Anh Portfolio
+                  <div className="font-script text-3xl text-[#5A4535] leading-none">
+                    Tô Lan Anh
                   </div>
-                  <div className="text-[11px] text-[#8C7665] mt-1">
+                  <div className="text-xs text-[#8C7665] mt-1 font-sans">
                     Content Marketing & Creative Direction
                   </div>
                 </div>
@@ -130,20 +130,20 @@ export default function Hero() {
             </div>
 
             {/* Floating Mini Sticker Badge */}
-            <div className="absolute -bottom-4 -left-2 sm:-left-6 bg-white border border-[#D5BEA4] rounded-2xl p-3 shadow-lg flex items-center gap-3 animate-soft-pulse">
+            <div className="absolute -bottom-4 -left-2 sm:-left-6 bg-white border border-[#D5BEA4] rounded-2xl p-3.5 shadow-lg flex items-center gap-3 animate-soft-pulse">
               <div className="w-10 h-10 rounded-xl bg-[#FAF0E6] flex items-center justify-center text-xl">
                 🎬
               </div>
               <div>
-                <div className="text-xs font-bold text-[#34261C]">20+ Video Xưởng</div>
-                <div className="text-[10px] text-[#7A6453]">Minh Huy Furniture & F&B</div>
+                <div className="text-xs font-bold text-[#2D231C]">20+ Video Xưởng</div>
+                <div className="text-[11px] text-[#7A6453]">Minh Huy Furniture & F&B</div>
               </div>
             </div>
 
             {/* Floating Cup of Coffee Sticker */}
-            <div className="absolute top-10 -right-2 sm:-right-4 bg-[#F7F2EA] border border-[#E5D6C3] rounded-full px-3 py-1.5 shadow-md flex items-center gap-1.5 text-xs text-[#5A4535]">
+            <div className="absolute top-10 -right-2 sm:-right-4 bg-[#F7F2EA] border border-[#E5D6C3] rounded-full px-3.5 py-1.5 shadow-md flex items-center gap-1.5 text-xs text-[#5A4535]">
               <span>☕</span>
-              <span className="font-handwriting text-base font-semibold">@la.camotchut</span>
+              <span className="font-script text-lg font-bold text-[#72523A]">@la.camotchut</span>
             </div>
 
           </div>

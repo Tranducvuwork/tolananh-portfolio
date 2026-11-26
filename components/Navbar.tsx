@@ -29,21 +29,21 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#FAF6F0]/90 backdrop-blur-md shadow-sm border-b border-[#E8DEC8]/60 py-3'
+          ? 'bg-[#FAF6F0]/95 backdrop-blur-md shadow-sm border-b border-[#E8DEC8]/80 py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Brand Logo */}
         <a href="#" className="group flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#C4AF9A] to-[#E8DEC8] flex items-center justify-center text-[#3C2F2F] font-serif font-bold text-lg shadow-inner group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#C4AF9A] to-[#E8DEC8] flex items-center justify-center text-[#2D231C] font-serif font-bold text-lg shadow-inner group-hover:scale-105 transition-transform">
             LA
           </div>
           <div className="flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#3A2E26] group-hover:text-[#84674C] transition-colors">
+            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#2D231C] group-hover:text-[#84674C] transition-colors">
               {profileData.name}
             </span>
-            <span className="text-[10px] tracking-widest uppercase font-medium text-[#84674C] -mt-0.5">
+            <span className="text-[10px] tracking-widest uppercase font-semibold text-[#84674C] -mt-0.5 font-sans">
               Creative Planner
             </span>
           </div>
@@ -55,7 +55,7 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-[#5A493C] hover:text-[#84674C] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#84674C] hover:after:w-full after:transition-all after:duration-300"
+              className="text-xs font-semibold text-[#5A493C] hover:text-[#84674C] transition-colors relative py-1 tracking-wide after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#84674C] hover:after:w-full after:transition-all after:duration-300"
             >
               {link.name}
             </a>
@@ -68,7 +68,7 @@ export default function Navbar() {
             href={profileData.cvPdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#BFA285] text-xs font-semibold text-[#644D38] hover:bg-[#F2E8DC] transition-all shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#BFA285] text-xs font-semibold text-[#644D38] hover:bg-[#F2E8DC] transition-all shadow-xs"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Tải CV PDF</span>
@@ -100,7 +100,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-base font-medium text-[#463526] hover:text-[#84674C]"
+              className="block py-2 text-sm font-semibold text-[#2D231C] hover:text-[#84674C]"
             >
               {link.name}
             </a>
@@ -110,7 +110,7 @@ export default function Navbar() {
               href={profileData.cvPdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2.5 rounded-full border border-[#BFA285] text-sm font-semibold text-[#644D38]"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-full border border-[#BFA285] text-xs font-semibold text-[#644D38]"
             >
               <Download className="w-4 h-4" />
               <span>Tải CV PDF</span>
@@ -118,7 +118,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-[#84674C] text-sm font-semibold text-white"
+              className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-[#84674C] text-xs font-semibold text-white"
             >
               <Send className="w-4 h-4" />
               <span>Liên hệ hợp tác</span>
