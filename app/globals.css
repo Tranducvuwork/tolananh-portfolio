@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-plus-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --bg-sand: #FAF6F0;
+  --color-beige-warm: #F4ECE1;
+  --color-cream: #FCFAF7;
+  --color-latte: #8A6E55;
+  --color-text-main: #3C2F2F;
+}
+
+body {
+  background-color: var(--bg-sand);
+  color: #3B302A;
+  font-family: var(--font-plus-jakarta);
+  overflow-x: hidden;
+  background-image: radial-gradient(rgba(191, 162, 133, 0.12) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-cormorant);
+}
+
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+/* Custom aesthetic scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4ECE1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4AF9A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A38466;
+}
+
+/* Scrapbook tape effect */
+.washi-tape {
+  background: rgba(243, 236, 224, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(2px);
+  position: absolute;
+  height: 24px;
+  width: 90px;
+  transform: rotate(-3deg);
+  border-left: 2px dashed rgba(160, 130, 100, 0.3);
+  border-right: 2px dashed rgba(160, 130, 100, 0.3);
+  z-index: 10;
+}
+
+.washi-tape-right {
+  transform: rotate(4deg);
+}
+
+/* Polaroid style card */
+.polaroid-card {
+  background: #FFFFFF;
+  padding: 12px 12px 28px 12px;
+  box-shadow: 0 10px 25px -5px rgba(110, 85, 60, 0.12), 0 4px 10px -2px rgba(110, 85, 60, 0.06);
+  border-radius: 4px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 16px 35px -5px rgba(110, 85, 60, 0.2);
+}
+
+/* Glass beige container */
+.glass-beige {
+  background: rgba(253, 251, 247, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 214, 195, 0.6);
+}
+
+/* iPhone Mockup frame */
+.phone-mockup {
+  position: relative;
+  width: 320px;
+  height: 640px;
+  border-radius: 44px;
+  border: 10px solid #2B231D;
+  background: #111111;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(60, 45, 30, 0.45);
+}
+
+@media (max-width: 640px) {
+  .phone-mockup {
+    width: 290px;
+    height: 580px;
+  }
+}
+
+.phone-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 22px;
+  background: #000000;
+  border-radius: 12px;
+  z-index: 30;
+}
+
+/* Smooth fade in animation */
+@keyframes softPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 4s infinite ease-in-out;
+}
