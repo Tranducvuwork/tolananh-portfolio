@@ -201,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured TikTok Channels Showcase (Replaced Minh Huy spotlight!) */}
+      {/* Featured TikTok Channels Showcase */}
       <section className="py-20 bg-white border-y border-[rgba(20,17,15,0.08)]">
         <div className="container">
           
