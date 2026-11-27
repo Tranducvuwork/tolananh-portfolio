@@ -101,6 +101,28 @@ export const tiktokChannels: TikTokChannel[] = [
     themeColor: '#1A535C'
   },
   {
+    id: 'bupsky',
+    name: 'Búp Sky Cuisine',
+    handle: '@bupskycuisine',
+    url: 'https://canva.link/m4m8whruwdgalmr',
+    category: 'Rooftop Dining & F&B Lifestyle',
+    badge: 'Rooftop Q.1',
+    desc: 'Nhà hàng Rooftop Tầng 10 (65-69 Nguyễn Thái Bình, Q.1) cách Chợ Bến Thành 4 phút đi bộ. Sáng tạo nội dung TikTok F&B: review không gian tiệc sinh nhật, view ngắm hoàng hôn Sài Gòn và trải nghiệm ẩm thực cao cấp.',
+    highlights: [
+      'Video Không gian & tiệc riêng: 132.9K lượt xem',
+      'Video Giới thiệu địa điểm Rooftop Q.1: 37.6K lượt xem',
+      'Video Khoảnh khắc sự kiện & tiệc âm nhạc: 109K lượt xem',
+      'Tài khoản Verified Business với 34K+ lượt thích'
+    ],
+    metrics: [
+      { value: '132.9K', label: 'Top video xem nhiều nhất' },
+      { value: '34K+', label: 'Lượt thích toàn kênh' },
+      { value: 'Rooftop Q.1', label: 'Địa điểm cao cấp' },
+    ],
+    tag: 'F&B Rooftop & Events',
+    themeColor: '#1E3A8A'
+  },
+  {
     id: 'minhhuy',
     name: 'Minh Huy Furniture',
     handle: '@minhhuyfurniture',
@@ -144,6 +166,46 @@ export interface CaseStudy {
   featuredVideos?: VideoItem[];
 }
 
+export interface Certificate {
+  id: string;
+  name: string;
+  organization: string;
+  date: string;
+  rank?: string;
+  verifyUrl?: string;
+  verifyId?: string;
+  imageUrl: string;
+  signatory: string;
+  description: string;
+  badge: string;
+}
+
+export const certificates: Certificate[] = [
+  {
+    id: 'qcc-social-media',
+    name: 'Social Media Starter',
+    organization: 'QCC Mastery Hub',
+    date: '28/10/2025',
+    rank: 'EXCELLENT (Xuất Sắc)',
+    signatory: 'Ms. Nguyen Thi Xuan Quynh — Founder & CEO',
+    imageUrl: '/images/certificates/cert_qcc_social_media.jpg',
+    badge: 'Marketing Social Media',
+    description: 'Chứng nhận hoàn thành xuất sắc khóa đào tạo Social Media Starter tại QCC Mastery Hub: nghiên cứu insight công chúng mục tiêu, xây dựng chiến lược truyền thông mạng xã hội và phát triển kênh short-form video đa nền tảng.'
+  },
+  {
+    id: 'colorme-photoshop',
+    name: 'Photoshop Digital Design',
+    organization: 'ColorME Skill Training School',
+    date: '26/06/2025',
+    verifyId: '146641',
+    verifyUrl: 'http://colorme.vn/digitalcertificate/146641',
+    signatory: 'Bui Quang Son — Chief Academy Officer',
+    imageUrl: '/images/certificates/cert_colorme_photoshop.jpg',
+    badge: 'Design & Visual Branding',
+    description: 'Chứng chỉ kỹ thuật số khóa học Photoshop tại ColorME: thành thạo xử lý ấn phẩm đồ họa quảng cáo, bố cục thị giác, retouch hình ảnh và typography ứng dụng trên mạng xã hội.'
+  }
+];
+
 export const profileData = {
   name: 'Tô Lan Anh',
   title: 'Social Media & Creative Planner',
@@ -183,6 +245,17 @@ export const profileData = {
     }
   ],
   experience: [
+    {
+      role: 'Content Creator (Freelance) & F&B Media Planner',
+      company: 'Búp Sky Cuisine (Nhà Hàng Rooftop Q.1)',
+      period: '02/2026 – Hiện tại',
+      focus: 'Xây dựng kênh TikTok @bupskycuisine, video viral tiệc riêng & sự kiện hoàng hôn',
+      points: [
+        'Lên ý tưởng kịch bản, quay dựng video TikTok cho nhà hàng Rooftop cao cấp tại Tầng 10, 65-69 Nguyễn Thái Bình, Q.1 (cách Chợ Bến Thành 4 phút).',
+        'Sản xuất các video đạt lượt xem ấn tượng: Video "Không gian & tiệc riêng - Sinh nhật và các dịp đặc biệt" đạt 132.9K views; Video "Khoảnh khắc sự kiện & tiệc âm nhạc" đạt 109K views; Video "Khám phá địa điểm Rooftop Q.1" đạt 37.6K views.',
+        'Xây dựng kênh TikTok Verified Business đạt mốc 34K+ lượt thích và thúc đẩy chuyển đổi tin nhắn đặt bàn tiệc sinh nhật, sự kiện.'
+      ]
+    },
     {
       role: 'Social Media Coordinator',
       company: 'Phat-Thuy Company (DN Vận Tải Xe Khách Phát)',
@@ -384,6 +457,50 @@ export const featuredVideos: VideoItem[] = [
 ];
 
 export const caseStudies: CaseStudy[] = [
+  {
+    id: 'bup-sky-cuisine',
+    title: 'Búp Sky Cuisine — Định Vị Nhà Hàng Rooftop Q.1 Bằng Video Trải Nghiệm & Sự Kiện Viral',
+    subtitle: 'Chiến dịch TikTok F&B: Khám phá không gian rooftop ngắm hoàng hôn và dịch vụ tổ chức tiệc riêng tư',
+    category: 'F&B TikTok & Hospitality Video Production',
+    client: 'Búp Sky Cuisine (Tầng 10, Q.1)',
+    role: 'Freelance Content Creator & F&B Media Planner',
+    timeline: '02/2026 - Nay',
+    badge: '132.9K Views Top Video',
+    slideImage: '/images/bupsky_slide.png',
+    metrics: [
+      { value: '132.9K', label: 'Top video tiệc sinh nhật & sự kiện' },
+      { value: '109K', label: 'Video khoảnh khắc đêm nhạc rooftop' },
+      { value: '34K+', label: 'Lượt thích toàn kênh @bupskycuisine' },
+      { value: 'Rooftop Q.1', label: 'Cách Chợ Bến Thành 4 phút' },
+    ],
+    overview: 'Búp Sky Cuisine là nhà hàng rooftop tọa lạc tại Tầng 10, 65-69 Nguyễn Thái Bình, Quận 1. Với lợi thế view toàn cảnh thành phố và không gian ấm cúng, dự án TikTok tập trung vào việc định vị Búp Sky như điểm hẹn lý tưởng cho các buổi tiệc sinh nhật, kỷ niệm lãng mạn, sự kiện riêng tư và ngắm hoàng hôn Sài Gòn.',
+    challenge: 'Phân khúc nhà hàng rooftop tại Quận 1 có sự cạnh tranh lớn về view và giá cả. Kênh cần kịch bản chạm đúng nhu cầu của giới trẻ và dân văn phòng tìm kiếm địa điểm chill, tổ chức sự kiện đặc biệt có dịch vụ setup chu đáo.',
+    solution: 'Tập trung vào 3 trụ cột nội dung: Trải nghiệm không gian tiệc riêng trọn gói (dẫn đầu với 132.9K views), review ẩm thực & view hoàng hôn (37.6K views), và khoảnh khắc đêm nhạc sự kiện sống động (109K views). Kết hợp góc quay điện ảnh, màu sắc ấm cúng sang trọng và âm nhạc bắt trend.',
+    contentPillars: [
+      {
+        title: 'Tiệc Riêng Tư & Sinh Nhật Kỷ Niệm',
+        desc: 'Nội dung "Để Búp lo trọn gói tiệc đặc biệt" đánh trúng tâm lý cần không gian riêng, decor lung linh.',
+        icon: 'Sparkles'
+      },
+      {
+        title: 'View Rooftop & Vị Trí Trung Tâm',
+        desc: 'Nhấn mạnh vị trí đắc địa cách Chợ Bến Thành chỉ 4 phút, view ngắm trọn hoàng hôn và phố thị về đêm.',
+        icon: 'Coffee'
+      },
+      {
+        title: 'Đêm Nhạc & Trải Nghiệm Ẩm Thực',
+        desc: 'Ghi lại không khí tiệc tùng âm nhạc, món ăn fusion tinh tế và đồ uống cocktail đặc trưng.',
+        icon: 'Users'
+      }
+    ],
+    deliverables: [
+      'Kịch bản quay dựng chi tiết từng phân cảnh theo format TikTok dọc 9:16',
+      'Hậu kỳ âm thanh, lồng tiếng truyền cảm và chỉnh màu điện ảnh ấm áp',
+      'Quản lý lịch đăng bài tối ưu khung giờ vàng của đối tượng khách hàng F&B',
+      'Đạt 34K+ lượt thích và thúc đẩy chuyển đổi tin nhắn đặt bàn tiệc'
+    ],
+    externalUrl: 'https://canva.link/m4m8whruwdgalmr',
+  },
   {
     id: 'minh-huy-furniture',
     title: 'Minh Huy Furniture — Chiếm Lĩnh Thị Trường B2B Bằng Nội Dung Short-Form Xưởng Sản Xuất',

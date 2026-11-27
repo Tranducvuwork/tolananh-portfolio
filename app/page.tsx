@@ -20,7 +20,7 @@ export default function Home() {
     {
       kicker: 'Hạng Mục 02',
       title: 'Kinh nghiệm & Học vấn',
-      desc: 'PR Đại học Văn Lang, ColorMe & các dự án thực tế',
+      desc: 'PR Văn Lang, Chứng chỉ QCC (Xuất sắc) & ColorMe, Búp Sky & thực tế',
       href: '/working-experience',
     },
     {
@@ -65,6 +65,7 @@ export default function Home() {
                   Mình chuyên lên ý tưởng kịch bản, quay dựng short-form video và phát triển các kênh TikTok đa dạng chủ đề: 
                   từ trào lưu giới trẻ <strong className="text-[#8C5A3C] font-semibold">@toadogenz</strong>, 
                   phong cách cafe &amp; ẩm thực tone Be ấm áp <strong className="text-[#8C5A3C] font-semibold">@la.camotchut</strong>, 
+                  nhà hàng Rooftop Q.1 <strong className="text-[#8C5A3C] font-semibold">@bupskycuisine</strong> (132.9K views), 
                   đến xe máy điện thông minh <strong className="text-[#8C5A3C] font-semibold">@datbikehongphuong</strong> và lập kế hoạch truyền thông tích hợp (IMC).
                 </p>
               </div>
@@ -363,14 +364,14 @@ export default function Home() {
 
           </div>
 
-          {/* Secondary projects note: Minh Huy & IMC */}
+          {/* Secondary projects note: Búp Sky, Minh Huy & IMC */}
           <div className="mt-8 p-5 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C]">
-                Các dự án thực chiến khác
+                Các dự án &amp; chứng chỉ chuyên môn
               </span>
               <p className="text-xs sm:text-sm text-[#635952]">
-                Case study B2B xưởng sản xuất <strong>Minh Huy Furniture</strong>, Chiến dịch pitching <strong>Suzuki &amp; Hải Phi TVC</strong> và <strong>Bộ 13 Slide HD</strong> nguyên bản.
+                Nhà hàng Rooftop <strong>Búp Sky Cuisine (@bupskycuisine - 132.9K views)</strong>, Chứng chỉ <strong>QCC Mastery Hub (Rank Excellent) &amp; ColorME Photoshop</strong>, Case study B2B xưởng <strong>Minh Huy Furniture</strong> và <strong>Bộ 13 Slide HD</strong> nguyên bản.
               </p>
             </div>
             <Link href="/work" className="btn btn-secondary btn-sm flex-shrink-0">

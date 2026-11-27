@@ -37,8 +37,8 @@ const allSlides = [
 ];
 
 export default function WorkPage() {
-  // Category tab state: 'all' | 'genz' | 'fnb' | 'datbike' | 'furniture' | 'brand' | 'slides'
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'genz' | 'fnb' | 'datbike' | 'furniture' | 'brand' | 'slides'>('all');
+  // Category tab state: 'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'furniture' | 'brand' | 'slides'
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'furniture' | 'brand' | 'slides'>('all');
 
   // Gen Z Video Phone State
   const [activeGenzVideo, setActiveGenzVideo] = useState<VideoItem>(genzVideos[0] || featuredVideos[0]);
@@ -47,7 +47,8 @@ export default function WorkPage() {
   const [genzLikes, setGenzLikes] = useState<number>(19500);
   const [hasGenzLiked, setHasGenzLiked] = useState<boolean>(false);
 
-  // La Ca Video Phone State
+  // La Ca Video Phone State & View Mode ('video' | 'mockup')
+  const [fnbViewMode, setFnbViewMode] = useState<'video' | 'mockup'>('video');
   const [activeFnbVideo, setActiveFnbVideo] = useState<VideoItem>(fnbVideos[0] || featuredVideos[0]);
   const [isFnbPlaying, setIsFnbPlaying] = useState<boolean>(true);
   const [isFnbMuted, setIsFnbMuted] = useState<boolean>(false);
@@ -126,6 +127,18 @@ export default function WorkPage() {
             >
               <Coffee className="w-3.5 h-3.5 text-[#8C5A3C]" />
               <span>La Cà Một Chút (@la.camotchut)</span>
+            </button>
+
+            <button
+              onClick={() => setSelectedCategory('bupsky')}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                selectedCategory === 'bupsky'
+                  ? 'bg-[#14110F] text-white shadow-xs'
+                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <span>Búp Sky Cuisine (@bupskycuisine)</span>
             </button>
 
             <button
@@ -387,101 +400,199 @@ export default function WorkPage() {
             {/* La Ca Phone Mockup + Video List */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               
-              {/* Phone Frame */}
-              <div className="lg:col-span-5 flex justify-center">
+              {/* Phone Frame Column */}
+              <div className="lg:col-span-5 flex flex-col items-center">
+                {/* Switcher between Video Player (Ảnh 1) & TikTok Mockup (Ảnh 2) */}
+                <div className="flex items-center gap-1.5 p-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] shadow-xs mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setFnbViewMode('video')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      fnbViewMode === 'video'
+                        ? 'bg-[#8C5A3C] text-white shadow-xs'
+                        : 'text-[#635952] hover:text-[#14110F]'
+                    }`}
+                  >
+                    Ảnh 1: Video Kịch Bản
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFnbViewMode('mockup')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      fnbViewMode === 'mockup'
+                        ? 'bg-[#8C5A3C] text-white shadow-xs'
+                        : 'text-[#635952] hover:text-[#14110F]'
+                    }`}
+                  >
+                    Ảnh 2: Giao Diện Kênh TikTok
+                  </button>
+                </div>
+
                 <div className="phone-mockup-pro select-none relative">
                   <div className="phone-dynamic-island flex items-center justify-between px-3">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
                     <span className="text-[9px] font-mono text-zinc-400">@la.camotchut</span>
                   </div>
 
-                  <div 
-                    onClick={() => setIsFnbPlaying(!isFnbPlaying)}
-                    className="phone-screen cursor-pointer relative bg-zinc-950 flex flex-col justify-between"
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${activeFnbVideo.gradient} opacity-90 transition-all duration-700`} />
-                    
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none">
-                      <span className="inline-block px-3 py-1 rounded-full bg-black/50 text-[10px] font-mono text-amber-200 border border-white/20 mb-2">
-                        LA CÀ MỘT CHÚT • TONE BE
-                      </span>
-                      <h4 className="text-lg font-bold text-white leading-tight drop-shadow">
-                        {activeFnbVideo.title}
-                      </h4>
-                      <p className="text-xs text-zinc-300 italic line-clamp-3 mt-2 px-2">
-                        "{activeFnbVideo.hook}"
-                      </p>
-                    </div>
+                  {fnbViewMode === 'video' ? (
+                    <div 
+                      onClick={() => setIsFnbPlaying(!isFnbPlaying)}
+                      className="phone-screen cursor-pointer relative bg-zinc-950 flex flex-col justify-between"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-br ${activeFnbVideo.gradient} opacity-90 transition-all duration-700`} />
+                      
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none">
+                        <span className="inline-block px-3 py-1 rounded-full bg-black/50 text-[10px] font-mono text-amber-200 border border-white/20 mb-2">
+                          LA CÀ MỘT CHÚT • TONE BE
+                        </span>
+                        <h4 className="text-lg font-bold text-white leading-tight drop-shadow">
+                          {activeFnbVideo.title}
+                        </h4>
+                        <p className="text-xs text-zinc-300 italic line-clamp-3 mt-2 px-2">
+                          "{activeFnbVideo.hook}"
+                        </p>
+                      </div>
 
-                    {!isFnbPlaying && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-30 pointer-events-none">
-                        <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white">
-                          <Play className="w-7 h-7 fill-current translate-x-0.5" />
+                      {!isFnbPlaying && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-30 pointer-events-none">
+                          <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white">
+                            <Play className="w-7 h-7 fill-current translate-x-0.5" />
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    <div className="relative z-20 pt-12 px-4 flex items-center justify-between text-white/90">
-                      <span className="text-[10px] font-mono uppercase bg-black/40 px-2 py-0.5 rounded">
-                        CapCut: {activeFnbVideo.capcutTemplate}
-                      </span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsFnbMuted(!isFnbMuted);
-                        }}
-                        className="w-7 h-7 rounded-full bg-black/40 flex items-center justify-center"
-                      >
-                        {isFnbMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-                      </button>
-                    </div>
-
-                    {/* Right side TikTok icons */}
-                    <div className="relative z-20 pb-4 px-4 flex items-end justify-between text-white">
-                      <div className="space-y-1 text-left">
-                        <div className="text-xs font-bold">@la.camotchut</div>
-                        <p className="text-[11px] text-zinc-300 line-clamp-2">{activeFnbVideo.description}</p>
-                      </div>
-
-                      <div className="flex flex-col items-center gap-3">
+                      <div className="relative z-20 pt-12 px-4 flex items-center justify-between text-white/90">
+                        <span className="text-[10px] font-mono uppercase bg-black/40 px-2 py-0.5 rounded">
+                          CapCut: {activeFnbVideo.capcutTemplate}
+                        </span>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (!hasFnbLiked) {
-                              setFnbLikes(fnbLikes + 1);
-                              setHasFnbLiked(true);
-                            }
+                            setIsFnbMuted(!isFnbMuted);
                           }}
-                          className="flex flex-col items-center gap-0.5"
+                          className="w-7 h-7 rounded-full bg-black/40 flex items-center justify-center"
                         >
-                          <div className={`w-9 h-9 rounded-full flex items-center justify-center ${hasFnbLiked ? 'bg-red-500 text-white' : 'bg-black/40 text-white'}`}>
-                            <Heart className="w-4 h-4 fill-current" />
-                          </div>
-                          <span className="text-[10px] font-mono">{fnbLikes.toLocaleString()}</span>
+                          {isFnbMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
                         </button>
+                      </div>
 
-                        <div className="flex flex-col items-center gap-0.5">
-                          <div className="w-9 h-9 rounded-full bg-black/40 flex items-center justify-center text-white">
-                            <MessageCircle className="w-4 h-4" />
-                          </div>
-                          <span className="text-[10px] font-mono">{activeFnbVideo.comments}</span>
+                      {/* Right side TikTok icons */}
+                      <div className="relative z-20 pb-4 px-4 flex items-end justify-between text-white">
+                        <div className="space-y-1 text-left">
+                          <div className="text-xs font-bold">@la.camotchut</div>
+                          <p className="text-[11px] text-zinc-300 line-clamp-2">{activeFnbVideo.description}</p>
                         </div>
 
-                        <div className="flex flex-col items-center gap-0.5">
-                          <div className="w-9 h-9 rounded-full bg-black/40 flex items-center justify-center text-white">
-                            <Share2 className="w-4 h-4" />
+                        <div className="flex flex-col items-center gap-3">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!hasFnbLiked) {
+                                setFnbLikes(fnbLikes + 1);
+                                setHasFnbLiked(true);
+                              }
+                            }}
+                            className="flex flex-col items-center gap-0.5"
+                          >
+                            <div className={`w-9 h-9 rounded-full flex items-center justify-center ${hasFnbLiked ? 'bg-red-500 text-white' : 'bg-black/40 text-white'}`}>
+                              <Heart className="w-4 h-4 fill-current" />
+                            </div>
+                            <span className="text-[10px] font-mono">{fnbLikes.toLocaleString()}</span>
+                          </button>
+
+                          <div className="flex flex-col items-center gap-0.5">
+                            <div className="w-9 h-9 rounded-full bg-black/40 flex items-center justify-center text-white">
+                              <MessageCircle className="w-4 h-4" />
+                            </div>
+                            <span className="text-[10px] font-mono">{activeFnbVideo.comments}</span>
                           </div>
-                          <span className="text-[10px] font-mono">{activeFnbVideo.shares}</span>
+
+                          <div className="flex flex-col items-center gap-0.5">
+                            <div className="w-9 h-9 rounded-full bg-black/40 flex items-center justify-center text-white">
+                              <Share2 className="w-4 h-4" />
+                            </div>
+                            <span className="text-[10px] font-mono">{activeFnbVideo.shares}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                  </div>
+                    </div>
+                  ) : (
+                    /* Ảnh 2: Real TikTok Channel Showcase with click link */
+                    <a
+                      href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="phone-screen relative bg-[#F8F6F1] flex flex-col justify-between overflow-hidden group cursor-pointer block"
+                    >
+                      <Image
+                        src="/images/tiktok_phones_mockup.jpg"
+                        alt="Kênh TikTok La Cà Một Chút - Ảnh 2"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 text-center">
+                        <div className="p-3 rounded-xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg text-left space-y-1">
+                          <div className="flex items-center justify-between text-[11px] font-bold text-[#8C5A3C]">
+                            <span>@la.camotchut</span>
+                            <span className="inline-flex items-center gap-1 text-[10px] bg-[#8C5A3C] text-white px-2 py-0.5 rounded-full">
+                              Mở TikTok <ExternalLink className="w-3 h-3" />
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-[#14110F] font-semibold leading-tight">
+                            Bấm vào ảnh để truy cập trực tiếp kênh TikTok @la.camotchut
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  )}
+
                 </div>
               </div>
 
               {/* Right Content */}
               <div className="lg:col-span-7 space-y-6">
+                
+                {/* Dedicated Interactive Card for Ảnh 2 */}
+                <div className="p-5 rounded-2xl bg-[#FFFDF9] border border-[#ECE4D8] space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C] flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                      Ảnh 2: Giao Diện Kênh TikTok @la.camotchut (Nhấn Vào Ảnh Để Xem)
+                    </span>
+                    <a
+                      href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-[#8C5A3C] hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Mở kênh TikTok</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+
+                  {/* Clickable Image Banner */}
+                  <a
+                    href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block relative w-full h-44 sm:h-52 rounded-xl overflow-hidden border border-[#DECFC0] group shadow-xs cursor-pointer"
+                  >
+                    <Image
+                      src="/images/tiktok_phones_mockup.jpg"
+                      alt="Giao diện kênh TikTok La Cà Một Chút"
+                      fill
+                      className="object-cover object-top group-hover:scale-102 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                      <div className="px-4 py-2 rounded-full bg-white/95 backdrop-blur-md text-xs font-bold text-[#14110F] shadow-lg flex items-center gap-2 group-hover:scale-105 transition-transform">
+                        <span>Truy cập Kênh TikTok @la.camotchut</span>
+                        <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
                 <div className="p-6 rounded-2xl bg-white border border-[rgba(20,17,15,0.08)] space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C]">
@@ -507,9 +618,12 @@ export default function WorkPage() {
                     {fnbVideos.map((v) => (
                       <div
                         key={v.id}
-                        onClick={() => setActiveFnbVideo(v)}
+                        onClick={() => {
+                          setActiveFnbVideo(v);
+                          setFnbViewMode('video');
+                        }}
                         className={`p-3.5 rounded-2xl cursor-pointer transition-all border text-left ${
-                          activeFnbVideo.id === v.id
+                          activeFnbVideo.id === v.id && fnbViewMode === 'video'
                             ? 'bg-white border-[#8C5A3C] shadow-md ring-1 ring-[#8C5A3C]'
                             : 'bg-white/80 border-[rgba(20,17,15,0.08)] hover:bg-white'
                         }`}
@@ -526,6 +640,120 @@ export default function WorkPage() {
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 2.5 HẠNG MỤC: BÚP SKY CUISINE (Show when 'all', 'bupsky', or 'fnb') */}
+      {/* ========================================================================= */}
+      {(selectedCategory === 'all' || selectedCategory === 'bupsky' || selectedCategory === 'fnb') && (
+        <section className="py-20 bg-[#F4EFE6] border-b border-[rgba(20,17,15,0.08)]">
+          <div className="container space-y-10">
+            
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-[#DECFC0]">
+              <div className="space-y-2 max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#DECFC0] text-xs font-bold text-[#1E3A8A]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#1E3A8A]" />
+                  <span>HẠNG MỤC: ROOFTOP DINING &amp; EVENT F&amp;B</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14110F] tracking-tight">
+                  Búp Sky Cuisine (@bupskycuisine) — Rooftop Q.1
+                </h2>
+                <p className="text-sm text-[#635952] leading-relaxed">
+                  Nhà hàng Rooftop Tầng 10 (65-69 Nguyễn Thái Bình, Q.1), cách Chợ Bến Thành 4 phút. Sáng tạo nội dung short-form F&amp;B cao cấp: review không gian tiệc riêng sinh nhật (132.9K views), view hoàng hôn Sài Gòn và khoảnh khắc đêm nhạc sự kiện (109K views).
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://canva.link/m4m8whruwdgalmr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  <span>Xem Slide Thuyết Trình Canva</span>
+                  <ExternalLink className="w-4 h-4 text-[#D5CEBE]" />
+                </a>
+              </div>
+            </div>
+
+            {/* Búp Sky Metrics & Slide Showcase */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              {/* Canva Slide Presentation Preview */}
+              <div className="lg:col-span-7 space-y-3">
+                <a
+                  href="https://canva.link/m4m8whruwdgalmr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#DECFC0] shadow-luxury group cursor-pointer"
+                >
+                  <Image
+                    src="/images/bupsky_slide.png"
+                    alt="Búp Sky Cuisine Canva Presentation Slide"
+                    fill
+                    className="object-cover group-hover:scale-102 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors flex items-end p-6">
+                    <div className="p-3 rounded-xl bg-white/95 backdrop-blur-md text-xs font-bold text-[#14110F] flex items-center gap-2 shadow-lg">
+                      <span>Mở Slide Canva Chi Tiết Dự Án Búp Sky Cuisine</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#1E3A8A]" />
+                    </div>
+                  </div>
+                </a>
+                <p className="text-[11px] text-[#635952] text-center italic">
+                  Trích xuất từ Slide 7 hồ sơ Canva Presentation: Dự án TikTok F&amp;B Búp Sky Cuisine (@bupskycuisine)
+                </p>
+              </div>
+
+              {/* Metrics & Highlights */}
+              <div className="lg:col-span-5 space-y-4">
+                <div className="p-6 rounded-2xl bg-white border border-[#DECFC0] space-y-4 shadow-xs">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#ECE4D8]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#1E3A8A]">
+                      Số Liệu Tăng Trưởng Kênh
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[10px] font-bold text-blue-900 border border-blue-200">
+                      Verified Business
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 text-center">
+                    <div className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
+                      <div className="text-xl font-extrabold text-[#14110F]">132.9K</div>
+                      <div className="text-[10px] text-[#635952] font-semibold">Top Video View</div>
+                    </div>
+                    <div className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
+                      <div className="text-xl font-extrabold text-[#14110F]">34K+</div>
+                      <div className="text-[10px] text-[#635952] font-semibold">Lượt thích kênh</div>
+                    </div>
+                    <div className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
+                      <div className="text-xl font-extrabold text-[#14110F]">109K</div>
+                      <div className="text-[10px] text-[#635952] font-semibold">Video sự kiện</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-[#ECE4D8] text-xs text-[#2D2723]">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1E3A8A] flex-shrink-0 mt-0.5" />
+                      <span>Video <strong>"Không gian &amp; tiệc riêng - Để Búp lo"</strong>: Đạt 132.9K lượt xem tự nhiên.</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1E3A8A] flex-shrink-0 mt-0.5" />
+                      <span>Video <strong>"Khám phá nhà hàng Rooftop cách Chợ Bến Thành 4 phút"</strong>: Đạt 37.6K lượt xem.</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1E3A8A] flex-shrink-0 mt-0.5" />
+                      <span>Vai trò: <strong>Freelance Content Creator &amp; F&amp;B Planner (02/2026 – Hiện tại)</strong>.</span>
+                    </div>
                   </div>
                 </div>
 

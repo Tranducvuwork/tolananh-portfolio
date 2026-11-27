@@ -9,6 +9,7 @@ import {
   Layout, BarChart3, Smartphone, FolderOpen, Award, ArrowRight
 } from 'lucide-react';
 import { profileData } from '@/app/data';
+import CertificatesSection from '@/components/CertificatesSection';
 
 export const metadata: Metadata = {
   title: 'Working Experience & Education | Tô Lan Anh Portfolio',
@@ -100,8 +101,20 @@ export default function WorkingExperiencePage() {
                   </div>
                   <div className="space-y-1.5 text-xs text-[#4A3A2C]">
                     <div className="p-2 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] flex items-center justify-between">
+                      <span className="font-medium">Búp Sky Cuisine (Q.1)</span>
+                      <span className="text-[10px] font-mono text-[#9E6B47]">TikTok F&amp;B</span>
+                    </div>
+                    <div className="p-2 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] flex items-center justify-between">
                       <span className="font-medium">Đại Học Văn Lang</span>
                       <span className="text-[10px] font-mono text-[#9E6B47]">PR Chính Quy</span>
+                    </div>
+                    <div className="p-2 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] flex items-center justify-between">
+                      <span className="font-medium">QCC Mastery Hub</span>
+                      <span className="text-[10px] font-mono text-emerald-700 font-bold">Social Media (Excellent)</span>
+                    </div>
+                    <div className="p-2 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] flex items-center justify-between">
+                      <span className="font-medium">ColorME Skill Training</span>
+                      <span className="text-[10px] font-mono text-[#9E6B47]">Photoshop (ID 146641)</span>
                     </div>
                     <div className="p-2 rounded-xl bg-[#FAF7F2] border border-[#ECE4D8] flex items-center justify-between">
                       <span className="font-medium">Hải Phi Company</span>
@@ -238,6 +251,9 @@ export default function WorkingExperiencePage() {
               ))}
             </div>
           </div>
+
+          {/* Section 2.5: Certified Marketing & Design Credentials */}
+          <CertificatesSection />
 
           {/* Section 3: Tools I Work With */}
           <div className="space-y-8">
