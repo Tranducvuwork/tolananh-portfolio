@@ -215,6 +215,7 @@ export const profileData = {
   email: 'lananhto2402@gmail.com',
   address: 'Lê Tấn Bê, Phường An Lạc, Bình Tân, TP.HCM',
   cvPdf: '/ToLanAnh_CV.pdf',
+  portfolioPdf: '/Portfolio_ToLanAnh.pdf',
   avatar: '/images/avatar_cafe.jpg',
   portrait: '/images/lananh_cafe_portrait.jpg',
   studentPhoto: '/images/lananh_vanlang_aodai.jpg',

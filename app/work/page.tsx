@@ -19,21 +19,22 @@ const fnbVideos = featuredVideos.filter(v => v.category === 'fnb');
 const datbikeVideos = featuredVideos.filter(v => v.category === 'datbike');
 const furnitureVideos = featuredVideos.filter(v => v.category === 'furniture');
 
-// All 13 original landscape slides
+// All 14 original landscape slides from updated Portfolio PDF
 const allSlides = [
-  { index: 1, title: 'Bìa Portfolio Tô Lan Anh', src: '/images/slides/slide_1.png', category: 'Overview' },
-  { index: 2, title: 'Giới Thiệu Bản Thân & Mục Tiêu', src: '/images/slides/slide_2.png', category: 'About' },
-  { index: 3, title: 'Winner Pitching — Dự Án TVC & TikTok Tivi HXY (Hai Phi)', src: '/images/slides/slide_3.png', category: 'Hai Phi TVC' },
-  { index: 4, title: 'Kịch Bản Phân Cảnh & Thông Điệp Tivi HXY', src: '/images/slides/slide_4.png', category: 'Hai Phi TVC' },
-  { index: 5, title: 'Dự Án Social Media Suzuki Hồng Phương', src: '/images/slides/slide_5.png', category: 'Suzuki' },
-  { index: 6, title: 'Content Pillars & KPIs Suzuki Hồng Phương', src: '/images/slides/slide_6.png', category: 'Suzuki' },
-  { index: 7, title: 'DN Vận Tải Xe Khách Phát Thủy (Fanpage & Tuyển dụng)', src: '/images/slides/slide_7.png', category: 'Phat Thuy' },
-  { index: 8, title: 'Dự Án Nhiếp Ảnh Thực Hành (Điểm A+)', src: '/images/slides/slide_8.png', category: 'Photography' },
-  { index: 9, title: 'Tác Phẩm Nhiếp Ảnh Nghệ Thuật & Bố Cục Ánh Sáng', src: '/images/slides/slide_9.png', category: 'Photography' },
-  { index: 10, title: 'Thiết Kế Đồ Họa & Photoshop Poster (ColorMe)', src: '/images/slides/slide_10.png', category: 'Graphic Design' },
-  { index: 11, title: 'Ấn Phẩm Mạng Xã Hội & Visual Branding', src: '/images/slides/slide_11.png', category: 'Graphic Design' },
-  { index: 12, title: 'Quá Trình Đào Tạo & Kỹ Năng Chuyên Môn', src: '/images/slides/slide_12.png', category: 'Education' },
-  { index: 13, title: 'Lời Cảm Ơn & Thông Tin Liên Hệ', src: '/images/slides/slide_13.png', category: 'Contact' },
+  { index: 1, title: 'Bìa Portfolio — My PORTFOLIO Tô Lan Anh', src: '/images/slides/slide_1.png', category: 'Overview' },
+  { index: 2, title: 'ABOUT ME — Giới Thiệu Bản Thân, Học Vấn & Công Cụ', src: '/images/slides/slide_2.png', category: 'About' },
+  { index: 3, title: 'Certificates & Training — QCC Mastery Hub & ColorME', src: '/images/slides/slide_3.png', category: 'Certificates' },
+  { index: 4, title: 'Winner Pitching Project — Kế Hoạch Triển Khai Tivi HXY Hải Phi', src: '/images/slides/slide_4.png', category: 'Hai Phi TVC' },
+  { index: 5, title: 'Project at HAI PHI Company — TikTok Channel, TVC & Fanpage Post', src: '/images/slides/slide_5.png', category: 'Hai Phi TVC' },
+  { index: 6, title: 'Completed Photography Project (Điểm A+ Khóa Nhiếp Ảnh PR Văn Lang)', src: '/images/slides/slide_6.png', category: 'Photography' },
+  { index: 7, title: 'Manage Facebook & Instagram Platforms for Suzuki Hồng Phương', src: '/images/slides/slide_7.png', category: 'Suzuki' },
+  { index: 8, title: 'Suzuki Hồng Phương Media Publications (Tuyển Dụng, Fest 2025, Test Drive)', src: '/images/slides/slide_8.png', category: 'Suzuki' },
+  { index: 9, title: 'Managed Social Media Content for Phat-Thuy Company (Nhà Xe Phát)', src: '/images/slides/slide_9.png', category: 'Phat Thuy' },
+  { index: 10, title: 'Recruitment Content & Vận Chuyển Hàng Hóa Facebook Page (Nhà Xe Phát)', src: '/images/slides/slide_10.png', category: 'Phat Thuy' },
+  { index: 11, title: 'Media Projects with Adobe Photoshop & Mockup Design', src: '/images/slides/slide_11.png', category: 'Graphic Design' },
+  { index: 12, title: 'Design Projects Created with Adobe Photoshop (Milo, Orange Juice, Hoàng Tử Bé, Talkshow)', src: '/images/slides/slide_12.png', category: 'Graphic Design' },
+  { index: 13, title: 'Brand Promoter PG Part-time (Sapporo, King Car, Farmers Union, ITO EN)', src: '/images/slides/slide_13.png', category: 'Brand Ambassador' },
+  { index: 14, title: 'Thank You — Lời Cảm Ơn & Kết Nối Hợp Tác', src: '/images/slides/slide_14.png', category: 'Contact' },
 ];
 
 export default function WorkPage() {
@@ -186,7 +187,7 @@ export default function WorkPage() {
               }`}
             >
               <Layers className="w-3.5 h-3.5 text-[#8C5A3C]" />
-              <span>13 Slide Gốc HD</span>
+              <span>14 Slide Gốc HD (PDF)</span>
             </button>
           </div>
         </div>
@@ -1203,7 +1204,7 @@ export default function WorkPage() {
       )}
 
       {/* ========================================================================= */}
-      {/* 6. HẠNG MỤC: TOÀN BỘ 13 SLIDE PORTFOLIO GỐC HD (Show when 'all' or 'slides') */}
+      {/* 6. HẠNG MỤC: TOÀN BỘ 14 SLIDE PORTFOLIO GỐC HD (Show when 'all' or 'slides') */}
       {/* ========================================================================= */}
       {(selectedCategory === 'all' || selectedCategory === 'slides') && (
         <section className="py-20 bg-[#F8F6F1]">
@@ -1216,22 +1217,33 @@ export default function WorkPage() {
                   <span>NGUYÊN BẢN PORTFOLIO CHUẨN ĐỒ ÁN</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14110F] tracking-tight mt-1">
-                  13 Trang Slide Gốc (Bản Thiết Kế HD)
+                  14 Trang Slide Gốc (Bản Thiết Kế Mới Nhất 2026)
                 </h2>
                 <p className="text-sm text-[#635952]">
-                  Bấm vào từng trang để phóng to toàn màn hình chất lượng cao.
+                  Bấm vào từng trang để phóng to toàn màn hình chất lượng cao hoặc tải file PDF gốc.
                 </p>
               </div>
 
-              <a
-                href="/ToLanAnh_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-              >
-                <FolderDown className="w-4 h-4 text-[#D5CEBE]" />
-                <span>Tải Toàn Bộ Hồ Sơ (PDF)</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="/Portfolio_ToLanAnh.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  <FolderDown className="w-4 h-4 text-[#D5CEBE]" />
+                  <span>Tải Portfolio PDF (14 Trang)</span>
+                </a>
+                <a
+                  href="/ToLanAnh_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                >
+                  <FolderDown className="w-4 h-4 text-[#8C5A3C]" />
+                  <span>Tải CV Song Ngữ</span>
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1259,7 +1271,7 @@ export default function WorkPage() {
                   <div className="p-4 flex items-center justify-between border-t border-[rgba(20,17,15,0.06)]">
                     <div className="space-y-0.5 min-w-0 pr-2">
                       <div className="text-xs font-bold text-[#8C5A3C]">
-                        Trang 0{slide.index}/13 • {slide.category}
+                        Trang {slide.index < 10 ? `0${slide.index}` : slide.index}/14 • {slide.category}
                       </div>
                       <div className="text-sm font-bold text-[#14110F] truncate">
                         {slide.title}
@@ -1289,7 +1301,7 @@ export default function WorkPage() {
           >
             <div className="flex items-center justify-between px-2 pt-1 text-white">
               <div className="text-sm font-bold">
-                Trang {lightboxSlide}/13: {allSlides.find(s => s.index === lightboxSlide)?.title}
+                Trang {lightboxSlide}/14: {allSlides.find(s => s.index === lightboxSlide)?.title}
               </div>
               <button
                 onClick={() => setLightboxSlide(null)}
@@ -1319,10 +1331,10 @@ export default function WorkPage() {
                 <span>Trang trước</span>
               </button>
 
-              <span>Trang {lightboxSlide} / 13</span>
+              <span>Trang {lightboxSlide} / 14</span>
 
               <button
-                disabled={lightboxSlide >= 13}
+                disabled={lightboxSlide >= 14}
                 onClick={() => setLightboxSlide(lightboxSlide + 1)}
                 className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/10 text-white transition-colors"
               >

@@ -103,10 +103,19 @@ export default function Home() {
                   href={profileData.cvPdf}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary !px-4"
+                  className="btn btn-secondary !px-3.5"
                 >
                   <Download className="w-4 h-4 text-[#8C5A3C]" />
                   <span>CV PDF</span>
+                </a>
+                <a
+                  href="/Portfolio_ToLanAnh.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary !px-3.5"
+                >
+                  <Download className="w-4 h-4 text-[#8C5A3C]" />
+                  <span>Portfolio PDF</span>
                 </a>
               </div>
 

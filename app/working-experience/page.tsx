@@ -59,7 +59,17 @@ export default function WorkingExperiencePage() {
                   className="btn btn-primary"
                 >
                   <Download className="w-4 h-4 text-[#D5CEBE]" />
-                  <span>Tải Bản CV Đầy Đủ (PDF)</span>
+                  <span>Tải CV Song Ngữ (PDF)</span>
+                </a>
+
+                <a
+                  href="/Portfolio_ToLanAnh.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                >
+                  <Download className="w-4 h-4 text-[#8C5A3C]" />
+                  <span>Tải Portfolio PDF (14 Trang)</span>
                 </a>
 
                 <Link
