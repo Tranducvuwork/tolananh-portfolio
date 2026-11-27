@@ -369,7 +369,7 @@ export default function WorkingExperiencePage() {
                 Khám Phá Các Dự Án Thực Tế
               </span>
               <h3 className="text-xl sm:text-2xl font-sans font-bold text-white">
-                Xem 2 Hạng Mục Riêng Biệt: Nội Thất Minh Huy & Kênh La Cà
+                Khám Phá Các Kênh TikTok &amp; Dự Án Truyền Thông
               </h3>
             </div>
 

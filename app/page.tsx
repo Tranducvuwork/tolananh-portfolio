@@ -233,20 +233,20 @@ export default function Home() {
                 </div>
 
                 <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
-                  Toạ Độ Gen Z — Đời Sống &amp; Trào Lưu Giới Trẻ
+                  Toạ Độ Gen Z (@toadogenz)
                 </h3>
                 <p className="text-sm text-[#635952] leading-relaxed">
-                  Bắt nhịp các trào lưu mới nhất, phỏng vấn góc nhìn giới trẻ, văn hóa sinh viên Văn Lang và những câu chuyện hài hước, năng động với tỷ lệ tương tác cao.
+                  Bản đồ ăn – chơi – chill của Gen Z. Trực tiếp sản xuất video đại nhạc hội The World of Heineken (Dương Domic 66.6K, HIEUTHUHAI 40.5K, Charlie Puth 14K) và review ẩm thực.
                 </p>
 
                 <div className="space-y-2 pt-2 border-t border-[rgba(20,17,15,0.06)] text-xs text-[#2D2723]">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                    <span>Kịch bản bắt trend &amp; hook giữ chân</span>
+                    <span>Dương Domic live Heineken (66.6K views)</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                    <span>Nhịp điệu cắt dựng CapCut vui tươi</span>
+                    <span>HIEUTHUHAI "Không thể say" (40.5K views)</span>
                   </div>
                 </div>
               </div>
@@ -262,7 +262,7 @@ export default function Home() {
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 <Link
-                  href="/work?tab=genz"
+                  href="/work"
                   className="btn btn-primary btn-sm !px-3"
                 >
                   <span>Chi Tiết</span>
@@ -277,26 +277,26 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">
                     <Coffee className="w-3.5 h-3.5" />
-                    <span>F&amp;B Tone Be</span>
+                    <span>Cafe &amp; F&amp;B</span>
                   </div>
                   <span className="text-xs font-semibold text-[#8C5A3C]">@la.camotchut</span>
                 </div>
 
                 <h3 className="text-xl font-bold text-[#14110F] tracking-tight">
-                  La Cà Một Chút — Cafe, Bánh &amp; Lifestyle
+                  La Cà Một Chút (@la.camotchut)
                 </h3>
                 <p className="text-sm text-[#635952] leading-relaxed">
-                  Định hình tone màu Be nữ tính, dịu dàng và ấm áp. Khám phá các quán cafe hidden gems, tiệm bánh và trải nghiệm ẩm thực thư thái giữa lòng phố thị.
+                  Review các quán cafe đẹp, tiệm bánh và trải nghiệm ẩm thực thư thái giữa lòng phố thị (Gem Cafe 72.9K, Go Gelato 30.1K, Yori Matcha 21.1K).
                 </p>
 
                 <div className="space-y-2 pt-2 border-t border-[rgba(20,17,15,0.06)] text-xs text-[#2D2723]">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                    <span>Bảng màu Be ấm áp, góc quay thẩm mỹ</span>
+                    <span>Gem Cafe sang trọng (72.9K views)</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                    <span>Voiceover truyền cảm &amp; ASMR ẩm thực</span>
+                    <span>Go Gelato giáng sinh (30.1K views)</span>
                   </div>
                 </div>
               </div>
@@ -312,7 +312,7 @@ export default function Home() {
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 <Link
-                  href="/work?tab=fnb"
+                  href="/work"
                   className="btn btn-primary btn-sm !px-3"
                 >
                   <span>Chi Tiết</span>
@@ -373,14 +373,14 @@ export default function Home() {
 
           </div>
 
-          {/* Secondary projects note: Búp Sky, Minh Huy & IMC */}
+          {/* Secondary projects note: Búp Sky, IMC & 14 Slides */}
           <div className="mt-8 p-5 rounded-2xl bg-[#F8F6F1] border border-[rgba(20,17,15,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C]">
                 Các dự án &amp; chứng chỉ chuyên môn
               </span>
               <p className="text-xs sm:text-sm text-[#635952]">
-                Nhà hàng Rooftop <strong>Búp Sky Cuisine (@bupskycuisine - 132.9K views)</strong>, Chứng chỉ <strong>QCC Mastery Hub (Rank Excellent) &amp; ColorME Photoshop</strong>, Case study B2B xưởng <strong>Minh Huy Furniture</strong> và <strong>Bộ 13 Slide HD</strong> nguyên bản.
+                Nhà hàng Rooftop <strong>Búp Sky Cuisine (@bupskycuisine - 133.1K views)</strong>, Chứng chỉ <strong>QCC Mastery Hub (Rank Excellent) &amp; ColorME Photoshop</strong>, Winner Pitching <strong>Tivi HXY Hải Phi</strong> và <strong>Bộ 14 Slide HD</strong> nguyên bản.
               </p>
             </div>
             <Link href="/work" className="btn btn-secondary btn-sm flex-shrink-0">

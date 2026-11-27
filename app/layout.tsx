@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Tô Lan Anh · Social Media & Creative Planner',
-  description: 'Portfolio của Tô Lan Anh: Creative Planner & Social Media. Xây dựng short-form video TikTok xưởng nội thất Minh Huy Furniture, kênh F&B La Cà Một Chút và hoạch định chiến dịch truyền thông.',
+  description: 'Portfolio của Tô Lan Anh: Creative Planner & Social Media. Xây dựng short-form video TikTok Toạ Độ Gen Z, La Cà Một Chút, Búp Sky Cuisine, Datbike Hồng Phương và hoạch định chiến dịch truyền thông.',
   authors: [{ name: 'Tô Lan Anh' }],
   icons: {
     icon: '/images/avatar_cafe.jpg',

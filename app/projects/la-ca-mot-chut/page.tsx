@@ -154,11 +154,11 @@ export default function LaCaPage() {
           {/* Cross navigation */}
           <div className="pt-6 border-t border-[#ECE4D8] flex items-center justify-between">
             <Link
-              href="/projects/minh-huy-furniture"
+              href="/work"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#DECFC0] text-[#1E1611] text-xs font-mono font-medium hover:bg-[#FAF7F2] transition-all"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Xem Hạng Mục 1: Nội Thất Minh Huy</span>
+              <span>Xem Các Kênh &amp; Dự Án Khác</span>
             </Link>
             <Link
               href="/projects"

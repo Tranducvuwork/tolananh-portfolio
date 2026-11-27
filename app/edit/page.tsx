@@ -63,7 +63,7 @@ export default function EditLayoutPage() {
     { id: 'work-laca', title: '3. Kênh La Cà Một Chút (Tone Be & Mockup)', visible: true, order: 2 },
     { id: 'work-bupsky', title: '4. Dự Án Búp Sky Cuisine Rooftop Q.1', visible: true, order: 3 },
     { id: 'work-datbike', title: '5. Kênh Datbike Hồng Phương', visible: true, order: 4 },
-    { id: 'work-furniture', title: '6. Dự Án Xưởng Minh Huy & Slides', visible: true, order: 5 },
+    { id: 'work-furniture', title: '6. 14 Slide Gốc HD & IMC', visible: true, order: 5 },
   ]);
 
   // Experience blocks order & visibility
