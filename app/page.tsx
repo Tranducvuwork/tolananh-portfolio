@@ -135,13 +135,13 @@ export default function Home() {
             {/* Right Portrait (5 cols) */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-[rgba(20,17,15,0.1)] bg-white shadow-[0_12px_40px_rgba(20,17,15,0.08)]">
-                <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EFECE4]">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#EFECE4]">
                   <Image
                     src={profileData.portrait}
                     alt={profileData.name}
                     fill
                     priority
-                    className="object-cover object-top"
+                    className="object-cover object-[center_20%]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-black/60 backdrop-blur-md text-white flex items-center justify-between">

@@ -231,24 +231,52 @@ export default function WorkingExperiencePage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {profileData.education.map((edu, idx) => (
-                <div key={idx} className="editorial-card p-6 bg-white space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="font-bold text-[#9E6B47]">{edu.period}</span>
-                    <span className="px-3 py-1 rounded-full bg-[#FAF7F2] border border-[#DECFC0] text-[#7D5133] text-[11px]">
-                      {edu.badge}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              
+              {/* Featured Academic Photo Card (Áo dài Văn Lang) */}
+              <div className="lg:col-span-4 editorial-card p-4 bg-white flex flex-col justify-between border border-[#DECFC0] shadow-xs">
+                <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden border border-[#ECE4D8] bg-[#FAF7F2]">
+                  <Image
+                    src={profileData.studentPhoto || '/images/lananh_vanlang_aodai.jpg'}
+                    alt="Tô Lan Anh - Sinh viên PR Văn Lang"
+                    fill
+                    className="object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3">
+                    <span className="text-[11px] font-mono font-medium text-white/95 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                      Cử nhân PR · Đại Học Văn Lang
                     </span>
                   </div>
-
-                  <h3 className="font-sans text-xl font-bold text-[#1E1611]">{edu.school}</h3>
-                  <div className="text-xs font-mono text-[#7D5133] font-semibold">{edu.major}</div>
-                  
-                  <p className="text-xs text-[#5C4D43] leading-relaxed pt-2 border-t border-[#ECE4D8]">
-                    {edu.details}
-                  </p>
                 </div>
-              ))}
+                <div className="pt-3 text-center">
+                  <h4 className="font-sans font-bold text-sm text-[#1E1611]">Tô Lan Anh</h4>
+                  <p className="text-[11px] text-[#5C4D43] font-mono">Chuyên ngành Quan Hệ Công Chúng (2022 - 2026)</p>
+                </div>
+              </div>
+
+              {/* Education Breakdown Cards (8 cols) */}
+              <div className="lg:col-span-8 flex flex-col justify-between gap-5">
+                {profileData.education.map((edu, idx) => (
+                  <div key={idx} className="editorial-card p-6 bg-white space-y-3 flex-1 flex flex-col justify-between border border-[#DECFC0]">
+                    <div>
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="font-bold text-[#9E6B47]">{edu.period}</span>
+                        <span className="px-3 py-1 rounded-full bg-[#FAF7F2] border border-[#DECFC0] text-[#7D5133] text-[11px]">
+                          {edu.badge}
+                        </span>
+                      </div>
+
+                      <h3 className="font-sans text-xl font-bold text-[#1E1611] mt-2">{edu.school}</h3>
+                      <div className="text-xs font-mono text-[#7D5133] font-semibold">{edu.major}</div>
+                      
+                      <p className="text-xs text-[#5C4D43] leading-relaxed pt-3 border-t border-[#ECE4D8] mt-3">
+                        {edu.details}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
 

@@ -216,7 +216,8 @@ export const profileData = {
   address: 'Lê Tấn Bê, Phường An Lạc, Bình Tân, TP.HCM',
   cvPdf: '/ToLanAnh_CV.pdf',
   avatar: '/images/avatar.jpg',
-  portrait: '/images/lananh_portrait.jpg',
+  portrait: '/images/lananh_cafe_portrait.jpg',
+  studentPhoto: '/images/lananh_vanlang_aodai.jpg',
   intro: 'Tôi là Tô Lan Anh, sinh viên chuyên ngành Quan hệ Công chúng - Truyền thông (PR) tại Đại Học Văn Lang (2022 - 2026), định hướng phát triển chuyên sâu thành một Creative Planner & Social Media Specialist. Với tư duy sáng tạo nhạy bén, tôi trực tiếp lên ý tưởng kịch bản và sản xuất nội dung đa dạng trên nền tảng TikTok: từ kênh xu hướng giới trẻ Toạ Độ Gen Z (@toadogenz), kênh trải nghiệm ẩm thực tone Be ấm áp La Cà Một Chút (@la.camotchut), đến kênh công nghệ xe điện thông minh Datbike Hồng Phương (@datbikehongphuong), kết hợp năng lực hoạch định chiến dịch truyền thông tích hợp (IMC).',
   goals: {
     shortTerm: 'Làm chủ các quy trình sản xuất nội dung short-form chuyên sâu, tối ưu hóa thuật toán phân phối đa kênh và nâng cao hiệu quả tương tác tự nhiên.',
