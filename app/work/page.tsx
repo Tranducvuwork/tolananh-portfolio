@@ -333,6 +333,22 @@ export default function WorkPage() {
                   imageWidth={564}
                   imageHeight={1024}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                  profileHeader={{
+                    name: 'La Cà Một Chút',
+                    handle: '@la.camotchut',
+                    avatarSrc: '/images/channels/lacamotchut_avatar.jpg',
+                    following: '48',
+                    followers: '18.2K',
+                    likes: '165.4K',
+                    bioLines: [
+                      '☕ La Cà Một Chút...',
+                      'Khám phá cafe, tiệm bánh & không gian trải nghiệm Sài Gòn',
+                      'Tone Be ấm áp & góc chill thư thái',
+                      '📩 Contact: lananhto2402@gmail.com'
+                    ],
+                    actionBtn1: 'Sửa hồ sơ',
+                    actionBtn2: 'Chia sẻ hồ sơ'
+                  }}
                 />
               </div>
 
@@ -463,6 +479,23 @@ export default function WorkPage() {
                   imageWidth={559}
                   imageHeight={1024}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                  profileHeader={{
+                    name: 'Búp Sky Cuisine',
+                    handle: '@bupskycuisine',
+                    avatarSrc: '/images/channels/bupsky_avatar.jpg',
+                    following: '24',
+                    followers: '12.6K',
+                    likes: '320.5K',
+                    bioLines: [
+                      'Búp Sky Cuisine 🥂',
+                      'Rooftop Restaurant & Lounge Tầng 10',
+                      '📍 65-69 Nguyễn Thái Bình, Q.1 (Cách Chợ Bến Thành 4p)',
+                      'Tiệc sinh nhật, kỷ niệm & ngắm hoàng hôn Sài Gòn',
+                      '📞 Hotline: 0942.077.335'
+                    ],
+                    actionBtn1: 'Theo dõi',
+                    actionBtn2: 'Nhắn tin'
+                  }}
                 />
               </div>
 
