@@ -12,6 +12,7 @@ import {
   Award, Layers, Compass, Bike
 } from 'lucide-react';
 import { featuredVideos, VideoItem, caseStudies, tiktokChannels } from '@/app/data';
+import IPhone12ProMaxMockup from '@/components/IPhone12ProMaxMockup';
 
 const genzVideos = featuredVideos.filter(v => v.category === 'genz');
 const fnbVideos = featuredVideos.filter(v => v.category === 'fnb');
@@ -191,52 +192,18 @@ export default function WorkPage() {
             {/* Gen Z Phone Screenshot + Video Details */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Virtual Interactive Smartphone Screen */}
+              {/* Virtual Interactive iPhone 12 Pro Max Mockup */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div className="phone-mockup-pro relative select-none">
-                  {/* Dynamic Island Header */}
-                  <div className="phone-dynamic-island">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
-                    <span className="text-[9px] font-mono text-zinc-300">@toadogenz</span>
-                  </div>
-
-                  {/* Scrollable Virtual Screen */}
-                  <div
-                    className="phone-screen"
-                    tabIndex={0}
-                    role="region"
-                    aria-label="Màn hình ảo kênh TikTok Toạ Độ Gen Z"
-                  >
-                    <div className="relative w-full pt-8 pb-10">
-                      <Image
-                        src="/images/channels/toadogenz_channel.jpg"
-                        alt="Giao diện kênh TikTok Toạ Độ Gen Z"
-                        width={549}
-                        height={1024}
-                        priority
-                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
-                      />
-                    </div>
-
-                    {/* Bottom Home Indicator */}
-                    <div className="phone-home-indicator" />
-                  </div>
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-white px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
-                  <span className="animate-bounce">👆</span>
-                  <span>Cuộn / lướt màn hình ảo bên trong</span>
-                </div>
-
-                <a
-                  href="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm mt-2 text-xs"
-                >
-                  <span>Mở Kênh TikTok @toadogenz</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                </a>
+                <IPhone12ProMaxMockup
+                  channelName="Toạ Độ Gen Z"
+                  handle="@toadogenz"
+                  tiktokUrl="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
+                  imageSrc="/images/channels/toadogenz_channel.jpg"
+                  imageAlt="Giao diện kênh TikTok Toạ Độ Gen Z"
+                  imageWidth={549}
+                  imageHeight={1024}
+                  badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                />
               </div>
 
               {/* Right Side: Active Video Info & Real Videos List */}
@@ -355,52 +322,18 @@ export default function WorkPage() {
             {/* La Ca Phone Mockup + Video List */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Virtual Interactive Smartphone Screen */}
+              {/* Virtual Interactive iPhone 12 Pro Max Mockup */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div className="phone-mockup-pro relative select-none">
-                  {/* Dynamic Island Header */}
-                  <div className="phone-dynamic-island">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
-                    <span className="text-[9px] font-mono text-zinc-300">@la.camotchut</span>
-                  </div>
-
-                  {/* Scrollable Virtual Screen */}
-                  <div
-                    className="phone-screen"
-                    tabIndex={0}
-                    role="region"
-                    aria-label="Màn hình ảo kênh TikTok La Cà Một Chút"
-                  >
-                    <div className="relative w-full pt-8 pb-10">
-                      <Image
-                        src="/images/channels/lacamotchut_channel.jpg"
-                        alt="Giao diện kênh TikTok La Cà Một Chút"
-                        width={564}
-                        height={1024}
-                        priority
-                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
-                      />
-                    </div>
-
-                    {/* Bottom Home Indicator */}
-                    <div className="phone-home-indicator" />
-                  </div>
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-white px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
-                  <span className="animate-bounce">👆</span>
-                  <span>Cuộn / lướt màn hình ảo bên trong</span>
-                </div>
-
-                <a
-                  href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm mt-2 text-xs"
-                >
-                  <span>Mở Kênh TikTok @la.camotchut</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                </a>
+                <IPhone12ProMaxMockup
+                  channelName="La Cà Một Chút"
+                  handle="@la.camotchut"
+                  tiktokUrl="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                  imageSrc="/images/channels/lacamotchut_channel.jpg"
+                  imageAlt="Giao diện kênh TikTok La Cà Một Chút"
+                  imageWidth={564}
+                  imageHeight={1024}
+                  badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                />
               </div>
 
               {/* Right Side: Active Video Info & Real Videos List */}
@@ -519,52 +452,18 @@ export default function WorkPage() {
             {/* Búp Sky Metrics & Channel Screenshot Display */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Virtual Interactive Smartphone Screen */}
+              {/* Virtual Interactive iPhone 12 Pro Max Mockup */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div className="phone-mockup-pro relative select-none">
-                  {/* Dynamic Island Header */}
-                  <div className="phone-dynamic-island">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
-                    <span className="text-[9px] font-mono text-zinc-300">@bupskycuisine</span>
-                  </div>
-
-                  {/* Scrollable Virtual Screen */}
-                  <div
-                    className="phone-screen"
-                    tabIndex={0}
-                    role="region"
-                    aria-label="Màn hình ảo kênh TikTok Búp Sky Cuisine"
-                  >
-                    <div className="relative w-full pt-8 pb-10">
-                      <Image
-                        src="/images/channels/bupsky_channel.jpg"
-                        alt="Thông số và video thực tế kênh TikTok Búp Sky Cuisine"
-                        width={559}
-                        height={1024}
-                        priority
-                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
-                      />
-                    </div>
-
-                    {/* Bottom Home Indicator */}
-                    <div className="phone-home-indicator" />
-                  </div>
-                </div>
-
-                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-[#FAF7F2] px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
-                  <span className="animate-bounce">👆</span>
-                  <span>Cuộn / lướt màn hình ảo bên trong</span>
-                </div>
-
-                <a
-                  href="https://www.tiktok.com/@bupskycuisine"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary btn-sm mt-2 text-xs"
-                >
-                  <span>Mở Kênh TikTok Búp Sky</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
-                </a>
+                <IPhone12ProMaxMockup
+                  channelName="Búp Sky Cuisine"
+                  handle="@bupskycuisine"
+                  tiktokUrl="https://www.tiktok.com/@bupskycuisine"
+                  imageSrc="/images/channels/bupsky_channel.jpg"
+                  imageAlt="Thông số và video thực tế kênh TikTok Búp Sky Cuisine"
+                  imageWidth={559}
+                  imageHeight={1024}
+                  badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                />
               </div>
 
               {/* Metrics & Highlights */}
