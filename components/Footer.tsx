@@ -85,8 +85,12 @@ export default function Footer() {
 
         {/* Bottom Row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C5A3C]">
-          <div>
-            © {new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.
+          <div className="flex items-center gap-3">
+            <span>© {new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.</span>
+            <span className="text-white/20">|</span>
+            <Link href="/edit" className="text-[#D5CEBE] hover:text-white transition-colors font-medium">
+              Chỉnh Sửa Layout (/edit)
+            </Link>
           </div>
 
           <button

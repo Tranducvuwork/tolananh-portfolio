@@ -340,3 +340,256 @@ body {
   border-color: rgba(140, 90, 60, 0.35);
   box-shadow: var(--shadow);
 }
+
+/* =========================================================================
+   Layout Editor Styles (WordPress / tranhung style drag-and-drop editor)
+   ========================================================================= */
+.layout-editor {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.layout-editor-bar {
+  z-index: 100;
+  color: #FFFFFF;
+  background: #14110F;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 24px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.layout-editor-bar p {
+  color: #D5CEBE;
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.layout-editor-pages {
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.layout-editor-pages button {
+  color: #FFFFFF;
+  min-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 6px 14px;
+  transition: all 0.2s;
+}
+
+.layout-editor-pages button.is-active {
+  color: #14110F;
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.layout-editor-actions {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.layout-editor-actions a,
+.layout-editor-actions button {
+  color: #14110F;
+  min-height: 38px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.layout-editor-actions button.btn-save {
+  background: #8C5A3C;
+  color: #FFFFFF;
+}
+
+.layout-editor-actions button.btn-save:hover {
+  background: #6E4229;
+}
+
+.layout-editor-message {
+  color: #8C5A3C;
+  background: #FAF7F2;
+  border-bottom: 1px solid rgba(140, 90, 60, 0.15);
+  margin: 0;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layout-block {
+  outline: 2px dashed transparent;
+  position: relative;
+  transition: outline-color 0.2s;
+  margin-bottom: 16px;
+}
+
+.layout-block:hover,
+.layout-block:focus-within {
+  outline-color: #8C5A3C;
+}
+
+.layout-block.is-hidden {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+}
+
+.layout-block-bar {
+  color: #FFFFFF;
+  background: #2D2723;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  user-select: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.layout-block-bar button {
+  color: #14110F;
+  min-height: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: all 0.2s;
+}
+
+.layout-block-bar button:hover {
+  background: #FAF7F2;
+}
+
+.layout-editable {
+  white-space: pre-line;
+  outline: 1px dashed transparent;
+  border-radius: 4px;
+  transition: outline-color 0.2s, background-color 0.2s;
+}
+
+.layout-editable:hover,
+.layout-editable:focus {
+  outline-color: #8C5A3C;
+  background-color: rgba(140, 90, 60, 0.05);
+}
+
+.movable {
+  position: relative;
+}
+
+.movable.is-editing {
+  outline-offset: 6px;
+  outline: 2px dashed #8C5A3C;
+  border-radius: 8px;
+}
+
+.move-handle {
+  z-index: 30;
+  color: #FFFFFF;
+  min-height: 28px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: grab;
+  background: #8C5A3C;
+  border: 0;
+  border-radius: 999px;
+  padding: 4px 12px;
+  position: absolute;
+  top: -14px;
+  left: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.move-handle:active {
+  cursor: grabbing;
+}
+
+.resize-handle {
+  z-index: 25;
+  background: #14110F;
+  border: 1px solid #FFFFFF;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+.resize-handle.axis-x {
+  cursor: ew-resize;
+  top: 50%;
+  right: -14px;
+  transform: translateY(-50%);
+}
+
+.resize-handle.axis-both {
+  cursor: nwse-resize;
+  bottom: -10px;
+  right: -10px;
+}
+
+.image-replace {
+  z-index: 20;
+  color: #FFFFFF;
+  cursor: pointer;
+  background: #14110F;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  min-height: 32px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.image-replace:hover {
+  background: #8C5A3C;
+}
