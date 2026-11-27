@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { Download } from 'lucide-react';
 import { profileData } from '@/app/data';
 
@@ -36,12 +37,13 @@ export default function Navbar() {
       <div className="container nav-inner">
         {/* Brand */}
         <Link href="/" className="brand">
-          <img
-            src="/images/avatar.jpg"
+          <Image
+            src={profileData.avatar}
             alt={profileData.name}
-            className="brand-img"
+            className="brand-img object-cover object-center"
             width={40}
             height={40}
+            priority
           />
           <span>{profileData.name}</span>
         </Link>

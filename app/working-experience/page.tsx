@@ -81,10 +81,10 @@ export default function WorkingExperiencePage() {
                 <div className="flex items-center gap-4 pb-4 border-b border-[#ECE4D8]">
                   <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#9E6B47] flex-shrink-0">
                     <Image
-                      src={profileData.portrait}
+                      src={profileData.avatar}
                       alt={profileData.name}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                     />
                   </div>
                   <div>
