@@ -191,38 +191,52 @@ export default function WorkPage() {
             {/* Gen Z Phone Screenshot + Video Details */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Phone Frame showing REAL TikTok Channel Screenshot */}
+              {/* Virtual Interactive Smartphone Screen */}
               <div className="lg:col-span-5 flex flex-col items-center">
+                <div className="phone-mockup-pro relative select-none">
+                  {/* Dynamic Island Header */}
+                  <div className="phone-dynamic-island">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
+                    <span className="text-[9px] font-mono text-zinc-300">@toadogenz</span>
+                  </div>
+
+                  {/* Scrollable Virtual Screen */}
+                  <div
+                    className="phone-screen"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Màn hình ảo kênh TikTok Toạ Độ Gen Z"
+                  >
+                    <div className="relative w-full pt-8 pb-10">
+                      <Image
+                        src="/images/channels/toadogenz_channel.jpg"
+                        alt="Giao diện kênh TikTok Toạ Độ Gen Z"
+                        width={549}
+                        height={1024}
+                        priority
+                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
+                      />
+                    </div>
+
+                    {/* Bottom Home Indicator */}
+                    <div className="phone-home-indicator" />
+                  </div>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-white px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
+                  <span className="animate-bounce">👆</span>
+                  <span>Cuộn / lướt màn hình ảo bên trong</span>
+                </div>
+
                 <a
                   href="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="phone-mockup-pro select-none relative group block cursor-pointer"
-                  title="Nhấn để mở kênh TikTok @toadogenz"
+                  className="btn btn-secondary btn-sm mt-2 text-xs"
                 >
-                  <div className="phone-dynamic-island flex items-center justify-between px-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
-                    <span className="text-[9px] font-mono text-zinc-400">@toadogenz</span>
-                  </div>
-
-                  <div className="phone-screen relative bg-black overflow-hidden">
-                    <Image
-                      src="/images/channels/toadogenz_channel.jpg"
-                      alt="Giao diện kênh TikTok Toạ Độ Gen Z"
-                      fill
-                      className="object-cover object-top group-hover:scale-102 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end justify-center p-4">
-                      <div className="px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md text-[11px] font-medium text-white flex items-center gap-1.5 shadow-lg">
-                        <span>Mở kênh TikTok @toadogenz</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </div>
-                    </div>
-                  </div>
+                  <span>Mở Kênh TikTok @toadogenz</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
                 </a>
-                <p className="text-[11px] text-[#635952] text-center mt-3">
-                  (Bấm vào khung điện thoại để mở thẳng kênh trên TikTok)
-                </p>
               </div>
 
               {/* Right Side: Active Video Info & Real Videos List */}
@@ -341,38 +355,52 @@ export default function WorkPage() {
             {/* La Ca Phone Mockup + Video List */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Phone Frame showing REAL TikTok Channel Screenshot */}
+              {/* Virtual Interactive Smartphone Screen */}
               <div className="lg:col-span-5 flex flex-col items-center">
+                <div className="phone-mockup-pro relative select-none">
+                  {/* Dynamic Island Header */}
+                  <div className="phone-dynamic-island">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
+                    <span className="text-[9px] font-mono text-zinc-300">@la.camotchut</span>
+                  </div>
+
+                  {/* Scrollable Virtual Screen */}
+                  <div
+                    className="phone-screen"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Màn hình ảo kênh TikTok La Cà Một Chút"
+                  >
+                    <div className="relative w-full pt-8 pb-10">
+                      <Image
+                        src="/images/channels/lacamotchut_channel.jpg"
+                        alt="Giao diện kênh TikTok La Cà Một Chút"
+                        width={564}
+                        height={1024}
+                        priority
+                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
+                      />
+                    </div>
+
+                    {/* Bottom Home Indicator */}
+                    <div className="phone-home-indicator" />
+                  </div>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-white px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
+                  <span className="animate-bounce">👆</span>
+                  <span>Cuộn / lướt màn hình ảo bên trong</span>
+                </div>
+
                 <a
                   href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="phone-mockup-pro select-none relative group block cursor-pointer"
-                  title="Nhấn để mở kênh TikTok @la.camotchut"
+                  className="btn btn-secondary btn-sm mt-2 text-xs"
                 >
-                  <div className="phone-dynamic-island flex items-center justify-between px-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
-                    <span className="text-[9px] font-mono text-zinc-400">@la.camotchut</span>
-                  </div>
-
-                  <div className="phone-screen relative bg-black overflow-hidden">
-                    <Image
-                      src="/images/channels/lacamotchut_channel.jpg"
-                      alt="Giao diện kênh TikTok La Cà Một Chút"
-                      fill
-                      className="object-cover object-top group-hover:scale-102 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end justify-center p-4">
-                      <div className="px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md text-[11px] font-medium text-white flex items-center gap-1.5 shadow-lg">
-                        <span>Mở kênh TikTok @la.camotchut</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </div>
-                    </div>
-                  </div>
+                  <span>Mở Kênh TikTok @la.camotchut</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
                 </a>
-                <p className="text-[11px] text-[#635952] text-center mt-3">
-                  (Bấm vào khung điện thoại để mở thẳng kênh trên TikTok)
-                </p>
               </div>
 
               {/* Right Side: Active Video Info & Real Videos List */}
@@ -491,38 +519,52 @@ export default function WorkPage() {
             {/* Búp Sky Metrics & Channel Screenshot Display */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Phone Frame showing REAL Búp Sky Channel Screenshot */}
+              {/* Virtual Interactive Smartphone Screen */}
               <div className="lg:col-span-5 flex flex-col items-center">
+                <div className="phone-mockup-pro relative select-none">
+                  {/* Dynamic Island Header */}
+                  <div className="phone-dynamic-island">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]" />
+                    <span className="text-[9px] font-mono text-zinc-300">@bupskycuisine</span>
+                  </div>
+
+                  {/* Scrollable Virtual Screen */}
+                  <div
+                    className="phone-screen"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Màn hình ảo kênh TikTok Búp Sky Cuisine"
+                  >
+                    <div className="relative w-full pt-8 pb-10">
+                      <Image
+                        src="/images/channels/bupsky_channel.jpg"
+                        alt="Thông số và video thực tế kênh TikTok Búp Sky Cuisine"
+                        width={559}
+                        height={1024}
+                        priority
+                        className="w-full h-auto min-h-[680px] object-cover object-top block select-none"
+                      />
+                    </div>
+
+                    {/* Bottom Home Indicator */}
+                    <div className="phone-home-indicator" />
+                  </div>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 text-xs text-[#8C5A3C] font-semibold mt-3 bg-[#FAF7F2] px-3.5 py-1.5 rounded-full border border-[rgba(20,17,15,0.08)] shadow-xs">
+                  <span className="animate-bounce">👆</span>
+                  <span>Cuộn / lướt màn hình ảo bên trong</span>
+                </div>
+
                 <a
                   href="https://www.tiktok.com/@bupskycuisine"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="phone-mockup-pro select-none relative group block cursor-pointer"
-                  title="Nhấn để mở kênh TikTok Búp Sky Cuisine"
+                  className="btn btn-secondary btn-sm mt-2 text-xs"
                 >
-                  <div className="phone-dynamic-island flex items-center justify-between px-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#111111]" />
-                    <span className="text-[9px] font-mono text-zinc-400">@bupskycuisine</span>
-                  </div>
-
-                  <div className="phone-screen relative bg-black overflow-hidden">
-                    <Image
-                      src="/images/channels/bupsky_channel.jpg"
-                      alt="Thông số và video thực tế kênh TikTok Búp Sky Cuisine"
-                      fill
-                      className="object-cover object-top group-hover:scale-102 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end justify-center p-4">
-                      <div className="px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md text-[11px] font-medium text-white flex items-center gap-1.5 shadow-lg">
-                        <span>Mở kênh TikTok Búp Sky</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </div>
-                    </div>
-                  </div>
+                  <span>Mở Kênh TikTok Búp Sky</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#8C5A3C]" />
                 </a>
-                <p className="text-[11px] text-[#635952] text-center mt-3">
-                  (Ảnh chụp thông số thực tế kênh TikTok Búp Sky Cuisine)
-                </p>
               </div>
 
               {/* Metrics & Highlights */}
