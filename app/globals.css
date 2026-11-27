@@ -742,14 +742,26 @@ body {
 /* Status Bar */
 .iphone-status-bar {
   position: absolute;
-  top: 4px;
+  top: 0;
   left: 0;
   right: 0;
-  height: 22px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+  border-top-left-radius: 43px;
+  border-top-right-radius: 43px;
+  padding-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .iphone-status-bar {
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    height: 28px;
+  }
 }
 
 /* Screen Area */

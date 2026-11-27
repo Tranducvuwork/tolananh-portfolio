@@ -88,7 +88,7 @@ export default function IPhone12ProMaxMockup({
             <div className="iphone-camera" />
           </div>
 
-          {/* Top Status Bar (9:41, 5G, Battery) */}
+          {/* Top Status Bar (9:41, 5G, Battery) with dark gradient background */}
           <div className="iphone-status-bar z-30">
             <span className="text-[11px] font-semibold tracking-tight text-white/90 pl-3">9:41</span>
             <div className="flex items-center gap-1.5 pr-3 text-[10px] text-white/80 font-mono">
@@ -109,14 +109,14 @@ export default function IPhone12ProMaxMockup({
             aria-label={`Màn hình ảo iPhone 12 Pro Max kênh ${channelName}`}
           >
             {/* Inner Content Feed */}
-            <div className="relative w-full pt-9 pb-12 select-none">
+            <div className="relative w-full pt-8 pb-10 select-none">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
                 width={imageWidth}
                 height={imageHeight}
                 priority
-                className="w-full h-auto min-h-[640px] object-cover object-top block select-none pointer-events-none"
+                className="w-full h-auto object-contain object-top block select-none pointer-events-none"
               />
 
               {/* TikTok Bottom Bar Mockup */}
