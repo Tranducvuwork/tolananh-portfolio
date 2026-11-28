@@ -599,7 +599,7 @@ export default function WorkPage() {
               </div>
 
               <a
-                href="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9BjNL1MnE9q"
+                href="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -609,15 +609,59 @@ export default function WorkPage() {
               </a>
             </div>
 
-            {/* Datbike Video Highlights */}
+            {/* Datbike Phone Mockup + Video List */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               
-              {/* Spotlight Card */}
-              <div className="lg:col-span-5 space-y-4">
+              {/* Virtual Interactive iPhone 12 Pro Max Mockup */}
+              <div className="lg:col-span-5 flex flex-col items-center">
+                <IPhone12ProMaxMockup
+                  channelName="Datbike Hồng Phương"
+                  handle="@datbikehongphuong"
+                  tiktokUrl="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma"
+                  imageSrc="/images/channels/datbike_channel.jpg"
+                  imageAlt="Giao diện và video thực tế kênh TikTok Datbike Hồng Phương"
+                  imageWidth={552}
+                  imageHeight={1024}
+                  badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                  profileHeader={{
+                    name: 'Dat Bike Hồng Phương',
+                    handle: '@datbikehongphuong',
+                    avatarSrc: '/images/channels/datbike_avatar.jpg',
+                    following: '12',
+                    followers: '3.8K',
+                    likes: '48.2K',
+                    bioLines: [
+                      '⚡ Dat Bike Hồng Phương',
+                      'Đại lý ủy quyền xe máy điện thông minh Dat Bike',
+                      '🛵 Dòng Quantum S1, S2, S3 bứt tốc & pin siêu bền',
+                      '📍 Trải nghiệm lái thử & tư vấn trả góp 0% lãi suất',
+                      '📞 Hotline tư vấn: 0942.077.335'
+                    ],
+                    actionBtn1: 'Theo dõi',
+                    actionBtn2: 'Nhắn tin'
+                  }}
+                />
+              </div>
+
+              {/* Right Side: Active Video Info & Real Videos List */}
+              <div className="lg:col-span-7 space-y-6">
+                
+                {/* Active Video Box */}
                 <div className="p-6 rounded-2xl bg-white border border-[rgba(20,17,15,0.08)] space-y-3 shadow-xs">
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
-                    {activeDatbikeVideo.views} views • Xe Điện Thông Minh
-                  </span>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
+                      Video Đang Chọn: {activeDatbikeVideo.views} views
+                    </span>
+                    <a
+                      href={activeDatbikeVideo.tiktokUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-teal-700 hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Xem Trên TikTok</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
 
                   <h3 className="text-base sm:text-lg font-bold text-[#14110F] leading-snug">
                     {activeDatbikeVideo.title}
@@ -631,52 +675,52 @@ export default function WorkPage() {
                     {activeDatbikeVideo.description}
                   </p>
 
-                  <div className="pt-2">
-                    <a
-                      href={activeDatbikeVideo.tiktokUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary btn-sm w-full justify-center"
-                    >
-                      <span>Xem Video Trên TikTok @datbikehongphuong</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-[#D5CEBE]" />
-                    </a>
+                  <div className="pt-2 flex flex-wrap gap-2">
+                    {activeDatbikeVideo.highlights.map((h, i) => (
+                      <span key={i} className="inline-flex items-center gap-1 text-[11px] font-medium text-[#2D2723] bg-[#F8F6F1] px-2.5 py-1 rounded-lg border border-[rgba(20,17,15,0.06)]">
+                        <CheckCircle2 className="w-3 h-3 text-teal-600" />
+                        <span>{h}</span>
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-              {/* Video List */}
-              <div className="lg:col-span-7 space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#14110F]">
-                  Chọn video để xem chi tiết ({datbikeVideos.length})
-                </span>
+                {/* List of Real Videos on Channel */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#14110F]">
+                      Danh sách video thực tế trên kênh ({datbikeVideos.length})
+                    </span>
+                    <span className="text-xs text-[#635952]">Nhấn vào từng video để xem chi tiết</span>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {datbikeVideos.map((v) => (
-                    <div
-                      key={v.id}
-                      onClick={() => setActiveDatbikeVideo(v)}
-                      className={`p-4 rounded-2xl cursor-pointer transition-all border text-left ${
-                        activeDatbikeVideo.id === v.id
-                          ? 'bg-white border-teal-600 shadow-md ring-1 ring-teal-600'
-                          : 'bg-white/80 border-[rgba(20,17,15,0.08)] hover:bg-white'
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-10 h-12 rounded-xl flex-shrink-0 bg-gradient-to-br ${v.gradient} flex items-center justify-center text-white shadow-xs`}>
-                          <Play className="w-3.5 h-3.5 fill-current" />
-                        </div>
-                        <div className="flex-1 min-w-0 space-y-0.5">
-                          <span className="text-[10px] font-bold text-teal-700">{v.views} views</span>
-                          <h5 className="text-xs font-bold text-[#14110F] line-clamp-1">{v.title}</h5>
-                          <p className="text-[11px] text-[#635952] line-clamp-2">{v.hook}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {datbikeVideos.map((v) => (
+                      <div
+                        key={v.id}
+                        onClick={() => setActiveDatbikeVideo(v)}
+                        className={`p-3.5 rounded-2xl cursor-pointer transition-all border text-left ${
+                          activeDatbikeVideo.id === v.id
+                            ? 'bg-white border-teal-600 shadow-md ring-1 ring-teal-600'
+                            : 'bg-white/80 border-[rgba(20,17,15,0.08)] hover:bg-white'
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-10 h-12 rounded-xl flex-shrink-0 bg-gradient-to-br ${v.gradient} flex items-center justify-center text-white shadow-xs`}>
+                            <Play className="w-3.5 h-3.5 fill-current" />
+                          </div>
+                          <div className="flex-1 min-w-0 space-y-0.5">
+                            <span className="text-[10px] font-bold text-teal-700">{v.views} views</span>
+                            <h5 className="text-xs font-bold text-[#14110F] line-clamp-1">{v.title}</h5>
+                            <p className="text-[11px] text-[#635952] line-clamp-2">{v.hook}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
 
           </div>
