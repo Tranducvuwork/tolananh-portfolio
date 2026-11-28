@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DynamicCustomBlocksList from '@/components/DynamicCustomBlocksList';
 import { 
   ArrowRight, Download, Phone, Mail, Coffee, 
   Briefcase, Wrench, CheckCircle2, Star, Sparkles, ExternalLink,
@@ -391,6 +392,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* Dynamic Custom Layout Blocks Added via /edit */}
+      <DynamicCustomBlocksList page="home" />
 
       {/* CTA Section */}
       <section className="py-20 bg-[#F8F6F1]">

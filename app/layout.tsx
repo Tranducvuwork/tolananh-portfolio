@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { readPersistedSiteData } from '@/lib/site-storage';
+import { SiteDataProvider } from '@/components/SiteDataProvider';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'Tô Lan Anh · Social Media & Creative Planner',
@@ -10,11 +15,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const initialPersisted = await readPersistedSiteData();
+
   return (
     <html lang="vi" className="scroll-smooth">
       <head>
@@ -26,7 +33,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#F8F6F1] text-[#14110F] antialiased">
-        {children}
+        <SiteDataProvider initialPersisted={initialPersisted}>
+          {children}
+        </SiteDataProvider>
       </body>
     </html>
   );

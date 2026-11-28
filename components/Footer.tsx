@@ -1,10 +1,47 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowUp, Sofa, Coffee, Download, Phone, Mail } from 'lucide-react';
+import { ArrowUp, Sofa, Coffee, Download, Phone, Mail, Globe, Sparkles } from 'lucide-react';
 import { profileData } from '@/app/data';
 
 export default function Footer() {
+  const [brandName, setBrandName] = useState(profileData.name);
+  const [slogan, setSlogan] = useState('Creative Planner & Social Media Specialist. Sinh viên Quan Hệ Công Chúng (PR) Đại Học Văn Lang (2022 – 2026).');
+  const [phoneNumber, setPhoneNumber] = useState(profileData.phone);
+  const [email, setEmail] = useState(profileData.email);
+  const [copyrightText, setCopyrightText] = useState(`© ${new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.`);
+  const [socialLinks, setSocialLinks] = useState([
+    { name: 'Toạ Độ Gen Z (@toadogenz)', href: '/work?tab=genz' },
+    { name: 'La Cà Một Chút (@la.camotchut)', href: '/work?tab=fnb' },
+    { name: 'Datbike Hồng Phương', href: '/work?tab=datbike' },
+  ]);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('tolananh_site_data');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.footer) {
+          if (parsed.footer.brandName) setBrandName(parsed.footer.brandName);
+          if (parsed.footer.slogan) setSlogan(parsed.footer.slogan);
+          if (parsed.footer.phone) setPhoneNumber(parsed.footer.phone);
+          if (parsed.footer.email) setEmail(parsed.footer.email);
+          if (parsed.footer.copyright) setCopyrightText(parsed.footer.copyright);
+          if (parsed.footer.socialLinks && Array.isArray(parsed.footer.socialLinks)) {
+            setSocialLinks(parsed.footer.socialLinks);
+          }
+        } else if (parsed.profile) {
+          if (parsed.profile.name) setBrandName(parsed.profile.name);
+          if (parsed.profile.phone) setPhoneNumber(parsed.profile.phone);
+          if (parsed.profile.email) setEmail(parsed.profile.email);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -19,13 +56,14 @@ export default function Footer() {
           {/* Brand Info (5 cols) */}
           <div className="md:col-span-5 space-y-3">
             <div className="text-2xl font-extrabold text-white tracking-tight">
-              {profileData.name}
+              {brandName}
             </div>
             <p className="text-sm text-[#A68C72] leading-relaxed max-w-sm">
-              Creative Planner &amp; Social Media Specialist. Sinh viên Quan Hệ Công Chúng (PR) Đại Học Văn Lang (2022 – 2026).
+              {slogan}
             </p>
-            <div className="text-xs text-[#D5CEBE] pt-1">
-              Hotline: <strong className="text-white">{profileData.phone}</strong> · Email: <strong className="text-white">{profileData.email}</strong>
+            <div className="text-xs text-[#D5CEBE] pt-1 space-y-1">
+              <div>Hotline: <strong className="text-white">{phoneNumber}</strong></div>
+              <div>Email: <strong className="text-white">{email}</strong></div>
             </div>
           </div>
 
@@ -59,16 +97,11 @@ export default function Footer() {
               Các Kênh TikTok
             </div>
             <div className="grid grid-cols-1 gap-2 text-sm">
-              <Link href="/work?tab=genz" className="hover:text-white transition-colors flex items-center gap-1.5">
-                <span>Toạ Độ Gen Z (@toadogenz)</span>
-              </Link>
-              <Link href="/work?tab=fnb" className="hover:text-white transition-colors flex items-center gap-1.5">
-                <Coffee className="w-3.5 h-3.5 text-[#C7B198]" />
-                <span>La Cà Một Chút (@la.camotchut)</span>
-              </Link>
-              <Link href="/work?tab=datbike" className="hover:text-white transition-colors flex items-center gap-1.5">
-                <span>Datbike Hồng Phương</span>
-              </Link>
+              {socialLinks.map((item, idx) => (
+                <Link key={idx} href={item.href} className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>{item.name}</span>
+                </Link>
+              ))}
               <a 
                 href={profileData.cvPdf} 
                 target="_blank" 
@@ -86,7 +119,7 @@ export default function Footer() {
         {/* Bottom Row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C5A3C]">
           <div className="flex items-center gap-3">
-            <span>© {new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.</span>
+            <span>{copyrightText}</span>
             <span className="text-white/20">|</span>
             <Link href="/edit" className="text-[#D5CEBE] hover:text-white transition-colors font-medium">
               Chỉnh Sửa Layout (/edit)
@@ -95,7 +128,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors cursor-pointer"
           >
             <span>Lên đầu trang</span>
             <ArrowUp className="w-3.5 h-3.5" />

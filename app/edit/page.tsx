@@ -7,15 +7,22 @@ import {
   ArrowLeft, ExternalLink, Save, RotateCcw, Eye, EyeOff, 
   Move, ChevronUp, ChevronDown, Upload, CheckCircle2, Sparkles,
   Coffee, Compass, Bike, Award, Layers, GraduationCap, Briefcase,
-  Download, FileText, Plus, Trash2, Edit3, X, Play
+  Download, FileText, Plus, Trash2, Edit3, X, Play, Palette, Layout, Menu, Settings, PlusCircle
 } from 'lucide-react';
 import { profileData, featuredVideos, caseStudies, certificates, tiktokChannels } from '@/app/data';
+import CustomBlockRenderer, { CustomBlockContent } from '@/components/CustomBlockRenderer';
+import AddBlockModal from '@/components/AddBlockModal';
+import HeaderLayoutEditor, { HeaderConfigState } from '@/components/HeaderLayoutEditor';
+import FooterLayoutEditor, { FooterConfigState } from '@/components/FooterLayoutEditor';
 
-interface BlockState {
+export interface BlockState {
   id: string;
   title: string;
   visible: boolean;
   order: number;
+  bgColor?: string;
+  isCustom?: boolean;
+  customContent?: CustomBlockContent;
 }
 
 interface MoveOffset {
@@ -29,8 +36,44 @@ interface ResizeState {
 }
 
 export default function EditLayoutPage() {
-  const [activePage, setActivePage] = useState<'home' | 'work' | 'experience' | 'skills' | 'form'>('home');
+  const [activePage, setActivePage] = useState<'home' | 'work' | 'header' | 'footer' | 'experience' | 'skills' | 'form'>('home');
   const [message, setMessage] = useState<string | null>(null);
+
+  // WordPress Style Block Modal
+  const [isBlockModalOpen, setIsBlockModalOpen] = useState(false);
+  const [targetPageForBlock, setTargetPageForBlock] = useState<'home' | 'work' | 'experience'>('home');
+
+  // Header Config State
+  const [headerConfig, setHeaderConfig] = useState<HeaderConfigState>({
+    style: 'standard',
+    brandName: profileData.name,
+    avatarSrc: profileData.avatar,
+    navLinks: [
+      { id: 'nav-1', name: 'Giới thiệu', href: '/', visible: true },
+      { id: 'nav-2', name: 'Dự án (Work)', href: '/work', visible: true },
+      { id: 'nav-3', name: 'Kinh nghiệm', href: '/working-experience', visible: true },
+      { id: 'nav-4', name: 'Kỹ năng & Tools', href: '/skills', visible: true },
+      { id: 'nav-5', name: 'Liên hệ', href: '/contact', visible: true },
+    ],
+    showPhone: true,
+    phone: profileData.phone,
+    showCv: true,
+    cvPdf: profileData.cvPdf,
+  });
+
+  // Footer Config State
+  const [footerConfig, setFooterConfig] = useState<FooterConfigState>({
+    brandName: profileData.name,
+    slogan: 'Creative Planner & Social Media Specialist. Sinh viên Quan Hệ Công Chúng (PR) Đại Học Văn Lang (2022 – 2026).',
+    phone: profileData.phone,
+    email: profileData.email,
+    copyright: `© ${new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.`,
+    socialLinks: [
+      { id: 'soc-1', name: 'Toạ Độ Gen Z (@toadogenz)', href: '/work?tab=genz' },
+      { id: 'soc-2', name: 'La Cà Một Chút (@la.camotchut)', href: '/work?tab=fnb' },
+      { id: 'soc-3', name: 'Datbike Hồng Phương', href: '/work?tab=datbike' },
+    ],
+  });
 
   // =========================================================================
   // GLOBAL EDITABLE SITE DATA STATE
@@ -154,24 +197,17 @@ export default function EditLayoutPage() {
           },
           {
             id: 'lcca-5',
-            title: 'Shanchá Trà Sữa Trà Quán — Chi nhánh mới Trần Quốc Thảo',
-            views: '676',
-            hook: 'Góc quán trà phong cách thiền tĩnh lặng giữa trung tâm quận 3',
-            desc: 'Không gian trà quán tối giản mang phong cách Á Đông với đường nét lượn sóng thanh tao, địa điểm thưởng trà và trò chuyện nhẹ nhàng.'
+            title: 'BEAN THERE CAFE — Khu vườn cà phê xanh mướt trốn trong con hẻm',
+            views: '13.8K',
+            hook: 'Ngay tại Sài Gòn lại có 1 quán cà phê sân vườn xanh mướt chill đến vậy',
+            desc: 'Khu vườn cà phê ngập tràn cây xanh và ánh sáng tự nhiên với cả không gian indoor & outdoor thoáng đãng tại Bean There Cafe, lý tưởng để đi chill, hẹn hò hay ngồi làm việc.'
           },
           {
             id: 'lcca-6',
-            title: 'Thiba SPACE — Chiếc workspace xinh xắn ngay tại Q.1',
-            views: '523',
-            hook: 'Tìm một góc làm việc yên tĩnh ngập tràn ánh sáng tại trung tâm',
-            desc: 'Không gian co-working & cafe lý tưởng cho người làm việc tự do và sinh viên cần góc tập trung chạy deadline.'
-          },
-          {
-            id: 'lcca-7',
-            title: 'DALARRAT COFFEE — Ngồi giữa vườn xanh ở Nhà Bè',
-            views: '511',
-            hook: 'Một góc nhà gỗ mộc mạc ngập tràn cây xanh cuối tuần',
-            desc: 'Trốn ồn ào phố thị về với không gian vườn cây trong lành, bàn ghế gỗ mộc và ly cà phê mát lành.'
+            title: 'A LITTLE STUDIO — Tiệm cafe sách vibe thơ như câu chuyện cổ tích',
+            views: '15.8K',
+            hook: 'Tiệm cafe sách nhỏ xinh mang vibe thơ mộng như bước ra từ câu chuyện cổ tích',
+            desc: 'Một góc nhỏ cho ngày muốn sống chậm tại A Little Studio — tiệm cafe sách ấm cúng với kệ gỗ ngập tràn sách, nắng ghé bên khung cửa cùng bánh croissant và trà trái cây mát lành.'
           }
         ]
       },
@@ -327,7 +363,6 @@ export default function EditLayoutPage() {
     { id: 'work-bupsky', title: '4. Dự Án Búp Sky Cuisine Rooftop Q.1', visible: true, order: 3 },
     { id: 'work-datbike', title: '5. Kênh Datbike Hồng Phương', visible: true, order: 4 },
     { id: 'work-brand', title: '6. Chiến Dịch Brand Pitching & IMC', visible: true, order: 5 },
-    { id: 'work-slides', title: '7. 14 Slide Gốc HD (PDF)', visible: true, order: 6 },
   ]);
 
   // Experience blocks order & visibility
@@ -352,13 +387,15 @@ export default function EditLayoutPage() {
       const saved = localStorage.getItem('tolananh_site_data');
       if (saved) {
         const parsed = JSON.parse(saved);
+        if (parsed.header) setHeaderConfig(parsed.header);
+        if (parsed.footer) setFooterConfig(parsed.footer);
         if (parsed.siteData) setSiteData(parsed.siteData);
         if (parsed.homeBlocks) setHomeBlocks(parsed.homeBlocks);
         if (parsed.workBlocks) setWorkBlocks(parsed.workBlocks);
         if (parsed.expBlocks) setExpBlocks(parsed.expBlocks);
         if (parsed.moves) setMoves(parsed.moves);
         if (parsed.resizes) setResizes(parsed.resizes);
-        setMessage('Đã nạp bố cục tùy chỉnh từ trình duyệt của bạn.');
+        setMessage('Đã nạp toàn bộ bố cục, header & footer tùy chỉnh từ trình duyệt của bạn.');
         setTimeout(() => setMessage(null), 3000);
       }
     } catch (e) {
@@ -370,6 +407,9 @@ export default function EditLayoutPage() {
   const handleSave = () => {
     try {
       const dataToSave = {
+        header: headerConfig,
+        footer: footerConfig,
+        profile: siteData.profile,
         siteData,
         homeBlocks,
         workBlocks,
@@ -379,7 +419,7 @@ export default function EditLayoutPage() {
         updatedAt: new Date().toISOString(),
       };
       localStorage.setItem('tolananh_site_data', JSON.stringify(dataToSave));
-      setMessage('✅ Đã lưu toàn bộ bố cục và nội dung thành công! Trang live sẽ tự động cập nhật.');
+      setMessage('✅ Đã lưu toàn bộ bố cục trang, Header, Footer & nội dung thành công! Trang live sẽ tự động cập nhật.');
       setTimeout(() => setMessage(null), 4000);
     } catch (e) {
       console.error(e);
@@ -402,6 +442,8 @@ export default function EditLayoutPage() {
   // Export JSON file
   const handleExportJSON = () => {
     const dataToSave = {
+      header: headerConfig,
+      footer: footerConfig,
       siteData,
       homeBlocks,
       workBlocks,
@@ -429,6 +471,8 @@ export default function EditLayoutPage() {
       reader.onload = (event) => {
         try {
           const parsed = JSON.parse(event.target?.result as string);
+          if (parsed.header) setHeaderConfig(parsed.header);
+          if (parsed.footer) setFooterConfig(parsed.footer);
           if (parsed.siteData) setSiteData(parsed.siteData);
           if (parsed.homeBlocks) setHomeBlocks(parsed.homeBlocks);
           if (parsed.workBlocks) setWorkBlocks(parsed.workBlocks);
@@ -442,6 +486,146 @@ export default function EditLayoutPage() {
       };
       reader.readAsText(file);
     }
+  };
+
+  // Handle adding custom block from template
+  const handleSelectBlockType = (type: CustomBlockContent['type']) => {
+    const newId = `custom-${type}-${Date.now()}`;
+    let title = 'Khối Bố Cục Mới';
+    let defaultContent: CustomBlockContent = {
+      type,
+      bgColor: 'white',
+      align: 'left',
+    };
+
+    if (type === 'rich-text') {
+      title = 'Khối Đoạn Văn & Nút Bấm';
+      defaultContent = {
+        type: 'rich-text',
+        heading: 'Tiêu đề khối nội dung mới',
+        subheading: 'Hạng Mục Nổi Bật',
+        body: 'Đây là đoạn văn bản nội dung giới thiệu bạn có thể chỉnh sửa trực tiếp bằng cách nhấp chuột vào chữ.',
+        btnText: 'Xem Chi Tiết',
+        btnUrl: '#',
+        bgColor: 'white',
+        align: 'left',
+      };
+    } else if (type === 'cta-banner') {
+      title = 'Khối Banner Kêu Gọi Hành Động (CTA)';
+      defaultContent = {
+        type: 'cta-banner',
+        heading: 'Sẵn sàng khởi động chiến dịch truyền thông cùng Tô Lan Anh?',
+        subheading: 'Kết Nối & Hợp Tác',
+        body: 'Liên hệ ngay để cùng lên ý tưởng kịch bản và sản xuất video TikTok bắt kịp trào lưu.',
+        btnText: 'Gọi Hotline Ngay',
+        btnUrl: `tel:${profileData.phone.replace(/[^0-9]/g, '')}`,
+        bgColor: 'cream',
+        align: 'center',
+      };
+    } else if (type === 'stats-grid') {
+      title = 'Khối Thống Kê & Số Liệu';
+      defaultContent = {
+        type: 'stats-grid',
+        heading: 'Những Con Số Ấn Tượng',
+        body: 'Kết quả đạt được qua các dự án và chiến dịch nội dung short-form video.',
+        items: [
+          { value: '100K+', title: 'Lượt tiếp cận', desc: 'Video viral trên TikTok' },
+          { value: '4+', title: 'Kênh TikTok', desc: 'Chủ lực đã triển khai' },
+          { value: '100%', title: 'Tự lên kịch bản', desc: 'Quay & hậu kỳ chỉn chu' },
+          { value: 'Văn Lang', title: 'Cử nhân PR', desc: 'Tư duy chiến lược bài bản' },
+        ],
+        bgColor: 'white',
+      };
+    } else if (type === 'media-gallery') {
+      title = 'Khối Thư Viện Hình Ảnh';
+      defaultContent = {
+        type: 'media-gallery',
+        heading: 'Hình Ảnh Hoạt Động & Sự Kiện Thực Tế',
+        items: [
+          { image: '/images/lananh_vanlang_aodai.jpg', title: 'Tô Lan Anh · PR Văn Lang' },
+          { image: '/images/channels/toadogenz_channel.jpg', title: 'Kênh Toạ Độ Gen Z' },
+          { image: '/images/channels/bupsky_channel.jpg', title: 'Búp Sky Cuisine' },
+        ],
+        bgColor: 'white',
+      };
+    } else if (type === 'testimonial') {
+      title = 'Khối Trích Dẫn & Nhận Xét';
+      defaultContent = {
+        type: 'testimonial',
+        body: 'Tô Lan Anh là một bạn trẻ rất năng động, nắm bắt xu hướng nhanh nhạy và có tư duy hình ảnh, kịch bản video ngắn cực kỳ chỉn chu.',
+        quoteAuthor: 'Mentor & Giảng Viên PR Văn Lang',
+        quoteRole: 'Khoa Quan hệ Công chúng — Truyền thông',
+        quoteAvatar: '/images/lananh_vanlang_aodai.jpg',
+        bgColor: 'amber',
+      };
+    } else if (type === 'video-embed') {
+      title = 'Khối Giới Thiệu Video TikTok';
+      defaultContent = {
+        type: 'video-embed',
+        heading: 'Chiến Dịch Video TikTok Viral',
+        subheading: 'TikTok Spotlight',
+        body: 'Video ngắn sáng tạo bắt kịp trào lưu giới trẻ, tỷ lệ giữ chân người xem cao và tương tác tự nhiên.',
+        btnUrl: 'https://www.tiktok.com/@toadogenz',
+        bgColor: 'white',
+      };
+    } else if (type === 'quick-contact') {
+      title = 'Khối Liên Hệ Nhanh';
+      defaultContent = {
+        type: 'quick-contact',
+        heading: 'Liên Hệ & Kết Nối Trực Tiếp',
+        body: 'Kết nối nhanh cùng Tô Lan Anh cho các cơ hội hợp tác dự án truyền thông và sản xuất video.',
+        bgColor: 'cream',
+      };
+    }
+
+    const newBlock: BlockState = {
+      id: newId,
+      title: `${title} (Mới)`,
+      visible: true,
+      order: 99,
+      isCustom: true,
+      customContent: defaultContent,
+      bgColor: defaultContent.bgColor,
+    };
+
+    if (targetPageForBlock === 'home') {
+      setHomeBlocks(prev => [...prev, newBlock]);
+    } else if (targetPageForBlock === 'work') {
+      setWorkBlocks(prev => [...prev, newBlock]);
+    } else {
+      setExpBlocks(prev => [...prev, newBlock]);
+    }
+
+    setMessage(`✅ Đã thêm "${title}" vào trang! Bạn có thể nhấp vào để chỉnh sửa ngay.`);
+    setTimeout(() => setMessage(null), 4000);
+  };
+
+  // Delete block handler
+  const handleDeleteBlock = (blocks: BlockState[], setBlocks: React.Dispatch<React.SetStateAction<BlockState[]>>, id: string) => {
+    if (confirm('Bạn có chắc chắn muốn xoá khối bố cục này?')) {
+      setBlocks(blocks.filter(b => b.id !== id));
+      setMessage('Đã xoá khối bố cục.');
+      setTimeout(() => setMessage(null), 3000);
+    }
+  };
+
+  // Change block background color
+  const handleChangeBlockBg = (blocks: BlockState[], setBlocks: React.Dispatch<React.SetStateAction<BlockState[]>>, id: string, bg: string) => {
+    setBlocks(blocks.map(b => {
+      if (b.id === id) {
+        return {
+          ...b,
+          bgColor: bg,
+          customContent: b.customContent ? { ...b.customContent, bgColor: bg as any } : undefined,
+        };
+      }
+      return b;
+    }));
+  };
+
+  // Update custom block content
+  const handleUpdateCustomContent = (blocks: BlockState[], setBlocks: React.Dispatch<React.SetStateAction<BlockState[]>>, id: string, updated: CustomBlockContent) => {
+    setBlocks(blocks.map(b => b.id === id ? { ...b, customContent: updated } : b));
   };
 
   // Reordering helpers
@@ -547,6 +731,20 @@ export default function EditLayoutPage() {
             </button>
             <button
               type="button"
+              onClick={() => setActivePage('header')}
+              className={activePage === 'header' ? 'is-active !bg-amber-600 !text-white !border-amber-600' : ''}
+            >
+              🧭 Sửa Header &amp; Menu
+            </button>
+            <button
+              type="button"
+              onClick={() => setActivePage('footer')}
+              className={activePage === 'footer' ? 'is-active !bg-stone-800 !text-white !border-stone-800' : ''}
+            >
+              🦶 Sửa Footer &amp; Mạng Xã Hội
+            </button>
+            <button
+              type="button"
               onClick={() => setActivePage('experience')}
               className={activePage === 'experience' ? 'is-active' : ''}
             >
@@ -572,7 +770,15 @@ export default function EditLayoutPage() {
         {/* Global Actions */}
         <div className="layout-editor-actions">
           <Link
-            href={activePage === 'home' ? '/' : activePage === 'work' ? '/work' : activePage === 'experience' ? '/working-experience' : '/skills'}
+            href={
+              activePage === 'home' || activePage === 'header' || activePage === 'footer'
+                ? '/'
+                : activePage === 'work'
+                ? '/work'
+                : activePage === 'experience'
+                ? '/working-experience'
+                : '/skills'
+            }
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -639,6 +845,32 @@ export default function EditLayoutPage() {
         {/* ===================================================================== */}
         {activePage === 'home' && (
           <div className="space-y-6">
+
+            {/* WordPress Style Add Block Banner */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl border-2 border-dashed border-[#DECFC0] bg-[#FAF7F2] hover:bg-[#F3ECE0] transition-colors">
+              <div className="flex items-center gap-2.5">
+                <PlusCircle className="w-5 h-5 text-[#8C5A3C]" />
+                <div>
+                  <div className="text-sm font-bold text-[#14110F]">
+                    Thêm Khối Bố Cục Mới Vào Trang Chủ (WordPress Style Add Block)
+                  </div>
+                  <div className="text-xs text-[#7A6E65]">
+                    Chèn Đoạn văn &amp; Nút, Banner CTA, Lưới số liệu, Thư viện ảnh, Đánh giá hoặc Thẻ TikTok
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setTargetPageForBlock('home');
+                  setIsBlockModalOpen(true);
+                }}
+                className="px-4 py-2 bg-[#8C5A3C] hover:bg-[#72452B] text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow-xs transition-all self-start sm:self-auto cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>+ Thêm Khối Mới</span>
+              </button>
+            </div>
             
             {homeBlocks.map((block, idx) => {
               const moveKey = `home-${block.id}`;
@@ -654,9 +886,29 @@ export default function EditLayoutPage() {
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-xs text-amber-200">#{idx + 1}</span>
                       <span>{block.title}</span>
+                      {block.isCustom && (
+                        <span className="text-[10px] bg-amber-500/30 text-amber-200 px-1.5 py-0.5 rounded font-mono">
+                          Khối Tuỳ Biến
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-1.5">
+                      {/* Background Color Selector */}
+                      <div className="flex items-center gap-1 bg-black/20 px-2 py-0.5 rounded-md text-xs">
+                        <Palette className="w-3 h-3 text-amber-300" />
+                        <select
+                          value={block.bgColor || 'white'}
+                          onChange={(e) => handleChangeBlockBg(homeBlocks, setHomeBlocks, block.id, e.target.value)}
+                          className="bg-transparent text-xs text-white border-0 focus:ring-0 cursor-pointer"
+                        >
+                          <option value="white" className="text-black">Trắng</option>
+                          <option value="cream" className="text-black">Be nhạt</option>
+                          <option value="dark" className="text-black">Đen</option>
+                          <option value="amber" className="text-black">Vàng ấm</option>
+                        </select>
+                      </div>
+
                       <button
                         type="button"
                         onClick={() => moveBlock(homeBlocks, setHomeBlocks, idx, 'up')}
@@ -692,8 +944,44 @@ export default function EditLayoutPage() {
                           </>
                         )}
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteBlock(homeBlocks, setHomeBlocks, block.id)}
+                        className="inline-flex items-center gap-1 text-xs text-red-300 hover:text-red-100 hover:bg-red-500/20 px-2 py-0.5 rounded transition-colors"
+                        title="Xoá khối này"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        <span>Xoá</span>
+                      </button>
                     </div>
                   </div>
+
+                  {/* Custom Injected Block with Live Editing */}
+                  {block.isCustom && block.customContent && (
+                    <div
+                      className="p-4"
+                      style={{
+                        transform: `translate(${offset.x}px, ${offset.y}px)`,
+                      }}
+                    >
+                      <div className="movable is-editing relative">
+                        <button
+                          type="button"
+                          onMouseDown={(e) => startDrag(moveKey, e)}
+                          className="move-handle"
+                          title="Giữ chuột và kéo để dời vị trí khối này"
+                        >
+                          <Move className="w-3 h-3" />
+                          <span>Move</span>
+                        </button>
+                        <CustomBlockRenderer
+                          content={block.customContent}
+                          isEditable={true}
+                          onUpdate={(updated) => handleUpdateCustomContent(homeBlocks, setHomeBlocks, block.id, updated)}
+                        />
+                      </div>
+                    </div>
+                  )}
 
                   {/* Block 1: Hero Banner */}
                   {block.id === 'hero' && (
@@ -1005,6 +1293,21 @@ export default function EditLayoutPage() {
               );
             })}
 
+            {/* Bottom Add Block for Home */}
+            <div className="flex items-center justify-center p-4 rounded-xl border-2 border-dashed border-[#DECFC0] bg-[#FAF7F2] hover:bg-[#F3ECE0] transition-colors">
+              <button
+                type="button"
+                onClick={() => {
+                  setTargetPageForBlock('home');
+                  setIsBlockModalOpen(true);
+                }}
+                className="px-5 py-2.5 bg-[#8C5A3C] hover:bg-[#72452B] text-white text-xs font-bold rounded-lg flex items-center gap-2 shadow-xs transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>+ Chèn Thêm Khối Mới Cho Trang Chủ</span>
+              </button>
+            </div>
+
           </div>
         )}
 
@@ -1013,6 +1316,32 @@ export default function EditLayoutPage() {
         {/* ===================================================================== */}
         {activePage === 'work' && (
           <div className="space-y-6">
+
+            {/* WordPress Style Add Block Banner for Work */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl border-2 border-dashed border-[#DECFC0] bg-[#FAF7F2] hover:bg-[#F3ECE0] transition-colors">
+              <div className="flex items-center gap-2.5">
+                <PlusCircle className="w-5 h-5 text-[#8C5A3C]" />
+                <div>
+                  <div className="text-sm font-bold text-[#14110F]">
+                    Thêm Khối Bố Cục Mới Vào Trang Dự Án (Work)
+                  </div>
+                  <div className="text-xs text-[#7A6E65]">
+                    Chèn Video TikTok, Banner kêu gọi, Thư viện ảnh, Đoạn văn hoặc Lưới số liệu
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setTargetPageForBlock('work');
+                  setIsBlockModalOpen(true);
+                }}
+                className="px-4 py-2 bg-[#8C5A3C] hover:bg-[#72452B] text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow-xs transition-all self-start sm:self-auto cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>+ Thêm Khối Mới</span>
+              </button>
+            </div>
             
             {workBlocks.map((block, idx) => {
               const moveKey = `work-${block.id}`;
@@ -1027,14 +1356,35 @@ export default function EditLayoutPage() {
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-xs text-amber-200">#{idx + 1}</span>
                       <span>{block.title}</span>
+                      {block.isCustom && (
+                        <span className="text-[10px] bg-amber-500/30 text-amber-200 px-1.5 py-0.5 rounded font-mono">
+                          Khối Tuỳ Biến
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-1.5">
+                      {/* Background Color Selector */}
+                      <div className="flex items-center gap-1 bg-black/20 px-2 py-0.5 rounded-md text-xs">
+                        <Palette className="w-3 h-3 text-amber-300" />
+                        <select
+                          value={block.bgColor || 'white'}
+                          onChange={(e) => handleChangeBlockBg(workBlocks, setWorkBlocks, block.id, e.target.value)}
+                          className="bg-transparent text-xs text-white border-0 focus:ring-0 cursor-pointer"
+                        >
+                          <option value="white" className="text-black">Trắng</option>
+                          <option value="cream" className="text-black">Be nhạt</option>
+                          <option value="dark" className="text-black">Đen</option>
+                          <option value="amber" className="text-black">Vàng ấm</option>
+                        </select>
+                      </div>
+
                       <button
                         type="button"
                         onClick={() => moveBlock(workBlocks, setWorkBlocks, idx, 'up')}
                         disabled={idx === 0}
                         className="disabled:opacity-40"
+                        title="Di chuyển lên"
                       >
                         <ChevronUp className="w-3.5 h-3.5" />
                       </button>
@@ -1043,6 +1393,7 @@ export default function EditLayoutPage() {
                         onClick={() => moveBlock(workBlocks, setWorkBlocks, idx, 'down')}
                         disabled={idx === workBlocks.length - 1}
                         className="disabled:opacity-40"
+                        title="Di chuyển xuống"
                       >
                         <ChevronDown className="w-3.5 h-3.5" />
                       </button>
@@ -1051,10 +1402,56 @@ export default function EditLayoutPage() {
                         onClick={() => toggleVisibility(workBlocks, setWorkBlocks, block.id)}
                         className="inline-flex items-center gap-1 text-xs"
                       >
-                        {block.visible ? <span>Ẩn</span> : <span>Hiện</span>}
+                        {block.visible ? (
+                          <>
+                            <Eye className="w-3 h-3" />
+                            <span>Ẩn</span>
+                          </>
+                        ) : (
+                          <>
+                            <EyeOff className="w-3 h-3 text-red-400" />
+                            <span>Hiện</span>
+                          </>
+                        )}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteBlock(workBlocks, setWorkBlocks, block.id)}
+                        className="inline-flex items-center gap-1 text-xs text-red-300 hover:text-red-100 hover:bg-red-500/20 px-2 py-0.5 rounded transition-colors"
+                        title="Xoá khối này"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        <span>Xoá</span>
                       </button>
                     </div>
                   </div>
+
+                  {/* Custom Injected Block with Live Editing */}
+                  {block.isCustom && block.customContent && (
+                    <div
+                      className="p-4"
+                      style={{
+                        transform: `translate(${offset.x}px, ${offset.y}px)`,
+                      }}
+                    >
+                      <div className="movable is-editing relative">
+                        <button
+                          type="button"
+                          onMouseDown={(e) => startDrag(moveKey, e)}
+                          className="move-handle"
+                          title="Giữ chuột và kéo để dời vị trí khối này"
+                        >
+                          <Move className="w-3 h-3" />
+                          <span>Move</span>
+                        </button>
+                        <CustomBlockRenderer
+                          content={block.customContent}
+                          isEditable={true}
+                          onUpdate={(updated) => handleUpdateCustomContent(workBlocks, setWorkBlocks, block.id, updated)}
+                        />
+                      </div>
+                    </div>
+                  )}
 
                   {/* Work Header Banner */}
                   {block.id === 'work-header' && (
@@ -1281,7 +1678,7 @@ export default function EditLayoutPage() {
                   )}
 
                   {/* Datbike & Brand blocks */}
-                  {(block.id === 'work-datbike' || block.id === 'work-brand' || block.id === 'work-slides') && (
+                  {(block.id === 'work-datbike' || block.id === 'work-brand') && (
                     <div className="p-6 bg-white border border-[#DECFC0] rounded-b-2xl shadow-xs" style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}>
                       <div className="movable is-editing relative">
                         <button type="button" onMouseDown={(e) => startDrag(moveKey, e)} className="move-handle">
@@ -1301,7 +1698,44 @@ export default function EditLayoutPage() {
               );
             })}
 
+            {/* Bottom Add Block for Work */}
+            <div className="flex items-center justify-center p-4 rounded-xl border-2 border-dashed border-[#DECFC0] bg-[#FAF7F2] hover:bg-[#F3ECE0] transition-colors">
+              <button
+                type="button"
+                onClick={() => {
+                  setTargetPageForBlock('work');
+                  setIsBlockModalOpen(true);
+                }}
+                className="px-5 py-2.5 bg-[#8C5A3C] hover:bg-[#72452B] text-white text-xs font-bold rounded-lg flex items-center gap-2 shadow-xs transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>+ Chèn Thêm Khối Mới Cho Trang Dự Án (Work)</span>
+              </button>
+            </div>
+
           </div>
+        )}
+
+        {/* ===================================================================== */}
+        {/* VIEW: HEADER & NAVIGATION LAYOUT EDITOR */}
+        {/* ===================================================================== */}
+        {activePage === 'header' && (
+          <HeaderLayoutEditor
+            config={headerConfig}
+            onChange={setHeaderConfig}
+            onSave={handleSave}
+          />
+        )}
+
+        {/* ===================================================================== */}
+        {/* VIEW: FOOTER & SOCIALS LAYOUT EDITOR */}
+        {/* ===================================================================== */}
+        {activePage === 'footer' && (
+          <FooterLayoutEditor
+            config={footerConfig}
+            onChange={setFooterConfig}
+            onSave={handleSave}
+          />
         )}
 
         {/* ===================================================================== */}
@@ -1765,6 +2199,13 @@ export default function EditLayoutPage() {
         )}
 
       </main>
+
+      {/* WordPress Style Block Inserter Modal */}
+      <AddBlockModal
+        isOpen={isBlockModalOpen}
+        onClose={() => setIsBlockModalOpen(false)}
+        onSelectType={handleSelectBlockType}
+      />
 
     </div>
   );

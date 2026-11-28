@@ -5,11 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DynamicCustomBlocksList from '@/components/DynamicCustomBlocksList';
 import { 
-  Coffee, FolderDown, ExternalLink, Sparkles, 
+  Coffee, ExternalLink, Sparkles, 
   Play, Eye, Heart, MessageCircle, Share2, 
   CheckCircle2, ArrowRight, Maximize2, X, ChevronLeft, ChevronRight,
-  Award, Layers, Compass, Bike
+  Award, Compass, Bike
 } from 'lucide-react';
 import { featuredVideos, VideoItem, caseStudies, tiktokChannels } from '@/app/data';
 import IPhone12ProMaxMockup from '@/components/IPhone12ProMaxMockup';
@@ -38,8 +39,8 @@ const allSlides = [
 ];
 
 export default function WorkPage() {
-  // Category tab state: 'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand' | 'slides'
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand' | 'slides'>('all');
+  // Category tab state: 'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand'
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand'>('all');
 
   // Active Video States
   const [activeGenzVideo, setActiveGenzVideo] = useState<VideoItem>(genzVideos[0] || featuredVideos[0]);
@@ -69,8 +70,8 @@ export default function WorkPage() {
             Kênh <strong className="text-[#14110F]">Toạ Độ Gen Z (@toadogenz)</strong>, 
             Kênh <strong className="text-[#14110F]">La Cà Một Chút (@la.camotchut)</strong>, 
             Dự án <strong className="text-[#14110F]">Búp Sky Cuisine</strong>, 
-            Kênh <strong className="text-[#14110F]">Datbike Hồng Phương</strong>, 
-            Chiến dịch Brand Pitching &amp; IMC hoặc Toàn bộ 14 Slide HD gốc.
+            Kênh <strong className="text-[#14110F]">Datbike Hồng Phương</strong>{' '}
+            và Chiến dịch Brand Pitching &amp; IMC.
           </p>
 
           {/* Interactive Category Switcher */}
@@ -144,18 +145,6 @@ export default function WorkPage() {
             >
               <Award className="w-3.5 h-3.5 text-[#8C5A3C]" />
               <span>Brand Pitching &amp; IMC</span>
-            </button>
-
-            <button
-              onClick={() => setSelectedCategory('slides')}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
-                selectedCategory === 'slides'
-                  ? 'bg-[#14110F] text-white shadow-xs'
-                  : 'bg-[#F8F6F1] text-[#635952] border border-[rgba(20,17,15,0.08)] hover:bg-white hover:text-[#14110F]'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5 text-[#8C5A3C]" />
-              <span>14 Slide Gốc HD (PDF)</span>
             </button>
           </div>
         </div>
@@ -805,92 +794,6 @@ export default function WorkPage() {
         </section>
       )}
 
-      {/* ========================================================================= */}
-      {/* 6. HẠNG MỤC: TOÀN BỘ 14 SLIDE PORTFOLIO GỐC HD (Show when 'all' or 'slides') */}
-      {/* ========================================================================= */}
-      {(selectedCategory === 'all' || selectedCategory === 'slides') && (
-        <section className="py-16 md:py-20 bg-[#F8F6F1]">
-          <div className="container space-y-8">
-            
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[rgba(20,17,15,0.08)]">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[rgba(20,17,15,0.08)] text-xs font-bold text-[#8C5A3C]">
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>NGUYÊN BẢN PORTFOLIO CHUẨN ĐỒ ÁN</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14110F] tracking-tight mt-1">
-                  14 Trang Slide Gốc (Bản Thiết Kế Mới Nhất 2026)
-                </h2>
-                <p className="text-xs sm:text-sm text-[#635952]">
-                  Bấm vào từng trang để phóng to toàn màn hình chất lượng cao hoặc tải file PDF gốc.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="/Portfolio_ToLanAnh.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                >
-                  <FolderDown className="w-4 h-4 text-[#D5CEBE]" />
-                  <span>Tải Portfolio PDF (14 Trang)</span>
-                </a>
-                <a
-                  href="/ToLanAnh_CV.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary"
-                >
-                  <FolderDown className="w-4 h-4 text-[#8C5A3C]" />
-                  <span>Tải CV Song Ngữ</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allSlides.map((slide) => (
-                <div
-                  key={slide.index}
-                  onClick={() => setLightboxSlide(slide.index)}
-                  className="bg-white rounded-2xl overflow-hidden border border-[rgba(20,17,15,0.08)] shadow-xs hover:shadow-elevated transition-all group cursor-pointer"
-                >
-                  <div className="relative aspect-[16/9] w-full bg-[#EFECE4] overflow-hidden">
-                    <Image
-                      src={slide.src}
-                      alt={slide.title}
-                      fill
-                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center text-white opacity-0 group-hover:opacity-100">
-                      <div className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-xs font-medium flex items-center gap-1.5">
-                        <Maximize2 className="w-3.5 h-3.5" />
-                        <span>Phóng to slide #{slide.index}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-4 flex items-center justify-between border-t border-[rgba(20,17,15,0.06)]">
-                    <div className="space-y-0.5 min-w-0 pr-2">
-                      <div className="text-xs font-bold text-[#8C5A3C]">
-                        Trang {slide.index < 10 ? `0${slide.index}` : slide.index}/14 • {slide.category}
-                      </div>
-                      <div className="text-sm font-bold text-[#14110F] truncate">
-                        {slide.title}
-                      </div>
-                    </div>
-                    <span className="text-xs font-bold text-[#8C5A3C] group-hover:translate-x-1 transition-transform">
-                      →
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-      )}
-
       {/* Lightbox Modal for Slides */}
       {lightboxSlide !== null && (
         <div 
@@ -947,6 +850,9 @@ export default function WorkPage() {
           </div>
         </div>
       )}
+
+      {/* Dynamic Custom Layout Blocks Added via /edit */}
+      <DynamicCustomBlocksList page="work" />
 
       <Footer />
     </main>
