@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import CustomBlockRenderer, { CustomBlockContent } from './CustomBlockRenderer';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 interface DynamicBlock {
   id: string;
@@ -17,27 +17,17 @@ interface DynamicCustomBlocksListProps {
 }
 
 export default function DynamicCustomBlocksList({ page }: DynamicCustomBlocksListProps) {
-  const [customBlocks, setCustomBlocks] = useState<DynamicBlock[]>([]);
+  const { persisted } = useSiteData();
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('tolananh_site_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        const blocksKey = page === 'home' ? 'homeBlocks' : page === 'work' ? 'workBlocks' : 'expBlocks';
-        const blocks: DynamicBlock[] = parsed[blocksKey];
-        if (blocks && Array.isArray(blocks)) {
-          // Filter to only visible custom blocks that were added by user
-          const filtered = blocks.filter((b) => b.isCustom && b.visible !== false && b.customContent);
-          setCustomBlocks(filtered);
-        }
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, [page]);
+  const blocksKey = page === 'home' ? 'homeBlocks' : page === 'work' ? 'workBlocks' : 'expBlocks';
+  const rawBlocks = persisted?.[blocksKey] as DynamicBlock[] | undefined;
 
-  if (!customBlocks || customBlocks.length === 0) {
+  const customBlocks =
+    rawBlocks && Array.isArray(rawBlocks)
+      ? rawBlocks.filter((b) => b.isCustom && b.visible !== false && b.customContent)
+      : [];
+
+  if (customBlocks.length === 0) {
     return null;
   }
 

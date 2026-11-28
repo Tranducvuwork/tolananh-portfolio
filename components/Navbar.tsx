@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Download } from 'lucide-react';
 import { profileData } from '@/app/data';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 export interface NavLinkItem {
   id?: string;
@@ -14,49 +15,39 @@ export interface NavLinkItem {
   visible?: boolean;
 }
 
+const DEFAULT_NAV_LINKS: NavLinkItem[] = [
+  { name: 'Giới thiệu', href: '/' },
+  { name: 'Dự án (Work)', href: '/work' },
+  { name: 'Kinh nghiệm', href: '/working-experience' },
+  { name: 'Kỹ năng & Tools', href: '/skills' },
+  { name: 'Liên hệ', href: '/contact' },
+];
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { persisted } = useSiteData();
 
-  const [brandName, setBrandName] = useState(profileData.name);
-  const [brandAvatar, setBrandAvatar] = useState(profileData.avatar);
-  const [navLinks, setNavLinks] = useState<NavLinkItem[]>([
-    { name: 'Giới thiệu', href: '/' },
-    { name: 'Dự án (Work)', href: '/work' },
-    { name: 'Kinh nghiệm', href: '/working-experience' },
-    { name: 'Kỹ năng & Tools', href: '/skills' },
-    { name: 'Liên hệ', href: '/contact' },
-  ]);
-  const [showPhone, setShowPhone] = useState(true);
-  const [phoneNumber, setPhoneNumber] = useState(profileData.phone);
-  const [showCv, setShowCv] = useState(true);
-  const [headerStyle, setHeaderStyle] = useState<'standard' | 'centered' | 'pill'>('standard');
+  const headerCfg = persisted?.header;
+  const profileCfg = persisted?.siteData?.profile || persisted?.profile;
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('tolananh_site_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.header) {
-          if (parsed.header.brandName) setBrandName(parsed.header.brandName);
-          if (parsed.header.avatarSrc) setBrandAvatar(parsed.header.avatarSrc);
-          if (parsed.header.navLinks && Array.isArray(parsed.header.navLinks)) {
-            setNavLinks(parsed.header.navLinks.filter((l: any) => l.visible !== false));
-          }
-          if (parsed.header.showPhone !== undefined) setShowPhone(parsed.header.showPhone);
-          if (parsed.header.phone) setPhoneNumber(parsed.header.phone);
-          if (parsed.header.showCv !== undefined) setShowCv(parsed.header.showCv);
-          if (parsed.header.style) setHeaderStyle(parsed.header.style);
-        } else if (parsed.profile) {
-          if (parsed.profile.name) setBrandName(parsed.profile.name);
-          if (parsed.profile.avatarSrc) setBrandAvatar(parsed.profile.avatarSrc);
-          if (parsed.profile.phone) setPhoneNumber(parsed.profile.phone);
-        }
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, []);
+  const brandName: string =
+    headerCfg?.brandName || profileCfg?.name || profileData.name;
+  const brandAvatar: string =
+    headerCfg?.avatarSrc || profileCfg?.avatarSrc || profileData.avatar;
+  const navLinks: NavLinkItem[] =
+    headerCfg?.navLinks && Array.isArray(headerCfg.navLinks)
+      ? headerCfg.navLinks.filter((l: any) => l.visible !== false)
+      : DEFAULT_NAV_LINKS;
+  const showPhone: boolean =
+    headerCfg?.showPhone !== undefined ? Boolean(headerCfg.showPhone) : true;
+  const phoneNumber: string =
+    headerCfg?.phone || profileCfg?.phone || profileData.phone;
+  const showCv: boolean =
+    headerCfg?.showCv !== undefined ? Boolean(headerCfg.showCv) : true;
+  const cvHref: string = headerCfg?.cvPdf || profileData.cvPdf;
+  const headerStyle: 'standard' | 'centered' | 'pill' =
+    headerCfg?.style || 'standard';
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -76,13 +67,13 @@ export default function Navbar() {
       <div className={`container nav-inner ${headerStyle === 'centered' ? 'justify-between' : ''}`}>
         {/* Brand */}
         <Link href="/" className="brand">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={brandAvatar || profileData.avatar}
             alt={brandName}
             className="brand-img object-cover object-center"
             width={40}
             height={40}
-            priority
           />
           <span>{brandName}</span>
         </Link>
@@ -93,7 +84,7 @@ export default function Navbar() {
             const active = isActive(link.href);
             return (
               <Link
-                key={link.name}
+                key={link.id || link.name}
                 href={link.href}
                 className={active ? 'active' : ''}
               >
@@ -107,7 +98,7 @@ export default function Navbar() {
         <div className="hidden sm:flex items-center gap-2.5">
           {showCv && (
             <a
-              href={profileData.cvPdf}
+              href={cvHref}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary btn-sm"
@@ -146,7 +137,7 @@ export default function Navbar() {
               const active = isActive(link.href);
               return (
                 <Link
-                  key={link.name}
+                  key={link.id || link.name}
                   href={link.href}
                   className={`text-base font-semibold py-2 px-3 rounded-lg transition-colors ${
                     active ? 'bg-[#8C5A3C] text-white' : 'text-[#2D2723] hover:bg-black/5'
@@ -161,7 +152,7 @@ export default function Navbar() {
           <div className="pt-4 border-t border-[rgba(20,17,15,0.08)] flex flex-col gap-2.5">
             {showCv && (
               <a
-                href={profileData.cvPdf}
+                href={cvHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary justify-center w-full"

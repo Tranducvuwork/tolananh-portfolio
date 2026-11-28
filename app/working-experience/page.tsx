@@ -10,13 +10,52 @@ import {
 } from 'lucide-react';
 import { profileData } from '@/app/data';
 import CertificatesSection from '@/components/CertificatesSection';
+import DynamicCustomBlocksList from '@/components/DynamicCustomBlocksList';
+import { readPersistedSiteData } from '@/lib/site-storage';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Working Experience & Education | Tô Lan Anh Portfolio',
   description: 'Hồ sơ học vấn, kinh nghiệm làm việc và kỹ năng chuyên môn của Tô Lan Anh (Đại Học Văn Lang PR, ColorMe, DN Phát Thủy, Suzuki Hồng Phương, Hải Phi).',
 };
 
-export default function WorkingExperiencePage() {
+export default async function WorkingExperiencePage() {
+  const persisted = await readPersistedSiteData();
+  const savedExp = persisted?.siteData?.experience;
+  const savedProfile = persisted?.siteData?.profile || persisted?.profile;
+
+  const experienceList =
+    savedExp?.jobs && Array.isArray(savedExp.jobs) && savedExp.jobs.length > 0
+      ? savedExp.jobs.map((j: any) => ({
+          role: j.role,
+          company: j.company,
+          period: j.period,
+          focus: j.focus,
+          points: [j.point1, j.point2, j.point3]
+            .filter(Boolean)
+            .map((p: string) => p.replace(/^\s*•\s*/, '')),
+        }))
+      : profileData.experience;
+
+  const educationList =
+    savedExp?.education
+      ? profileData.education.map((edu, idx) =>
+          idx === 0
+            ? {
+                ...edu,
+                school: savedExp.education.school || edu.school,
+                major: savedExp.education.major || edu.major,
+                period: savedExp.education.period || edu.period,
+                details: savedExp.education.details || edu.details,
+              }
+            : edu
+        )
+      : profileData.education;
+
+  const studentPhoto = savedProfile?.studentPhotoSrc || profileData.studentPhoto || '/images/lananh_vanlang_aodai.jpg';
+  const displayName = savedProfile?.name || profileData.name;
+  const displayAvatar = savedProfile?.avatarSrc || profileData.avatar;
   const tools = [
     { name: 'CapCut', desc: 'Dựng short-form video nhịp điệu cao', icon: Scissors, tag: 'Expert' },
     { name: 'Photoshop', desc: 'Chứng chỉ ColorMe 2025', icon: Palette, tag: 'Certified' },
@@ -41,14 +80,17 @@ export default function WorkingExperiencePage() {
                 KINH NGHIỆM LÀM VIỆC &amp; HỌC VẤN
               </p>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight leading-[1.15]">
-                Học vấn &amp; Hành trình <br />
-                Kinh nghiệm thực chiến
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight leading-[1.15] whitespace-pre-line">
+                {savedExp?.bannerTitle || 'Học vấn & Hành trình\nKinh nghiệm thực chiến'}
               </h1>
 
-              <p className="page-lead">
-                Nền tảng đào tạo bài bản từ chuyên ngành <strong className="text-[#14110F] font-semibold">Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp kinh nghiệm thực chiến trong phát triển nội dung đa dạng trên TikTok (Toạ Độ Gen Z @toadogenz, kênh F&amp;B @la.camotchut tone Be, Datbike Hồng Phương @datbikehongphuong) và hoạch định chiến dịch truyền thông tích hợp (IMC).
-              </p>
+              {savedExp?.bannerSub ? (
+                <p className="page-lead whitespace-pre-line">{savedExp.bannerSub}</p>
+              ) : (
+                <p className="page-lead">
+                  Nền tảng đào tạo bài bản từ chuyên ngành <strong className="text-[#14110F] font-semibold">Quan Hệ Công Chúng (PR) Đại Học Văn Lang</strong> kết hợp kinh nghiệm thực chiến trong phát triển nội dung đa dạng trên TikTok (Toạ Độ Gen Z @toadogenz, kênh F&amp;B @la.camotchut tone Be, Datbike Hồng Phương @datbikehongphuong) và hoạch định chiến dịch truyền thông tích hợp (IMC).
+                </p>
+              )}
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -91,14 +133,15 @@ export default function WorkingExperiencePage() {
                 <div className="flex items-center gap-4 pb-4 border-b border-[#ECE4D8]">
                   <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#9E6B47] flex-shrink-0">
                     <Image
-                      src={profileData.avatar}
-                      alt={profileData.name}
+                      src={displayAvatar}
+                      alt={displayName}
                       fill
                       className="object-cover object-center"
+                      unoptimized={displayAvatar.startsWith('data:')}
                     />
                   </div>
                   <div>
-                    <h3 className="font-sans text-lg font-bold text-[#1E1611]">{profileData.name}</h3>
+                    <h3 className="font-sans text-lg font-bold text-[#1E1611]">{displayName}</h3>
                     <p className="text-xs font-mono text-[#9E6B47]">Creative Planner • Social Media</p>
                     <span className="text-[11px] text-[#5C4D43] font-mono">Văn Lang University (2022-2026)</span>
                   </div>
@@ -197,7 +240,7 @@ export default function WorkingExperiencePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {profileData.experience.map((exp, idx) => (
+              {experienceList.map((exp: any, idx: number) => (
                 <div key={idx} className="editorial-card p-6 bg-white space-y-4 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono">
@@ -211,7 +254,7 @@ export default function WorkingExperiencePage() {
                     </div>
 
                     <ul className="space-y-2 pt-2 border-t border-[#ECE4D8] text-xs text-[#4A3A2C]">
-                      {exp.points.map((pt, pIdx) => (
+                      {exp.points.map((pt: string, pIdx: number) => (
                         <li key={pIdx} className="flex items-start gap-2">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#9E6B47] flex-shrink-0 mt-0.5" />
                           <span>{pt}</span>
@@ -247,10 +290,11 @@ export default function WorkingExperiencePage() {
               <div className="lg:col-span-4 editorial-card p-4 bg-white flex flex-col justify-between border border-[#DECFC0] shadow-xs">
                 <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden border border-[#ECE4D8] bg-[#FAF7F2]">
                   <Image
-                    src={profileData.studentPhoto || '/images/lananh_vanlang_aodai.jpg'}
-                    alt="Tô Lan Anh - Sinh viên PR Văn Lang"
+                    src={studentPhoto}
+                    alt={`${displayName} - Sinh viên PR Văn Lang`}
                     fill
                     className="object-cover object-top"
+                    unoptimized={studentPhoto.startsWith('data:')}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3">
                     <span className="text-[11px] font-mono font-medium text-white/95 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
@@ -259,14 +303,14 @@ export default function WorkingExperiencePage() {
                   </div>
                 </div>
                 <div className="pt-3 text-center">
-                  <h4 className="font-sans font-bold text-sm text-[#1E1611]">Tô Lan Anh</h4>
+                  <h4 className="font-sans font-bold text-sm text-[#1E1611]">{displayName}</h4>
                   <p className="text-[11px] text-[#5C4D43] font-mono">Chuyên ngành Quan Hệ Công Chúng (2022 - 2026)</p>
                 </div>
               </div>
 
               {/* Education Breakdown Cards (8 cols) */}
               <div className="lg:col-span-8 flex flex-col justify-between gap-5">
-                {profileData.education.map((edu, idx) => (
+                {educationList.map((edu, idx) => (
                   <div key={idx} className="editorial-card p-6 bg-white space-y-3 flex-1 flex flex-col justify-between border border-[#DECFC0]">
                     <div>
                       <div className="flex items-center justify-between text-xs font-mono">
@@ -386,6 +430,8 @@ export default function WorkingExperiencePage() {
 
         </div>
       </section>
+
+      <DynamicCustomBlocksList page="experience" />
 
       <Footer />
     </main>

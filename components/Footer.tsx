@@ -1,46 +1,38 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowUp, Sofa, Coffee, Download, Phone, Mail, Globe, Sparkles } from 'lucide-react';
+import { ArrowUp, Download } from 'lucide-react';
 import { profileData } from '@/app/data';
+import { useSiteData } from '@/components/SiteDataProvider';
+
+const DEFAULT_SOCIAL_LINKS = [
+  { name: 'Toạ Độ Gen Z (@toadogenz)', href: '/work?tab=genz' },
+  { name: 'La Cà Một Chút (@la.camotchut)', href: '/work?tab=fnb' },
+  { name: 'Datbike Hồng Phương', href: '/work?tab=datbike' },
+];
 
 export default function Footer() {
-  const [brandName, setBrandName] = useState(profileData.name);
-  const [slogan, setSlogan] = useState('Creative Planner & Social Media Specialist. Sinh viên Quan Hệ Công Chúng (PR) Đại Học Văn Lang (2022 – 2026).');
-  const [phoneNumber, setPhoneNumber] = useState(profileData.phone);
-  const [email, setEmail] = useState(profileData.email);
-  const [copyrightText, setCopyrightText] = useState(`© ${new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.`);
-  const [socialLinks, setSocialLinks] = useState([
-    { name: 'Toạ Độ Gen Z (@toadogenz)', href: '/work?tab=genz' },
-    { name: 'La Cà Một Chút (@la.camotchut)', href: '/work?tab=fnb' },
-    { name: 'Datbike Hồng Phương', href: '/work?tab=datbike' },
-  ]);
+  const { persisted } = useSiteData();
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('tolananh_site_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.footer) {
-          if (parsed.footer.brandName) setBrandName(parsed.footer.brandName);
-          if (parsed.footer.slogan) setSlogan(parsed.footer.slogan);
-          if (parsed.footer.phone) setPhoneNumber(parsed.footer.phone);
-          if (parsed.footer.email) setEmail(parsed.footer.email);
-          if (parsed.footer.copyright) setCopyrightText(parsed.footer.copyright);
-          if (parsed.footer.socialLinks && Array.isArray(parsed.footer.socialLinks)) {
-            setSocialLinks(parsed.footer.socialLinks);
-          }
-        } else if (parsed.profile) {
-          if (parsed.profile.name) setBrandName(parsed.profile.name);
-          if (parsed.profile.phone) setPhoneNumber(parsed.profile.phone);
-          if (parsed.profile.email) setEmail(parsed.profile.email);
-        }
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, []);
+  const footerCfg = persisted?.footer;
+  const profileCfg = persisted?.siteData?.profile || persisted?.profile;
+
+  const brandName: string =
+    footerCfg?.brandName || profileCfg?.name || profileData.name;
+  const slogan: string =
+    footerCfg?.slogan ||
+    'Creative Planner & Social Media Specialist. Sinh viên Quan Hệ Công Chúng (PR) Đại Học Văn Lang (2022 – 2026).';
+  const phoneNumber: string =
+    footerCfg?.phone || profileCfg?.phone || profileData.phone;
+  const email: string =
+    footerCfg?.email || profileCfg?.email || profileData.email;
+  const copyrightText: string =
+    footerCfg?.copyright ||
+    `© ${new Date().getFullYear()} Tô Lan Anh Portfolio · Handcrafted with Be Vietnam Pro.`;
+  const socialLinks: Array<{ id?: string; name: string; href: string }> =
+    footerCfg?.socialLinks && Array.isArray(footerCfg.socialLinks)
+      ? footerCfg.socialLinks
+      : DEFAULT_SOCIAL_LINKS;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -98,7 +90,7 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-1 gap-2 text-sm">
               {socialLinks.map((item, idx) => (
-                <Link key={idx} href={item.href} className="hover:text-white transition-colors flex items-center gap-1.5">
+                <Link key={item.id || idx} href={item.href} className="hover:text-white transition-colors flex items-center gap-1.5">
                   <span>{item.name}</span>
                 </Link>
               ))}

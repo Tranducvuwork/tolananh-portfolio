@@ -11,9 +11,15 @@ import {
 } from 'lucide-react';
 import { profileData, featuredVideos, caseStudies, certificates, tiktokChannels } from '@/app/data';
 import CustomBlockRenderer, { CustomBlockContent } from '@/components/CustomBlockRenderer';
+import SafeContentEditable from '@/components/SafeContentEditable';
 import AddBlockModal from '@/components/AddBlockModal';
 import HeaderLayoutEditor, { HeaderConfigState } from '@/components/HeaderLayoutEditor';
 import FooterLayoutEditor, { FooterConfigState } from '@/components/FooterLayoutEditor';
+import {
+  useSiteData,
+  broadcastSiteDataChange,
+  SITE_DATA_STORAGE_KEY,
+} from '@/components/SiteDataProvider';
 
 export interface BlockState {
   id: string;
@@ -104,17 +110,49 @@ export default function EditLayoutPage() {
       stat3Label: 'Tự lên kịch bản & dựng',
       stat4Val: 'Văn Lang',
       stat4Label: 'Cử nhân PR chuyên nghiệp',
+      navTabs: [
+        {
+          kicker: 'Hạng Mục 01',
+          title: 'Các Kênh TikTok & Dự Án',
+          desc: 'Toạ Độ Gen Z, La Cà Một Chút, Datbike Hồng Phương & IMC',
+          href: '/work',
+        },
+        {
+          kicker: 'Hạng Mục 02',
+          title: 'Kinh Nghiệm & Học Vấn',
+          desc: 'PR Văn Lang, Chứng chỉ QCC (Xuất sắc) & ColorMe, Búp Sky & thực tế',
+          href: '/working-experience',
+        },
+        {
+          kicker: 'Hạng Mục 03',
+          title: 'Kỹ Năng & Tools',
+          desc: 'CapCut, Photoshop, Canva, Meta Suite, TikTok Studio',
+          href: '/skills',
+        },
+        {
+          kicker: 'Hạng Mục 04',
+          title: 'Liên Hệ & Hợp Tác',
+          desc: 'Hotline 0942.077.335, Email & thông tin kết nối',
+          href: '/contact',
+        },
+      ],
+      channelsEyebrow: 'CÁC KÊNH TIKTOK CHỦ LỰC',
+      channelsHeading: 'Phát triển nội dung & Định hình phong cách',
+      secondaryNoteEyebrow: 'Các dự án & chứng chỉ chuyên môn',
+      secondaryNoteText: 'Nhà hàng Rooftop Búp Sky Cuisine (@bupskycuisine - 133.1K views), Chứng chỉ QCC Mastery Hub (Rank Excellent) & ColorME Photoshop và Winner Pitching Tivi HXY Hải Phi.',
+      ctaEyebrow: 'LIÊN HỆ & HỢP TÁC',
       ctaHeading: 'Bạn đang cần lên kế hoạch truyền thông hoặc sản xuất video TikTok?',
       ctaSub: 'Kết nối trực tiếp cùng Tô Lan Anh qua Hotline hoặc gửi yêu cầu dự án.'
     },
     work: {
       bannerEyebrow: 'HẠNG MỤC DỰ ÁN & CÁC KÊNH TIKTOK',
       bannerTitle: 'Dự Án Đã Thực Hiện',
-      bannerLead: 'Chọn danh mục bên dưới để lọc riêng từng kênh và dự án: Kênh Toạ Độ Gen Z (@toadogenz), Kênh La Cà Một Chút (@la.camotchut), Dự án Búp Sky Cuisine, Kênh Datbike Hồng Phương, Chiến dịch Brand Pitching & IMC hoặc Toàn bộ 14 Slide HD gốc.',
+      bannerLead: 'Chọn danh mục bên dưới để lọc riêng từng kênh và dự án: Kênh Toạ Độ Gen Z (@toadogenz), Kênh La Cà Một Chút (@la.camotchut), Dự án Búp Sky Cuisine, Kênh Datbike Hồng Phương và Chiến dịch Brand Pitching & IMC.',
       toadogenz: {
+        handle: '@toadogenz',
         title: 'Toạ Độ Gen Z (@toadogenz)',
-        subtitle: '1.051 Follower • 8.727 Thích • Bản đồ ăn – chơi – chill của Gen Z',
-        imageSrc: '/images/channels/toadogenz_channel.jpg',
+        subtitle: '1.129 Follower • 8.729 Thích • Bản đồ ăn – chơi – chill của Gen Z',
+        imageSrc: '/images/channels/toadogenz_grid.jpg',
         url: 'https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc',
         videos: [
           {
@@ -162,22 +200,23 @@ export default function EditLayoutPage() {
         ]
       },
       lacamotchut: {
+        handle: '@la.camotchut',
         title: 'La Cà Một Chút (@la.camotchut)',
-        subtitle: 'Review Cafe, F&B & Không gian trải nghiệm thư thái',
-        imageSrc: '/images/channels/lacamotchut_channel.jpg',
+        subtitle: '196 Follower • 4.496 Thích • Review Cafe, F&B & Không gian trải nghiệm thư thái',
+        imageSrc: '/images/channels/lacamotchut_grid.jpg',
         url: 'https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM',
         videos: [
           {
             id: 'lcca-1',
             title: 'GEM CAFE — Chiêm ngưỡng không gian sang trọng',
-            views: '72.9K',
+            views: '73.1K',
             hook: 'Chiêm ngưỡng không gian cafe sang trọng đẳng cấp tại Gem Cafe',
             desc: 'Góc quay ánh sáng vàng ấm áp, đèn lồng nghệ thuật thả trần và phong cách kiến trúc tinh tế tại Gem Cafe, thước phim mang lại cảm giác thư thái và sang trọng.'
           },
           {
             id: 'lcca-2',
             title: 'A Little Christmas: GO GELATO — Lạc vào xứ giữa mùa Noel',
-            views: '30.1K',
+            views: '31.6K',
             hook: 'Không gian giáng sinh cổ tích ngập tràn tuyết trắng tại Go Gelato',
             desc: 'Review góc sống ảo mùa Noel tại Go Gelato với cây thông tuyết, gấu trắng bắc cực và những ly kem gelato mát lành ngọt ngào.'
           },
@@ -212,9 +251,9 @@ export default function EditLayoutPage() {
         ]
       },
       bupsky: {
-        title: 'Búp Sky Cuisine',
-        subtitle: 'Nhà hàng Rooftop Tầng 10 • 65-69 Nguyễn Thái Bình, Q.1 (cách Chợ Bến Thành 4 phút)',
-        imageSrc: '/images/channels/bupsky_channel.jpg',
+        title: 'Búp Sky Cuisine (@bupskycuisine)',
+        subtitle: '838 Follower • 34.1K Thích • Nhà hàng Rooftop Tầng 10, 65-69 Nguyễn Thái Bình, Q.1',
+        imageSrc: '/images/channels/bupsky_grid.jpg',
         url: 'https://www.tiktok.com/@bupskycuisine',
         stat1Val: '133.1K',
         stat1Label: 'Tiệc sinh nhật riêng',
@@ -227,15 +266,16 @@ export default function EditLayoutPage() {
         bullet3: 'Video "Nhà hàng Rooftop cách Chợ Bến Thành 4 phút đi bộ": Đã ghim, đạt 37.7K lượt xem.'
       },
       datbike: {
-        title: 'Datbike Hồng Phương (@datbikehongphuong)',
-        subtitle: 'Kênh truyền thông xe máy điện thông minh Dat Bike tại đại lý Hồng Phương',
-        url: 'https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9BjNL1MnE9q',
-        video1Title: 'Trải nghiệm bứt tốc 0-50km/h cùng Dat Bike: Xe điện thông minh của người trẻ',
-        video1Views: '98.6K',
-        video1Hook: 'Cảm giác vặn ga xe máy điện thông minh mà êm như lướt trên mây có gì khác xe xăng?',
-        video2Title: 'Recap sự kiện trải nghiệm lái thử Dat Bike tại Gigamall',
-        video2Views: '84.0K',
-        video2Hook: 'Sức hút của xe máy điện thương hiệu Việt tại trung tâm thương mại Gigamall'
+        handle: '@datbikehongphuong',
+        title: 'Dat.bike Hồng Phương (@datbikehongphuong)',
+        subtitle: '1.253 Follower • 6.148 Thích • Đại lý xe máy điện Dat.bike (38 Nguyễn Thị Định, P. Bình Trưng)',
+        url: 'https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma',
+        video1Title: 'Nguyên nhân chính khiến xe hiện "Cụ rùa" & cách xử lý tại Dat Bike Hồng Phương',
+        video1Views: '27.7K',
+        video1Hook: 'Nguyên nhân chính khiến xe hiện "Cụ rùa" là gì? Cùng tìm hiểu và xem cách xử lý!',
+        video2Title: 'Dat Bike Era chính thức cập bến showroom Dat.bike Hồng Phương',
+        video2Views: '5.2K',
+        video2Hook: 'Mẫu xe máy điện được mong chờ nhất Dat Bike Era đã có mặt tại showroom Hồng Phương'
       }
     },
     experience: {
@@ -351,7 +391,7 @@ export default function EditLayoutPage() {
     { id: 'hero', title: '1. Hero Banner & Chân Dung', visible: true, order: 0 },
     { id: 'nav-tabs', title: '2. Thanh Điều Hướng 4 Hạng Mục', visible: true, order: 1 },
     { id: 'channels', title: '3. Các Kênh TikTok Chủ Lực', visible: true, order: 2 },
-    { id: 'secondary-note', title: '4. Khối Dự Án Búp Sky & 14 Slide HD', visible: true, order: 3 },
+    { id: 'secondary-note', title: '4. Khối Dự Án Búp Sky & Chứng Chỉ', visible: true, order: 3 },
     { id: 'contact', title: '5. Khối Kêu Gọi Hợp Tác (CTA)', visible: true, order: 4 },
   ]);
 
@@ -380,57 +420,249 @@ export default function EditLayoutPage() {
 
   // Dragging state
   const draggingRef = useRef<{ id: string; startX: number; startY: number; initX: number; initY: number } | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const { setPersistedData } = useSiteData();
 
-  // Load from localStorage on mount
+  const latestStateRef = useRef({
+    headerConfig,
+    footerConfig,
+    siteData,
+    homeBlocks,
+    workBlocks,
+    expBlocks,
+    moves,
+    resizes,
+  });
+  latestStateRef.current = {
+    headerConfig,
+    footerConfig,
+    siteData,
+    homeBlocks,
+    workBlocks,
+    expBlocks,
+    moves,
+    resizes,
+  };
+
+  // Deep-merge helper so older localStorage / JSON payloads never wipe nested objects or arrays
+  const mergeSiteData = (prev: typeof siteData, incoming: any): typeof siteData => {
+    if (!incoming || typeof incoming !== 'object') return prev;
+    return {
+      ...prev,
+      profile: {
+        ...prev.profile,
+        ...(incoming.profile || {}),
+        portraitSrc: incoming.profile?.portraitSrc || prev.profile.portraitSrc,
+        studentPhotoSrc: incoming.profile?.studentPhotoSrc || prev.profile.studentPhotoSrc,
+        avatarSrc: incoming.profile?.avatarSrc || prev.profile.avatarSrc,
+      },
+      home: {
+        ...prev.home,
+        ...(incoming.home || {}),
+        navTabs: Array.isArray(incoming.home?.navTabs) && incoming.home.navTabs.length > 0
+          ? incoming.home.navTabs
+          : prev.home.navTabs,
+      },
+      work: {
+        ...prev.work,
+        ...(incoming.work || {}),
+        toadogenz: {
+          ...prev.work.toadogenz,
+          ...(incoming.work?.toadogenz || {}),
+          handle: incoming.work?.toadogenz?.handle || prev.work.toadogenz.handle,
+          imageSrc: incoming.work?.toadogenz?.imageSrc || prev.work.toadogenz.imageSrc,
+          videos: Array.isArray(incoming.work?.toadogenz?.videos)
+            ? incoming.work.toadogenz.videos
+            : prev.work.toadogenz.videos,
+        },
+        lacamotchut: {
+          ...prev.work.lacamotchut,
+          ...(incoming.work?.lacamotchut || {}),
+          handle: incoming.work?.lacamotchut?.handle || prev.work.lacamotchut.handle,
+          imageSrc: incoming.work?.lacamotchut?.imageSrc || prev.work.lacamotchut.imageSrc,
+          videos: Array.isArray(incoming.work?.lacamotchut?.videos)
+            ? incoming.work.lacamotchut.videos
+            : prev.work.lacamotchut.videos,
+        },
+        bupsky: {
+          ...prev.work.bupsky,
+          ...(incoming.work?.bupsky || {}),
+          imageSrc: incoming.work?.bupsky?.imageSrc || prev.work.bupsky.imageSrc,
+        },
+        datbike: {
+          ...prev.work.datbike,
+          ...(incoming.work?.datbike || {}),
+          handle: incoming.work?.datbike?.handle || prev.work.datbike.handle,
+        },
+      },
+      experience: {
+        ...prev.experience,
+        ...(incoming.experience || {}),
+        jobs: Array.isArray(incoming.experience?.jobs)
+          ? incoming.experience.jobs
+          : prev.experience.jobs,
+        education: {
+          ...prev.experience.education,
+          ...(incoming.experience?.education || {}),
+        },
+        certificates: Array.isArray(incoming.experience?.certificates)
+          ? incoming.experience.certificates
+          : prev.experience.certificates,
+      },
+      skills: {
+        ...prev.skills,
+        ...(incoming.skills || {}),
+        creative: Array.isArray(incoming.skills?.creative)
+          ? incoming.skills.creative
+          : prev.skills.creative,
+        technical: Array.isArray(incoming.skills?.technical)
+          ? incoming.skills.technical
+          : prev.skills.technical,
+        soft: Array.isArray(incoming.skills?.soft)
+          ? incoming.skills.soft
+          : prev.skills.soft,
+      },
+    };
+  };
+
+  // Apply parsed payload into local editor states safely
+  const applyPayloadToState = (parsed: any) => {
+    if (!parsed || typeof parsed !== 'object') return;
+    if (parsed.header && typeof parsed.header === 'object') {
+      setHeaderConfig((prev) => ({
+        ...prev,
+        ...parsed.header,
+        navLinks: Array.isArray(parsed.header.navLinks) ? parsed.header.navLinks : prev.navLinks,
+      }));
+    }
+    if (parsed.footer && typeof parsed.footer === 'object') {
+      setFooterConfig((prev) => ({
+        ...prev,
+        ...parsed.footer,
+        socialLinks: Array.isArray(parsed.footer.socialLinks) ? parsed.footer.socialLinks : prev.socialLinks,
+      }));
+    }
+    if (parsed.siteData) {
+      setSiteData((prev) => mergeSiteData(prev, parsed.siteData));
+    }
+    if (Array.isArray(parsed.homeBlocks)) setHomeBlocks(parsed.homeBlocks);
+    if (Array.isArray(parsed.workBlocks)) setWorkBlocks(parsed.workBlocks.filter((b: any) => b && b.id !== 'work-slides'));
+    if (Array.isArray(parsed.expBlocks)) setExpBlocks(parsed.expBlocks);
+    if (parsed.moves && typeof parsed.moves === 'object') setMoves(parsed.moves);
+    if (parsed.resizes && typeof parsed.resizes === 'object') setResizes(parsed.resizes);
+  };
+
+  // Load from Server (Vercel Blob) + localStorage fallback on mount
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('tolananh_site_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.header) setHeaderConfig(parsed.header);
-        if (parsed.footer) setFooterConfig(parsed.footer);
-        if (parsed.siteData) setSiteData(parsed.siteData);
-        if (parsed.homeBlocks) setHomeBlocks(parsed.homeBlocks);
-        if (parsed.workBlocks) setWorkBlocks(parsed.workBlocks);
-        if (parsed.expBlocks) setExpBlocks(parsed.expBlocks);
-        if (parsed.moves) setMoves(parsed.moves);
-        if (parsed.resizes) setResizes(parsed.resizes);
-        setMessage('Đã nạp toàn bộ bố cục, header & footer tùy chỉnh từ trình duyệt của bạn.');
+    let cancelled = false;
+
+    const loadInitial = async () => {
+      let localParsed: any = null;
+      try {
+        const saved = localStorage.getItem(SITE_DATA_STORAGE_KEY);
+        if (saved) {
+          localParsed = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      try {
+        const res = await fetch(`/api/site-data?t=${Date.now()}`, { cache: 'no-store' });
+        if (res.ok) {
+          const json = await res.json();
+          const serverData = json?.data;
+          if (!cancelled && serverData) {
+            const serverTime = serverData.updatedAt ? Date.parse(serverData.updatedAt) : 0;
+            const localTime = localParsed?.updatedAt ? Date.parse(localParsed.updatedAt) : 0;
+            const chosen = localTime > serverTime ? localParsed : serverData;
+            applyPayloadToState(chosen);
+            setMessage('Đã nạp dữ liệu đã lưu trên hệ thống.');
+            setTimeout(() => setMessage(null), 3000);
+            return;
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      if (!cancelled && localParsed) {
+        applyPayloadToState(localParsed);
+        setMessage('Đã nạp bố cục tùy chỉnh từ trình duyệt của bạn.');
         setTimeout(() => setMessage(null), 3000);
       }
-    } catch (e) {
-      console.error(e);
-    }
+    };
+
+    loadInitial();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // Save to localStorage
-  const handleSave = () => {
+  // Save to Server (Vercel Blob) + localStorage + BroadcastChannel
+  const handleSave = async () => {
     try {
+      if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+      // Allow pending onBlur state updates to commit before reading latestStateRef
+      await new Promise((resolve) => setTimeout(resolve, 40));
+
+      setIsSaving(true);
+      const curr = latestStateRef.current;
       const dataToSave = {
-        header: headerConfig,
-        footer: footerConfig,
-        profile: siteData.profile,
-        siteData,
-        homeBlocks,
-        workBlocks,
-        expBlocks,
-        moves,
-        resizes,
+        header: curr.headerConfig,
+        footer: curr.footerConfig,
+        profile: curr.siteData.profile,
+        siteData: curr.siteData,
+        homeBlocks: curr.homeBlocks,
+        workBlocks: curr.workBlocks,
+        expBlocks: curr.expBlocks,
+        moves: curr.moves,
+        resizes: curr.resizes,
         updatedAt: new Date().toISOString(),
       };
-      localStorage.setItem('tolananh_site_data', JSON.stringify(dataToSave));
-      setMessage('✅ Đã lưu toàn bộ bố cục trang, Header, Footer & nội dung thành công! Trang live sẽ tự động cập nhật.');
-      setTimeout(() => setMessage(null), 4000);
+
+      try {
+        localStorage.setItem(SITE_DATA_STORAGE_KEY, JSON.stringify(dataToSave));
+      } catch {
+        // ignore localStorage quota limits if large base64 image
+      }
+
+      const res = await fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSave),
+      });
+
+      if (!res.ok) {
+        throw new Error('Server save failed');
+      }
+
+      setPersistedData(dataToSave);
+      broadcastSiteDataChange(dataToSave);
+
+      setMessage('✅ Đã lưu lên hệ thống thành công! Trang chủ và toàn bộ các trang live đã cập nhật ngay lập tức.');
+      setTimeout(() => setMessage(null), 4500);
     } catch (e) {
       console.error(e);
-      setMessage('Lỗi khi lưu dữ liệu vào trình duyệt.');
+      setMessage('⚠️ Đã lưu tạm trên trình duyệt nhưng gặp lỗi khi đồng bộ lên server. Vui lòng thử lại.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
   // Reset to default
-  const handleReset = () => {
+  const handleReset = async () => {
     if (confirm('Bạn có chắc chắn muốn khôi phục lại bố cục và nội dung mặc định?')) {
-      localStorage.removeItem('tolananh_site_data');
+      try {
+        localStorage.removeItem(SITE_DATA_STORAGE_KEY);
+        await fetch('/api/site-data', { method: 'DELETE' });
+      } catch {
+        // ignore
+      }
+      setPersistedData(null);
+      broadcastSiteDataChange(null);
       setMoves({});
       setResizes({});
       setMessage('Đã khôi phục lại dữ liệu mặc định.');
@@ -471,14 +703,7 @@ export default function EditLayoutPage() {
       reader.onload = (event) => {
         try {
           const parsed = JSON.parse(event.target?.result as string);
-          if (parsed.header) setHeaderConfig(parsed.header);
-          if (parsed.footer) setFooterConfig(parsed.footer);
-          if (parsed.siteData) setSiteData(parsed.siteData);
-          if (parsed.homeBlocks) setHomeBlocks(parsed.homeBlocks);
-          if (parsed.workBlocks) setWorkBlocks(parsed.workBlocks);
-          if (parsed.expBlocks) setExpBlocks(parsed.expBlocks);
-          if (parsed.moves) setMoves(parsed.moves || {});
-          if (parsed.resizes) setResizes(parsed.resizes || {});
+          applyPayloadToState(parsed);
           setMessage('✅ Đã nhập file JSON thành công! Hãy bấm "Lưu Bố Cục" để áp dụng.');
         } catch (err) {
           alert('File JSON không hợp lệ!');
@@ -680,14 +905,35 @@ export default function EditLayoutPage() {
     window.addEventListener('mouseup', handleMouseUp);
   };
 
-  // Image replacement helper
+  // Image replacement helper with automatic client-side compression (< 300 KB)
   const handleImageUpload = (setter: (dataUrl: string) => void, e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setter(reader.result as string);
-        setMessage('Đã cập nhật ảnh thành công! Hãy bấm "Lưu Bố Cục" để lưu lại.');
+        const raw = reader.result as string;
+        if (!raw) return;
+        const img = new window.Image();
+        img.onload = () => {
+          const maxDim = 1200;
+          const scale = Math.min(1, maxDim / Math.max(img.width || 1, img.height || 1));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(img.width * scale));
+          canvas.height = Math.max(1, Math.round(img.height * scale));
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            setter(canvas.toDataURL('image/jpeg', 0.85));
+          } else {
+            setter(raw);
+          }
+          setMessage('Đã cập nhật ảnh thành công! Hãy bấm "Lưu Bố Cục" để lưu lại.');
+        };
+        img.onerror = () => {
+          setter(raw);
+          setMessage('Đã cập nhật ảnh thành công! Hãy bấm "Lưu Bố Cục" để lưu lại.');
+        };
+        img.src = raw;
       };
       reader.readAsDataURL(file);
     }
@@ -813,10 +1059,11 @@ export default function EditLayoutPage() {
           <button
             type="button"
             onClick={handleSave}
-            className="btn-save"
+            disabled={isSaving}
+            className="btn-save disabled:opacity-60"
           >
             <Save className="w-3.5 h-3.5" />
-            <span>Lưu Bố Cục (Save)</span>
+            <span>{isSaving ? 'Đang lưu...' : 'Lưu Bố Cục (Save)'}</span>
           </button>
         </div>
       </header>
@@ -1006,99 +1253,119 @@ export default function EditLayoutPage() {
                           
                           {/* Text Left (7 cols) */}
                           <div className="lg:col-span-7 space-y-4">
-                            <div
-                              contentEditable
-                              suppressContentEditableWarning
-                              onBlur={(e) => setSiteData(prev => ({
+                            <SafeContentEditable
+                              as="div"
+                              value={siteData.home.eyebrow}
+                              onChange={(val) => setSiteData(prev => ({
                                 ...prev,
-                                home: { ...prev.home, eyebrow: e.currentTarget.textContent || '' }
+                                home: { ...prev.home, eyebrow: val }
                               }))}
                               className="layout-editable inline-block text-xs font-bold text-[#8C5A3C] uppercase tracking-wider bg-[#FAF7F2] px-3 py-1 rounded-full border border-[#DECFC0]"
-                            >
-                              {siteData.home.eyebrow}
-                            </div>
+                            />
 
-                            <h1
-                              contentEditable
-                              suppressContentEditableWarning
-                              onBlur={(e) => setSiteData(prev => ({
+                            <SafeContentEditable
+                              as="h1"
+                              multiline
+                              value={siteData.home.heading}
+                              onChange={(val) => setSiteData(prev => ({
                                 ...prev,
-                                home: { ...prev.home, heading: e.currentTarget.textContent || '' }
+                                home: { ...prev.home, heading: val }
                               }))}
-                              className="layout-editable text-3xl sm:text-4xl font-extrabold text-[#14110F] leading-tight"
-                            >
-                              {siteData.home.heading}
-                            </h1>
+                              className="layout-editable text-3xl sm:text-4xl font-extrabold text-[#14110F] leading-tight whitespace-pre-line"
+                            />
 
-                            <p
-                              contentEditable
-                              suppressContentEditableWarning
-                              onBlur={(e) => setSiteData(prev => ({
+                            <SafeContentEditable
+                              as="p"
+                              multiline
+                              value={siteData.home.lead}
+                              onChange={(val) => setSiteData(prev => ({
                                 ...prev,
-                                home: { ...prev.home, lead: e.currentTarget.textContent || '' }
+                                home: { ...prev.home, lead: val }
                               }))}
-                              className="layout-editable text-sm text-[#635952] leading-relaxed"
-                            >
-                              {siteData.home.lead}
-                            </p>
+                              className="layout-editable text-sm text-[#635952] leading-relaxed whitespace-pre-line"
+                            />
 
                             {/* 4 Stats */}
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-[rgba(20,17,15,0.06)] text-center">
                               <div>
-                                <div
-                                  contentEditable
-                                  suppressContentEditableWarning
-                                  onBlur={(e) => setSiteData(prev => ({
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat1Val}
+                                  onChange={(val) => setSiteData(prev => ({
                                     ...prev,
-                                    home: { ...prev.home, stat1Val: e.currentTarget.textContent || '' }
+                                    home: { ...prev.home, stat1Val: val }
                                   }))}
                                   className="layout-editable font-bold text-xl text-[#14110F]"
-                                >
-                                  {siteData.home.stat1Val}
-                                </div>
-                                <div className="text-[10px] text-[#635952] font-semibold">{siteData.home.stat1Label}</div>
+                                />
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat1Label}
+                                  onChange={(val) => setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, stat1Label: val }
+                                  }))}
+                                  className="layout-editable text-[10px] text-[#635952] font-semibold"
+                                />
                               </div>
                               <div>
-                                <div
-                                  contentEditable
-                                  suppressContentEditableWarning
-                                  onBlur={(e) => setSiteData(prev => ({
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat2Val}
+                                  onChange={(val) => setSiteData(prev => ({
                                     ...prev,
-                                    home: { ...prev.home, stat2Val: e.currentTarget.textContent || '' }
+                                    home: { ...prev.home, stat2Val: val }
                                   }))}
                                   className="layout-editable font-bold text-xl text-[#14110F]"
-                                >
-                                  {siteData.home.stat2Val}
-                                </div>
-                                <div className="text-[10px] text-[#635952] font-semibold">{siteData.home.stat2Label}</div>
+                                />
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat2Label}
+                                  onChange={(val) => setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, stat2Label: val }
+                                  }))}
+                                  className="layout-editable text-[10px] text-[#635952] font-semibold"
+                                />
                               </div>
                               <div>
-                                <div
-                                  contentEditable
-                                  suppressContentEditableWarning
-                                  onBlur={(e) => setSiteData(prev => ({
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat3Val}
+                                  onChange={(val) => setSiteData(prev => ({
                                     ...prev,
-                                    home: { ...prev.home, stat3Val: e.currentTarget.textContent || '' }
+                                    home: { ...prev.home, stat3Val: val }
                                   }))}
                                   className="layout-editable font-bold text-xl text-[#14110F]"
-                                >
-                                  {siteData.home.stat3Val}
-                                </div>
-                                <div className="text-[10px] text-[#635952] font-semibold">{siteData.home.stat3Label}</div>
+                                />
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat3Label}
+                                  onChange={(val) => setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, stat3Label: val }
+                                  }))}
+                                  className="layout-editable text-[10px] text-[#635952] font-semibold"
+                                />
                               </div>
                               <div>
-                                <div
-                                  contentEditable
-                                  suppressContentEditableWarning
-                                  onBlur={(e) => setSiteData(prev => ({
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat4Val}
+                                  onChange={(val) => setSiteData(prev => ({
                                     ...prev,
-                                    home: { ...prev.home, stat4Val: e.currentTarget.textContent || '' }
+                                    home: { ...prev.home, stat4Val: val }
                                   }))}
                                   className="layout-editable font-bold text-xl text-[#14110F]"
-                                >
-                                  {siteData.home.stat4Val}
-                                </div>
-                                <div className="text-[10px] text-[#635952] font-semibold">{siteData.home.stat4Label}</div>
+                                />
+                                <SafeContentEditable
+                                  as="div"
+                                  value={siteData.home.stat4Label}
+                                  onChange={(val) => setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, stat4Label: val }
+                                  }))}
+                                  className="layout-editable text-[10px] text-[#635952] font-semibold"
+                                />
                               </div>
                             </div>
 
@@ -1108,9 +1375,10 @@ export default function EditLayoutPage() {
                           <div className="lg:col-span-5 flex justify-center">
                             <div className="relative w-full max-w-xs aspect-[4/5] rounded-2xl overflow-hidden border border-[#DECFC0] shadow-luxury group">
                               <Image
-                                src={siteData.profile.portraitSrc}
+                                src={siteData.profile.portraitSrc || profileData.portrait}
                                 alt="Chân dung Tô Lan Anh"
                                 fill
+                                unoptimized
                                 className="object-cover object-[center_20%]"
                               />
                               {/* Replace Image Button */}
@@ -1153,22 +1421,53 @@ export default function EditLayoutPage() {
                           <span>Move</span>
                         </button>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                            <span className="text-[10px] font-bold text-[#8C5A3C]">HẠNG MỤC 01</span>
-                            <div className="font-bold text-sm text-[#14110F]">Các Kênh TikTok &amp; Dự Án</div>
-                          </div>
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                            <span className="text-[10px] font-bold text-[#8C5A3C]">HẠNG MỤC 02</span>
-                            <div className="font-bold text-sm text-[#14110F]">Kinh Nghiệm &amp; Học Vấn</div>
-                          </div>
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                            <span className="text-[10px] font-bold text-[#8C5A3C]">HẠNG MỤC 03</span>
-                            <div className="font-bold text-sm text-[#14110F]">Kỹ Năng &amp; Tools</div>
-                          </div>
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                            <span className="text-[10px] font-bold text-[#8C5A3C]">HẠNG MỤC 04</span>
-                            <div className="font-bold text-sm text-[#14110F]">Liên Hệ &amp; Hợp Tác</div>
-                          </div>
+                          {siteData.home.navTabs.map((tab, tIdx) => (
+                            <div key={tIdx} className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
+                              <SafeContentEditable
+                                as="span"
+                                value={tab.kicker}
+                                onChange={(val) => {
+                                  const nextTabs = siteData.home.navTabs.map((item, i) =>
+                                    i === tIdx ? { ...item, kicker: val } : item
+                                  );
+                                  setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, navTabs: nextTabs },
+                                  }));
+                                }}
+                                className="layout-editable inline-block text-[10px] font-bold uppercase tracking-wider text-[#8C5A3C]"
+                              />
+                              <SafeContentEditable
+                                as="div"
+                                value={tab.title}
+                                onChange={(val) => {
+                                  const nextTabs = siteData.home.navTabs.map((item, i) =>
+                                    i === tIdx ? { ...item, title: val } : item
+                                  );
+                                  setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, navTabs: nextTabs },
+                                  }));
+                                }}
+                                className="layout-editable font-bold text-sm text-[#14110F]"
+                              />
+                              <SafeContentEditable
+                                as="p"
+                                multiline
+                                value={tab.desc}
+                                onChange={(val) => {
+                                  const nextTabs = siteData.home.navTabs.map((item, i) =>
+                                    i === tIdx ? { ...item, desc: val } : item
+                                  );
+                                  setSiteData(prev => ({
+                                    ...prev,
+                                    home: { ...prev.home, navTabs: nextTabs },
+                                  }));
+                                }}
+                                className="layout-editable text-[11px] text-[#635952] leading-snug"
+                              />
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </section>
@@ -1191,21 +1490,119 @@ export default function EditLayoutPage() {
                           <Move className="w-3 h-3" />
                           <span>Move</span>
                         </button>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
-                            <span className="text-[10px] font-bold text-orange-700">@toadogenz</span>
-                            <div className="font-bold text-sm text-[#14110F]">{siteData.work.toadogenz.title}</div>
-                            <p className="text-xs text-[#635952]">{siteData.work.toadogenz.subtitle}</p>
+                        <div className="space-y-3 pt-2">
+                          <div className="space-y-1">
+                            <SafeContentEditable
+                              as="div"
+                              value={siteData.home.channelsEyebrow}
+                              onChange={(val) => setSiteData(prev => ({
+                                ...prev,
+                                home: { ...prev.home, channelsEyebrow: val },
+                              }))}
+                              className="layout-editable inline-block text-[10px] font-bold uppercase tracking-wider text-[#8C5A3C]"
+                            />
+                            <SafeContentEditable
+                              as="h3"
+                              value={siteData.home.channelsHeading}
+                              onChange={(val) => setSiteData(prev => ({
+                                ...prev,
+                                home: { ...prev.home, channelsHeading: val },
+                              }))}
+                              className="layout-editable text-base font-extrabold text-[#14110F]"
+                            />
                           </div>
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
-                            <span className="text-[10px] font-bold text-[#8C5A3C]">@la.camotchut</span>
-                            <div className="font-bold text-sm text-[#14110F]">{siteData.work.lacamotchut.title}</div>
-                            <p className="text-xs text-[#635952]">{siteData.work.lacamotchut.subtitle}</p>
-                          </div>
-                          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
-                            <span className="text-[10px] font-bold text-teal-800">@datbikehongphuong</span>
-                            <div className="font-bold text-sm text-[#14110F]">{siteData.work.datbike.title}</div>
-                            <p className="text-xs text-[#635952]">{siteData.work.datbike.subtitle}</p>
+
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1.5">
+                              <SafeContentEditable
+                                as="span"
+                                value={siteData.work.toadogenz.handle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, handle: val } },
+                                }))}
+                                className="layout-editable inline-block text-[10px] font-bold text-orange-700"
+                              />
+                              <SafeContentEditable
+                                as="div"
+                                value={siteData.work.toadogenz.title}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, title: val } },
+                                }))}
+                                className="layout-editable font-bold text-sm text-[#14110F]"
+                              />
+                              <SafeContentEditable
+                                as="p"
+                                multiline
+                                value={siteData.work.toadogenz.subtitle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, subtitle: val } },
+                                }))}
+                                className="layout-editable text-xs text-[#635952]"
+                              />
+                            </div>
+                            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1.5">
+                              <SafeContentEditable
+                                as="span"
+                                value={siteData.work.lacamotchut.handle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, handle: val } },
+                                }))}
+                                className="layout-editable inline-block text-[10px] font-bold text-[#8C5A3C]"
+                              />
+                              <SafeContentEditable
+                                as="div"
+                                value={siteData.work.lacamotchut.title}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, title: val } },
+                                }))}
+                                className="layout-editable font-bold text-sm text-[#14110F]"
+                              />
+                              <SafeContentEditable
+                                as="p"
+                                multiline
+                                value={siteData.work.lacamotchut.subtitle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, subtitle: val } },
+                                }))}
+                                className="layout-editable text-xs text-[#635952]"
+                              />
+                            </div>
+                            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1.5">
+                              <SafeContentEditable
+                                as="span"
+                                value={siteData.work.datbike.handle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, datbike: { ...prev.work.datbike, handle: val } },
+                                }))}
+                                className="layout-editable inline-block text-[10px] font-bold text-teal-800"
+                              />
+                              <SafeContentEditable
+                                as="div"
+                                value={siteData.work.datbike.title}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, datbike: { ...prev.work.datbike, title: val } },
+                                }))}
+                                className="layout-editable font-bold text-sm text-[#14110F]"
+                              />
+                              <SafeContentEditable
+                                as="p"
+                                multiline
+                                value={siteData.work.datbike.subtitle}
+                                onChange={(val) => setSiteData(prev => ({
+                                  ...prev,
+                                  work: { ...prev.work, datbike: { ...prev.work.datbike, subtitle: val } },
+                                }))}
+                                className="layout-editable text-xs text-[#635952]"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1230,12 +1627,25 @@ export default function EditLayoutPage() {
                           <span>Move</span>
                         </button>
                         <div className="py-2 space-y-1">
-                          <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C]">
-                            Các dự án &amp; chứng chỉ chuyên môn
-                          </span>
-                          <p className="text-xs sm:text-sm text-[#635952]">
-                            Nhà hàng Rooftop <strong>Búp Sky Cuisine (@bupskycuisine - 133.1K views)</strong>, Chứng chỉ <strong>QCC Mastery Hub &amp; ColorME Photoshop</strong>, Winner Pitching <strong>Tivi HXY Hải Phi</strong> và <strong>Bộ 14 Slide HD</strong> nguyên bản.
-                          </p>
+                          <SafeContentEditable
+                            as="span"
+                            value={siteData.home.secondaryNoteEyebrow}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              home: { ...prev.home, secondaryNoteEyebrow: val },
+                            }))}
+                            className="layout-editable inline-block text-xs font-bold uppercase tracking-wider text-[#8C5A3C]"
+                          />
+                          <SafeContentEditable
+                            as="p"
+                            multiline
+                            value={siteData.home.secondaryNoteText}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              home: { ...prev.home, secondaryNoteText: val },
+                            }))}
+                            className="layout-editable text-xs sm:text-sm text-[#635952]"
+                          />
                         </div>
                       </div>
                     </section>
@@ -1259,30 +1669,56 @@ export default function EditLayoutPage() {
                           <span>Move</span>
                         </button>
                         <div className="py-4 space-y-2">
-                          <h3
-                            contentEditable
-                            suppressContentEditableWarning
-                            onBlur={(e) => setSiteData(prev => ({
+                          <SafeContentEditable
+                            as="div"
+                            value={siteData.home.ctaEyebrow}
+                            onChange={(val) => setSiteData(prev => ({
                               ...prev,
-                              home: { ...prev.home, ctaHeading: e.currentTarget.textContent || '' }
+                              home: { ...prev.home, ctaEyebrow: val },
+                            }))}
+                            className="layout-editable inline-block text-[10px] font-bold uppercase tracking-wider text-[#8C5A3C]"
+                          />
+                          <SafeContentEditable
+                            as="h3"
+                            multiline
+                            value={siteData.home.ctaHeading}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              home: { ...prev.home, ctaHeading: val }
                             }))}
                             className="layout-editable text-xl font-bold text-[#14110F]"
-                          >
-                            {siteData.home.ctaHeading}
-                          </h3>
-                          <p
-                            contentEditable
-                            suppressContentEditableWarning
-                            onBlur={(e) => setSiteData(prev => ({
+                          />
+                          <SafeContentEditable
+                            as="p"
+                            multiline
+                            value={siteData.home.ctaSub}
+                            onChange={(val) => setSiteData(prev => ({
                               ...prev,
-                              home: { ...prev.home, ctaSub: e.currentTarget.textContent || '' }
+                              home: { ...prev.home, ctaSub: val }
                             }))}
                             className="layout-editable text-xs text-[#635952]"
-                          >
-                            {siteData.home.ctaSub}
-                          </p>
-                          <div className="text-xs font-bold text-[#8C5A3C] pt-2">
-                            Hotline: {siteData.profile.phone} • Email: {siteData.profile.email}
+                          />
+                          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-[#8C5A3C] pt-2">
+                            <span>Hotline:</span>
+                            <SafeContentEditable
+                              as="span"
+                              value={siteData.profile.phone}
+                              onChange={(val) => setSiteData(prev => ({
+                                ...prev,
+                                profile: { ...prev.profile, phone: val },
+                              }))}
+                              className="layout-editable px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#DECFC0]"
+                            />
+                            <span>• Email:</span>
+                            <SafeContentEditable
+                              as="span"
+                              value={siteData.profile.email}
+                              onChange={(val) => setSiteData(prev => ({
+                                ...prev,
+                                profile: { ...prev.profile, email: val },
+                              }))}
+                              className="layout-editable px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#DECFC0]"
+                            />
                           </div>
                         </div>
                       </div>
@@ -1461,15 +1897,9 @@ export default function EditLayoutPage() {
                           <Move className="w-3 h-3" /><span>Move</span>
                         </button>
                         <div className="space-y-2 pt-2">
-                          <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerEyebrow: e.currentTarget.textContent || '' } }))} className="layout-editable text-xs font-bold text-[#8C5A3C]">
-                            {siteData.work.bannerEyebrow}
-                          </div>
-                          <h2 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerTitle: e.currentTarget.textContent || '' } }))} className="layout-editable text-2xl font-extrabold text-[#14110F]">
-                            {siteData.work.bannerTitle}
-                          </h2>
-                          <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerLead: e.currentTarget.textContent || '' } }))} className="layout-editable text-xs text-[#635952]">
-                            {siteData.work.bannerLead}
-                          </p>
+                          <SafeContentEditable as="div" value={siteData.work.bannerEyebrow} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerEyebrow: val } }))} className="layout-editable text-xs font-bold text-[#8C5A3C]" />
+                          <SafeContentEditable as="h2" multiline value={siteData.work.bannerTitle} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerTitle: val } }))} className="layout-editable text-2xl font-extrabold text-[#14110F]" />
+                          <SafeContentEditable as="p" multiline value={siteData.work.bannerLead} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bannerLead: val } }))} className="layout-editable text-xs text-[#635952]" />
                         </div>
                       </div>
                     </div>
@@ -1487,7 +1917,7 @@ export default function EditLayoutPage() {
                           {/* Left: Channel Screenshot Frame */}
                           <div className="lg:col-span-5 flex flex-col items-center">
                             <div className="relative w-full max-w-[240px] aspect-[9/16] rounded-2xl overflow-hidden border border-[#DECFC0] shadow-md group">
-                              <Image src={siteData.work.toadogenz.imageSrc} alt="Toạ Độ Gen Z" fill className="object-cover object-top" />
+                              <Image src={siteData.work.toadogenz.imageSrc || '/images/channels/toadogenz_grid.jpg'} alt="Toạ Độ Gen Z" fill unoptimized className="object-cover object-top" />
                               <label className="image-replace">
                                 <Upload className="w-3 h-3" />
                                 <span>Đổi ảnh kênh</span>
@@ -1499,40 +1929,45 @@ export default function EditLayoutPage() {
 
                           {/* Right: Channel info and editable video list */}
                           <div className="lg:col-span-7 space-y-4">
-                            <h3 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, title: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xl font-bold text-[#14110F]">
-                              {siteData.work.toadogenz.title}
-                            </h3>
-                            <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, subtitle: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xs text-[#635952]">
-                              {siteData.work.toadogenz.subtitle}
-                            </p>
+                            <SafeContentEditable as="h3" value={siteData.work.toadogenz.title} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, title: val } } }))} className="layout-editable text-xl font-bold text-[#14110F]" />
+                            <SafeContentEditable as="p" multiline value={siteData.work.toadogenz.subtitle} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, subtitle: val } } }))} className="layout-editable text-xs text-[#635952]" />
 
                             <div className="space-y-2 pt-2">
                               <span className="text-xs font-bold text-[#14110F]">Danh sách video thực tế trên kênh ({siteData.work.toadogenz.videos.length}):</span>
                               {siteData.work.toadogenz.videos.map((vid, vIdx) => (
-                                <div key={vid.id} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
+                                <div key={vid.id || vIdx} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
                                   <div className="flex items-center justify-between">
-                                    <span contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                      const newVids = [...siteData.work.toadogenz.videos];
-                                      newVids[vIdx].views = e.currentTarget.textContent || '';
-                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
-                                    }} className="layout-editable text-[10px] font-bold text-orange-700 bg-orange-100 px-2 py-0.5 rounded">
-                                      {vid.views} views
-                                    </span>
+                                    <SafeContentEditable
+                                      as="span"
+                                      value={String(vid.views || '').replace(/\s*views$/i, '')}
+                                      suffix=" views"
+                                      onChange={(val) => {
+                                        const newVids = siteData.work.toadogenz.videos.map((v, i) => i === vIdx ? { ...v, views: val.replace(/\s*views$/i, '') } : v);
+                                        setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
+                                      }}
+                                      className="layout-editable text-[10px] font-bold text-orange-700 bg-orange-100 px-2 py-0.5 rounded"
+                                    />
                                   </div>
-                                  <h5 contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newVids = [...siteData.work.toadogenz.videos];
-                                    newVids[vIdx].title = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
-                                  }} className="layout-editable text-xs font-bold text-[#14110F]">
-                                    {vid.title}
-                                  </h5>
-                                  <p contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newVids = [...siteData.work.toadogenz.videos];
-                                    newVids[vIdx].hook = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
-                                  }} className="layout-editable text-[11px] text-[#635952] italic">
-                                    "{vid.hook}"
-                                  </p>
+                                  <SafeContentEditable
+                                    as="h5"
+                                    value={vid.title}
+                                    onChange={(val) => {
+                                      const newVids = siteData.work.toadogenz.videos.map((v, i) => i === vIdx ? { ...v, title: val } : v);
+                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
+                                    }}
+                                    className="layout-editable text-xs font-bold text-[#14110F]"
+                                  />
+                                  <SafeContentEditable
+                                    as="p"
+                                    prefix='"'
+                                    suffix='"'
+                                    value={vid.hook}
+                                    onChange={(val) => {
+                                      const newVids = siteData.work.toadogenz.videos.map((v, i) => i === vIdx ? { ...v, hook: val } : v);
+                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, toadogenz: { ...prev.work.toadogenz, videos: newVids } } }));
+                                    }}
+                                    className="layout-editable text-[11px] text-[#635952] italic"
+                                  />
                                 </div>
                               ))}
                             </div>
@@ -1554,7 +1989,7 @@ export default function EditLayoutPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">
                           <div className="lg:col-span-5 flex flex-col items-center">
                             <div className="relative w-full max-w-[240px] aspect-[9/16] rounded-2xl overflow-hidden border border-[#DECFC0] shadow-md group">
-                              <Image src={siteData.work.lacamotchut.imageSrc} alt="La Cà Một Chút" fill className="object-cover object-top" />
+                              <Image src={siteData.work.lacamotchut.imageSrc || '/images/channels/lacamotchut_grid.jpg'} alt="La Cà Một Chút" fill unoptimized className="object-cover object-top" />
                               <label className="image-replace">
                                 <Upload className="w-3 h-3" />
                                 <span>Đổi ảnh kênh</span>
@@ -1565,40 +2000,45 @@ export default function EditLayoutPage() {
                           </div>
 
                           <div className="lg:col-span-7 space-y-4">
-                            <h3 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, title: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xl font-bold text-[#14110F]">
-                              {siteData.work.lacamotchut.title}
-                            </h3>
-                            <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, subtitle: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xs text-[#635952]">
-                              {siteData.work.lacamotchut.subtitle}
-                            </p>
+                            <SafeContentEditable as="h3" value={siteData.work.lacamotchut.title} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, title: val } } }))} className="layout-editable text-xl font-bold text-[#14110F]" />
+                            <SafeContentEditable as="p" multiline value={siteData.work.lacamotchut.subtitle} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, subtitle: val } } }))} className="layout-editable text-xs text-[#635952]" />
 
                             <div className="space-y-2 pt-2">
                               <span className="text-xs font-bold text-[#14110F]">Danh sách địa điểm &amp; video ({siteData.work.lacamotchut.videos.length}):</span>
                               {siteData.work.lacamotchut.videos.map((vid, vIdx) => (
-                                <div key={vid.id} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
+                                <div key={vid.id || vIdx} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
                                   <div className="flex items-center justify-between">
-                                    <span contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                      const newVids = [...siteData.work.lacamotchut.videos];
-                                      newVids[vIdx].views = e.currentTarget.textContent || '';
-                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
-                                    }} className="layout-editable text-[10px] font-bold text-[#8C5A3C] bg-amber-100 px-2 py-0.5 rounded">
-                                      {vid.views} views
-                                    </span>
+                                    <SafeContentEditable
+                                      as="span"
+                                      value={String(vid.views || '').replace(/\s*views$/i, '')}
+                                      suffix=" views"
+                                      onChange={(val) => {
+                                        const newVids = siteData.work.lacamotchut.videos.map((v, i) => i === vIdx ? { ...v, views: val.replace(/\s*views$/i, '') } : v);
+                                        setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
+                                      }}
+                                      className="layout-editable text-[10px] font-bold text-[#8C5A3C] bg-amber-100 px-2 py-0.5 rounded"
+                                    />
                                   </div>
-                                  <h5 contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newVids = [...siteData.work.lacamotchut.videos];
-                                    newVids[vIdx].title = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
-                                  }} className="layout-editable text-xs font-bold text-[#14110F]">
-                                    {vid.title}
-                                  </h5>
-                                  <p contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newVids = [...siteData.work.lacamotchut.videos];
-                                    newVids[vIdx].hook = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
-                                  }} className="layout-editable text-[11px] text-[#635952] italic">
-                                    "{vid.hook}"
-                                  </p>
+                                  <SafeContentEditable
+                                    as="h5"
+                                    value={vid.title}
+                                    onChange={(val) => {
+                                      const newVids = siteData.work.lacamotchut.videos.map((v, i) => i === vIdx ? { ...v, title: val } : v);
+                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
+                                    }}
+                                    className="layout-editable text-xs font-bold text-[#14110F]"
+                                  />
+                                  <SafeContentEditable
+                                    as="p"
+                                    prefix='"'
+                                    suffix='"'
+                                    value={vid.hook}
+                                    onChange={(val) => {
+                                      const newVids = siteData.work.lacamotchut.videos.map((v, i) => i === vIdx ? { ...v, hook: val } : v);
+                                      setSiteData(prev => ({ ...prev, work: { ...prev.work, lacamotchut: { ...prev.work.lacamotchut, videos: newVids } } }));
+                                    }}
+                                    className="layout-editable text-[11px] text-[#635952] italic"
+                                  />
                                 </div>
                               ))}
                             </div>
@@ -1620,7 +2060,7 @@ export default function EditLayoutPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">
                           <div className="lg:col-span-5 flex flex-col items-center">
                             <div className="relative w-full max-w-[240px] aspect-[9/16] rounded-2xl overflow-hidden border border-[#DECFC0] shadow-md group">
-                              <Image src={siteData.work.bupsky.imageSrc} alt="Búp Sky Cuisine" fill className="object-cover object-top" />
+                              <Image src={siteData.work.bupsky.imageSrc || '/images/channels/bupsky_grid.jpg'} alt="Búp Sky Cuisine" fill unoptimized className="object-cover object-top" />
                               <label className="image-replace">
                                 <Upload className="w-3 h-3" />
                                 <span>Đổi ảnh thông số</span>
@@ -1631,44 +2071,28 @@ export default function EditLayoutPage() {
                           </div>
 
                           <div className="lg:col-span-7 space-y-4">
-                            <h3 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, title: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xl font-bold text-[#14110F]">
-                              {siteData.work.bupsky.title}
-                            </h3>
-                            <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, subtitle: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xs text-[#635952]">
-                              {siteData.work.bupsky.subtitle}
-                            </p>
+                            <SafeContentEditable as="h3" value={siteData.work.bupsky.title} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, title: val } } }))} className="layout-editable text-xl font-bold text-[#14110F]" />
+                            <SafeContentEditable as="p" multiline value={siteData.work.bupsky.subtitle} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, subtitle: val } } }))} className="layout-editable text-xs text-[#635952]" />
 
                             <div className="grid grid-cols-3 gap-2 text-center pt-2">
                               <div className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                                <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat1Val: e.currentTarget.textContent || '' } } }))} className="layout-editable font-bold text-lg text-[#14110F]">
-                                  {siteData.work.bupsky.stat1Val}
-                                </div>
+                                <SafeContentEditable as="div" value={siteData.work.bupsky.stat1Val} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat1Val: val } } }))} className="layout-editable font-bold text-lg text-[#14110F]" />
                                 <span className="text-[10px] text-[#635952]">{siteData.work.bupsky.stat1Label}</span>
                               </div>
                               <div className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                                <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat2Val: e.currentTarget.textContent || '' } } }))} className="layout-editable font-bold text-lg text-[#14110F]">
-                                  {siteData.work.bupsky.stat2Val}
-                                </div>
+                                <SafeContentEditable as="div" value={siteData.work.bupsky.stat2Val} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat2Val: val } } }))} className="layout-editable font-bold text-lg text-[#14110F]" />
                                 <span className="text-[10px] text-[#635952]">{siteData.work.bupsky.stat2Label}</span>
                               </div>
                               <div className="p-2.5 rounded-xl bg-[#FAF7F2] border border-[#DECFC0]">
-                                <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat3Val: e.currentTarget.textContent || '' } } }))} className="layout-editable font-bold text-lg text-[#14110F]">
-                                  {siteData.work.bupsky.stat3Val}
-                                </div>
+                                <SafeContentEditable as="div" value={siteData.work.bupsky.stat3Val} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, stat3Val: val } } }))} className="layout-editable font-bold text-lg text-[#14110F]" />
                                 <span className="text-[10px] text-[#635952]">{siteData.work.bupsky.stat3Label}</span>
                               </div>
                             </div>
 
                             <div className="space-y-1.5 pt-2 text-xs text-[#2D2723]">
-                              <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet1: e.currentTarget.textContent || '' } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]">
-                                {siteData.work.bupsky.bullet1}
-                              </div>
-                              <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet2: e.currentTarget.textContent || '' } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]">
-                                {siteData.work.bupsky.bullet2}
-                              </div>
-                              <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet3: e.currentTarget.textContent || '' } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]">
-                                {siteData.work.bupsky.bullet3}
-                              </div>
+                              <SafeContentEditable as="div" value={siteData.work.bupsky.bullet1} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet1: val } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]" />
+                              <SafeContentEditable as="div" value={siteData.work.bupsky.bullet2} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet2: val } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]" />
+                              <SafeContentEditable as="div" value={siteData.work.bupsky.bullet3} onChange={(val) => setSiteData(prev => ({ ...prev, work: { ...prev.work, bupsky: { ...prev.work.bupsky, bullet3: val } } }))} className="layout-editable p-2 rounded-lg bg-[#FAF7F2]" />
                             </div>
                           </div>
                         </div>
@@ -1677,8 +2101,49 @@ export default function EditLayoutPage() {
                     </div>
                   )}
 
-                  {/* Datbike & Brand blocks */}
-                  {(block.id === 'work-datbike' || block.id === 'work-brand') && (
+                  {/* Datbike block */}
+                  {block.id === 'work-datbike' && (
+                    <div className="p-6 bg-white border border-[#DECFC0] rounded-b-2xl shadow-xs" style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}>
+                      <div className="movable is-editing relative">
+                        <button type="button" onMouseDown={(e) => startDrag(moveKey, e)} className="move-handle">
+                          <Move className="w-3 h-3" /><span>Move</span>
+                        </button>
+                        <div className="space-y-2 pt-2">
+                          <SafeContentEditable
+                            as="span"
+                            value={siteData.work.datbike.handle}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              work: { ...prev.work, datbike: { ...prev.work.datbike, handle: val } },
+                            }))}
+                            className="layout-editable inline-block text-[10px] font-bold text-teal-800 bg-teal-100 px-2 py-0.5 rounded"
+                          />
+                          <SafeContentEditable
+                            as="h4"
+                            value={siteData.work.datbike.title}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              work: { ...prev.work, datbike: { ...prev.work.datbike, title: val } },
+                            }))}
+                            className="layout-editable font-bold text-base text-[#14110F]"
+                          />
+                          <SafeContentEditable
+                            as="p"
+                            multiline
+                            value={siteData.work.datbike.subtitle}
+                            onChange={(val) => setSiteData(prev => ({
+                              ...prev,
+                              work: { ...prev.work, datbike: { ...prev.work.datbike, subtitle: val } },
+                            }))}
+                            className="layout-editable text-xs text-[#635952]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Brand block */}
+                  {block.id === 'work-brand' && (
                     <div className="p-6 bg-white border border-[#DECFC0] rounded-b-2xl shadow-xs" style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}>
                       <div className="movable is-editing relative">
                         <button type="button" onMouseDown={(e) => startDrag(moveKey, e)} className="move-handle">
@@ -1794,12 +2259,8 @@ export default function EditLayoutPage() {
                           <Move className="w-3 h-3" /><span>Move</span>
                         </button>
                         <div className="space-y-2 pt-2">
-                          <h2 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, bannerTitle: e.currentTarget.textContent || '' } }))} className="layout-editable text-2xl font-extrabold text-[#14110F]">
-                            {siteData.experience.bannerTitle}
-                          </h2>
-                          <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, bannerSub: e.currentTarget.textContent || '' } }))} className="layout-editable text-xs text-[#635952]">
-                            {siteData.experience.bannerSub}
-                          </p>
+                          <SafeContentEditable as="h2" multiline value={siteData.experience.bannerTitle} onChange={(val) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, bannerTitle: val } }))} className="layout-editable text-2xl font-extrabold text-[#14110F]" />
+                          <SafeContentEditable as="p" multiline value={siteData.experience.bannerSub} onChange={(val) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, bannerSub: val } }))} className="layout-editable text-xs text-[#635952]" />
                         </div>
                       </div>
                     </div>
@@ -1819,54 +2280,69 @@ export default function EditLayoutPage() {
 
                           <div className="space-y-3">
                             {siteData.experience.jobs.map((job, jIdx) => (
-                              <div key={job.id} className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-2">
+                              <div key={job.id || jIdx} className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-2">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
-                                  <h4 contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newJobs = [...siteData.experience.jobs];
-                                    newJobs[jIdx].role = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                  }} className="layout-editable font-bold text-sm text-[#14110F]">
-                                    {job.role}
-                                  </h4>
-                                  <span contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newJobs = [...siteData.experience.jobs];
-                                    newJobs[jIdx].period = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                  }} className="layout-editable text-xs font-mono font-bold text-[#8C5A3C]">
-                                    {job.period}
-                                  </span>
+                                  <SafeContentEditable
+                                    as="h4"
+                                    value={job.role}
+                                    onChange={(val) => {
+                                      const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, role: val } : j);
+                                      setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                    }}
+                                    className="layout-editable font-bold text-sm text-[#14110F]"
+                                  />
+                                  <SafeContentEditable
+                                    as="span"
+                                    value={job.period}
+                                    onChange={(val) => {
+                                      const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, period: val } : j);
+                                      setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                    }}
+                                    className="layout-editable text-xs font-mono font-bold text-[#8C5A3C]"
+                                  />
                                 </div>
 
-                                <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                  const newJobs = [...siteData.experience.jobs];
-                                  newJobs[jIdx].company = e.currentTarget.textContent || '';
-                                  setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                }} className="layout-editable text-xs font-semibold text-[#2D2723]">
-                                  {job.company}
-                                </div>
+                                <SafeContentEditable
+                                  as="div"
+                                  value={job.company}
+                                  onChange={(val) => {
+                                    const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, company: val } : j);
+                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                  }}
+                                  className="layout-editable text-xs font-semibold text-[#2D2723]"
+                                />
 
                                 <div className="space-y-1 text-xs text-[#635952] pl-3 border-l-2 border-[#8C5A3C]">
-                                  <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newJobs = [...siteData.experience.jobs];
-                                    newJobs[jIdx].point1 = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                  }} className="layout-editable">
-                                    • {job.point1}
-                                  </div>
-                                  <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newJobs = [...siteData.experience.jobs];
-                                    newJobs[jIdx].point2 = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                  }} className="layout-editable">
-                                    • {job.point2}
-                                  </div>
-                                  <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                    const newJobs = [...siteData.experience.jobs];
-                                    newJobs[jIdx].point3 = e.currentTarget.textContent || '';
-                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
-                                  }} className="layout-editable">
-                                    • {job.point3}
-                                  </div>
+                                  <SafeContentEditable
+                                    as="div"
+                                    prefix="• "
+                                    value={String(job.point1 || '').replace(/^\s*•\s*/, '')}
+                                    onChange={(val) => {
+                                      const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, point1: val.replace(/^\s*•\s*/, '') } : j);
+                                      setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                    }}
+                                    className="layout-editable"
+                                  />
+                                  <SafeContentEditable
+                                    as="div"
+                                    prefix="• "
+                                    value={String(job.point2 || '').replace(/^\s*•\s*/, '')}
+                                    onChange={(val) => {
+                                      const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, point2: val.replace(/^\s*•\s*/, '') } : j);
+                                      setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                    }}
+                                    className="layout-editable"
+                                  />
+                                  <SafeContentEditable
+                                    as="div"
+                                    prefix="• "
+                                    value={String(job.point3 || '').replace(/^\s*•\s*/, '')}
+                                    onChange={(val) => {
+                                      const newJobs = siteData.experience.jobs.map((j, i) => i === jIdx ? { ...j, point3: val.replace(/^\s*•\s*/, '') } : j);
+                                      setSiteData(prev => ({ ...prev, experience: { ...prev.experience, jobs: newJobs } }));
+                                    }}
+                                    className="layout-editable"
+                                  />
                                 </div>
                               </div>
                             ))}
@@ -1886,20 +2362,14 @@ export default function EditLayoutPage() {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center pt-2">
                           <div className="sm:col-span-8 space-y-2">
-                            <h4 contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, major: e.currentTarget.textContent || '' } } }))} className="layout-editable font-bold text-base text-[#14110F]">
-                              {siteData.experience.education.major}
-                            </h4>
-                            <div contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, school: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xs font-semibold text-[#8C5A3C]">
-                              {siteData.experience.education.school} ({siteData.experience.education.period})
-                            </div>
-                            <p contentEditable suppressContentEditableWarning onBlur={(e) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, details: e.currentTarget.textContent || '' } } }))} className="layout-editable text-xs text-[#635952]">
-                              {siteData.experience.education.details}
-                            </p>
+                            <SafeContentEditable as="h4" value={siteData.experience.education.major} onChange={(val) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, major: val } } }))} className="layout-editable font-bold text-base text-[#14110F]" />
+                            <SafeContentEditable as="div" value={siteData.experience.education.school} suffix={` (${siteData.experience.education.period})`} onChange={(val) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, school: val } } }))} className="layout-editable text-xs font-semibold text-[#8C5A3C]" />
+                            <SafeContentEditable as="p" multiline value={siteData.experience.education.details} onChange={(val) => setSiteData(prev => ({ ...prev, experience: { ...prev.experience, education: { ...prev.experience.education, details: val } } }))} className="layout-editable text-xs text-[#635952]" />
                           </div>
 
                           <div className="sm:col-span-4 flex justify-center">
                             <div className="relative w-28 h-36 rounded-xl overflow-hidden border border-[#DECFC0] group">
-                              <Image src={siteData.profile.studentPhotoSrc} alt="Ảnh áo dài Văn Lang" fill className="object-cover" />
+                              <Image src={siteData.profile.studentPhotoSrc || '/images/lananh_vanlang_aodai.jpg'} alt="Ảnh áo dài Văn Lang" fill unoptimized className="object-cover" />
                               <label className="image-replace">
                                 <Upload className="w-3 h-3" />
                                 <span>Đổi ảnh</span>
@@ -1927,40 +2397,47 @@ export default function EditLayoutPage() {
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {siteData.experience.certificates.map((cert, cIdx) => (
-                              <div key={cert.id} className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-2">
+                              <div key={cert.id || cIdx} className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-2">
                                 <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-[#DECFC0] group mb-2">
-                                  <Image src={cert.imageSrc} alt={cert.name} fill className="object-cover" />
+                                  <Image src={cert.imageSrc || '/images/certificates/cert_qcc_social_media.jpg'} alt={cert.name} fill unoptimized className="object-cover" />
                                   <label className="image-replace">
                                     <Upload className="w-3 h-3" />
                                     <span>Đổi ảnh chứng chỉ</span>
                                     <input type="file" accept="image/*" hidden onChange={(e) => handleImageUpload((url) => {
-                                      const newCerts = [...siteData.experience.certificates];
-                                      newCerts[cIdx].imageSrc = url;
+                                      const newCerts = siteData.experience.certificates.map((c, i) => i === cIdx ? { ...c, imageSrc: url } : c);
                                       setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
                                     }, e)} />
                                   </label>
                                 </div>
-                                <h5 contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                  const newCerts = [...siteData.experience.certificates];
-                                  newCerts[cIdx].name = e.currentTarget.textContent || '';
-                                  setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
-                                }} className="layout-editable font-bold text-xs text-[#14110F]">
-                                  {cert.name}
-                                </h5>
-                                <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                  const newCerts = [...siteData.experience.certificates];
-                                  newCerts[cIdx].org = e.currentTarget.textContent || '';
-                                  setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
-                                }} className="layout-editable text-[11px] font-semibold text-[#8C5A3C]">
-                                  {cert.org} • {cert.date}
-                                </div>
-                                <p contentEditable suppressContentEditableWarning onBlur={(e) => {
-                                  const newCerts = [...siteData.experience.certificates];
-                                  newCerts[cIdx].desc = e.currentTarget.textContent || '';
-                                  setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
-                                }} className="layout-editable text-[11px] text-[#635952]">
-                                  {cert.desc}
-                                </p>
+                                <SafeContentEditable
+                                  as="h5"
+                                  value={cert.name}
+                                  onChange={(val) => {
+                                    const newCerts = siteData.experience.certificates.map((c, i) => i === cIdx ? { ...c, name: val } : c);
+                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
+                                  }}
+                                  className="layout-editable font-bold text-xs text-[#14110F]"
+                                />
+                                <SafeContentEditable
+                                  as="div"
+                                  value={cert.org}
+                                  suffix={cert.date ? ` • ${cert.date}` : ''}
+                                  onChange={(val) => {
+                                    const newCerts = siteData.experience.certificates.map((c, i) => i === cIdx ? { ...c, org: val } : c);
+                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
+                                  }}
+                                  className="layout-editable text-[11px] font-semibold text-[#8C5A3C]"
+                                />
+                                <SafeContentEditable
+                                  as="p"
+                                  multiline
+                                  value={cert.desc}
+                                  onChange={(val) => {
+                                    const newCerts = siteData.experience.certificates.map((c, i) => i === cIdx ? { ...c, desc: val } : c);
+                                    setSiteData(prev => ({ ...prev, experience: { ...prev.experience, certificates: newCerts } }));
+                                  }}
+                                  className="layout-editable text-[11px] text-[#635952]"
+                                />
                               </div>
                             ))}
                           </div>
@@ -2008,19 +2485,16 @@ export default function EditLayoutPage() {
                 <span className="text-xs font-bold text-[#14110F]">Kỹ năng sáng tạo &amp; Hoạch định:</span>
                 <div className="flex flex-wrap gap-2">
                   {siteData.skills.creative.map((sk, sIdx) => (
-                    <span
+                    <SafeContentEditable
                       key={sIdx}
-                      contentEditable
-                      suppressContentEditableWarning
-                      onBlur={(e) => {
-                        const newSkills = [...siteData.skills.creative];
-                        newSkills[sIdx] = e.currentTarget.textContent || '';
+                      as="span"
+                      value={sk}
+                      onChange={(val) => {
+                        const newSkills = siteData.skills.creative.map((s, i) => i === sIdx ? val : s);
                         setSiteData(prev => ({ ...prev, skills: { ...prev.skills, creative: newSkills } }));
                       }}
                       className="layout-editable px-3 py-1.5 rounded-lg bg-[#FAF7F2] border border-[#DECFC0] text-xs font-semibold text-[#14110F]"
-                    >
-                      {sk}
-                    </span>
+                    />
                   ))}
                 </div>
               </div>
@@ -2030,20 +2504,24 @@ export default function EditLayoutPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {siteData.skills.technical.map((t, tIdx) => (
                     <div key={tIdx} className="p-3 rounded-xl bg-[#FAF7F2] border border-[#DECFC0] space-y-1">
-                      <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                        const newTech = [...siteData.skills.technical];
-                        newTech[tIdx].name = e.currentTarget.textContent || '';
-                        setSiteData(prev => ({ ...prev, skills: { ...prev.skills, technical: newTech } }));
-                      }} className="layout-editable font-bold text-xs text-[#14110F]">
-                        {t.name}
-                      </div>
-                      <div contentEditable suppressContentEditableWarning onBlur={(e) => {
-                        const newTech = [...siteData.skills.technical];
-                        newTech[tIdx].level = e.currentTarget.textContent || '';
-                        setSiteData(prev => ({ ...prev, skills: { ...prev.skills, technical: newTech } }));
-                      }} className="layout-editable text-[11px] text-[#635952]">
-                        {t.level}
-                      </div>
+                      <SafeContentEditable
+                        as="div"
+                        value={t.name}
+                        onChange={(val) => {
+                          const newTech = siteData.skills.technical.map((item, i) => i === tIdx ? { ...item, name: val } : item);
+                          setSiteData(prev => ({ ...prev, skills: { ...prev.skills, technical: newTech } }));
+                        }}
+                        className="layout-editable font-bold text-xs text-[#14110F]"
+                      />
+                      <SafeContentEditable
+                        as="div"
+                        value={t.level}
+                        onChange={(val) => {
+                          const newTech = siteData.skills.technical.map((item, i) => i === tIdx ? { ...item, level: val } : item);
+                          setSiteData(prev => ({ ...prev, skills: { ...prev.skills, technical: newTech } }));
+                        }}
+                        className="layout-editable text-[11px] text-[#635952]"
+                      />
                     </div>
                   ))}
                 </div>
@@ -2131,6 +2609,42 @@ export default function EditLayoutPage() {
                     rows={4}
                     value={siteData.profile.intro}
                     onChange={(e) => setSiteData(prev => ({ ...prev, profile: { ...prev.profile, intro: e.target.value } }))}
+                    className="w-full p-2.5 rounded-lg border border-[#DECFC0] bg-[#FAF7F2]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Home Banner Section */}
+            <div className="space-y-4 pt-4 border-t border-[#ECE4D8]">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#8C5A3C] pb-2 border-b border-[#ECE4D8]">
+                1.5. Tiêu Đề &amp; Nội Dung Trang Chủ (Home Hero)
+              </h3>
+              <div className="grid grid-cols-1 gap-4 text-xs">
+                <div>
+                  <label className="font-bold text-[#14110F] block mb-1">Nhãn nhỏ phía trên (Eyebrow):</label>
+                  <input
+                    type="text"
+                    value={siteData.home.eyebrow}
+                    onChange={(e) => setSiteData(prev => ({ ...prev, home: { ...prev.home, eyebrow: e.target.value } }))}
+                    className="w-full p-2.5 rounded-lg border border-[#DECFC0] bg-[#FAF7F2]"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-[#14110F] block mb-1">Tiêu đề chính Trang Chủ (Heading H1):</label>
+                  <textarea
+                    rows={2}
+                    value={siteData.home.heading}
+                    onChange={(e) => setSiteData(prev => ({ ...prev, home: { ...prev.home, heading: e.target.value } }))}
+                    className="w-full p-2.5 rounded-lg border border-[#DECFC0] bg-[#FAF7F2]"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-[#14110F] block mb-1">Đoạn mô tả mở đầu Trang Chủ (Lead):</label>
+                  <textarea
+                    rows={4}
+                    value={siteData.home.lead}
+                    onChange={(e) => setSiteData(prev => ({ ...prev, home: { ...prev.home, lead: e.target.value } }))}
                     className="w-full p-2.5 rounded-lg border border-[#DECFC0] bg-[#FAF7F2]"
                   />
                 </div>

@@ -11,7 +11,7 @@ import { featuredVideos, caseStudies } from '@/app/data';
 
 export const metadata: Metadata = {
   title: 'Kênh TikTok F&B: La Cà Một Chút (Tone Be) | Tô Lan Anh',
-  description: 'Chiến dịch xây dựng kênh TikTok F&B & Cafe Review La Cà Một Chút. Bảng màu Be ấm áp, Slow Content, ASMR ẩm thực tinh tế mang lại 5.3M+ views/tháng.',
+  description: 'Chiến dịch xây dựng kênh TikTok F&B & Cafe Review La Cà Một Chút (@la.camotchut). Bảng màu Be ấm áp, Slow Content, top video Gem Cafe đạt 73.1K views.',
 };
 
 export default function LaCaPage() {

@@ -9,46 +9,67 @@ import DynamicCustomBlocksList from '@/components/DynamicCustomBlocksList';
 import { 
   Coffee, ExternalLink, Sparkles, 
   Play, Eye, Heart, MessageCircle, Share2, 
-  CheckCircle2, ArrowRight, Maximize2, X, ChevronLeft, ChevronRight,
-  Award, Compass, Bike
+  CheckCircle2, Award, Compass, Bike
 } from 'lucide-react';
 import { featuredVideos, VideoItem, caseStudies, tiktokChannels } from '@/app/data';
 import IPhone12ProMaxMockup from '@/components/IPhone12ProMaxMockup';
+import { useSiteData } from '@/components/SiteDataProvider';
 
-const genzVideos = featuredVideos.filter(v => v.category === 'genz');
-const fnbVideos = featuredVideos.filter(v => v.category === 'fnb');
+const baseGenzVideos = featuredVideos.filter(v => v.category === 'genz');
+const baseFnbVideos = featuredVideos.filter(v => v.category === 'fnb');
 const bupskyVideos = featuredVideos.filter(v => v.category === 'bupsky');
 const datbikeVideos = featuredVideos.filter(v => v.category === 'datbike');
 
-// All 14 original landscape slides from updated Portfolio PDF
-const allSlides = [
-  { index: 1, title: 'Bìa Portfolio — My PORTFOLIO Tô Lan Anh', src: '/images/slides/slide_1.png', category: 'Overview' },
-  { index: 2, title: 'ABOUT ME — Giới Thiệu Bản Thân, Học Vấn & Công Cụ', src: '/images/slides/slide_2.png', category: 'About' },
-  { index: 3, title: 'Certificates & Training — QCC Mastery Hub & ColorME', src: '/images/slides/slide_3.png', category: 'Certificates' },
-  { index: 4, title: 'Winner Pitching Project — Kế Hoạch Triển Khai Tivi HXY Hải Phi', src: '/images/slides/slide_4.png', category: 'Hai Phi TVC' },
-  { index: 5, title: 'Project at HAI PHI Company — TikTok Channel, TVC & Fanpage Post', src: '/images/slides/slide_5.png', category: 'Hai Phi TVC' },
-  { index: 6, title: 'Completed Photography Project (Điểm A+ Khóa Nhiếp Ảnh PR Văn Lang)', src: '/images/slides/slide_6.png', category: 'Photography' },
-  { index: 7, title: 'Manage Facebook & Instagram Platforms for Suzuki Hồng Phương', src: '/images/slides/slide_7.png', category: 'Suzuki' },
-  { index: 8, title: 'Suzuki Hồng Phương Media Publications (Tuyển Dụng, Fest 2025, Test Drive)', src: '/images/slides/slide_8.png', category: 'Suzuki' },
-  { index: 9, title: 'Managed Social Media Content for Phat-Thuy Company (Nhà Xe Phát)', src: '/images/slides/slide_9.png', category: 'Phat Thuy' },
-  { index: 10, title: 'Recruitment Content & Vận Chuyển Hàng Hóa Facebook Page (Nhà Xe Phát)', src: '/images/slides/slide_10.png', category: 'Phat Thuy' },
-  { index: 11, title: 'Media Projects with Adobe Photoshop & Mockup Design', src: '/images/slides/slide_11.png', category: 'Graphic Design' },
-  { index: 12, title: 'Design Projects Created with Adobe Photoshop (Milo, Orange Juice, Hoàng Tử Bé, Talkshow)', src: '/images/slides/slide_12.png', category: 'Graphic Design' },
-  { index: 13, title: 'Brand Promoter PG Part-time (Sapporo, King Car, Farmers Union, ITO EN)', src: '/images/slides/slide_13.png', category: 'Brand Ambassador' },
-  { index: 14, title: 'Thank You — Lời Cảm Ơn & Kết Nối Hợp Tác', src: '/images/slides/slide_14.png', category: 'Contact' },
-];
-
 export default function WorkPage() {
+  const { persisted } = useSiteData();
+  const workCfg = persisted?.siteData?.work;
+
+  const genzVideos: VideoItem[] =
+    workCfg?.toadogenz?.videos && Array.isArray(workCfg.toadogenz.videos)
+      ? workCfg.toadogenz.videos.map((ov: any, idx: number) => {
+          const base = baseGenzVideos.find((b) => b.id === ov.id) || baseGenzVideos[idx] || baseGenzVideos[0];
+          return {
+            ...base,
+            id: ov.id || base.id,
+            title: ov.title ?? base.title,
+            views: String(ov.views ?? base.views).replace(/\s*views$/i, ''),
+            hook: ov.hook ?? base.hook,
+            description: ov.desc ?? base.description,
+          };
+        })
+      : baseGenzVideos;
+
+  const fnbVideos: VideoItem[] =
+    workCfg?.lacamotchut?.videos && Array.isArray(workCfg.lacamotchut.videos)
+      ? workCfg.lacamotchut.videos.map((ov: any, idx: number) => {
+          const base = baseFnbVideos.find((b) => b.id === ov.id) || baseFnbVideos[idx] || baseFnbVideos[0];
+          return {
+            ...base,
+            id: ov.id || base.id,
+            title: ov.title ?? base.title,
+            views: String(ov.views ?? base.views).replace(/\s*views$/i, ''),
+            hook: ov.hook ?? base.hook,
+            description: ov.desc ?? base.description,
+          };
+        })
+      : baseFnbVideos;
+
   // Category tab state: 'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand'
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'genz' | 'fnb' | 'bupsky' | 'datbike' | 'brand'>('all');
 
-  // Active Video States
-  const [activeGenzVideo, setActiveGenzVideo] = useState<VideoItem>(genzVideos[0] || featuredVideos[0]);
-  const [activeFnbVideo, setActiveFnbVideo] = useState<VideoItem>(fnbVideos[0] || featuredVideos[0]);
+  // Active Video IDs
+  const [activeGenzId, setActiveGenzId] = useState<string>(baseGenzVideos[0]?.id || '');
+  const [activeFnbId, setActiveFnbId] = useState<string>(baseFnbVideos[0]?.id || '');
   const [activeDatbikeVideo, setActiveDatbikeVideo] = useState<VideoItem>(datbikeVideos[0] || featuredVideos[0]);
 
-  // Lightbox
-  const [lightboxSlide, setLightboxSlide] = useState<number | null>(null);
+  const activeGenzVideo = genzVideos.find((v) => v.id === activeGenzId) || genzVideos[0] || featuredVideos[0];
+  const activeFnbVideo = fnbVideos.find((v) => v.id === activeFnbId) || fnbVideos[0] || featuredVideos[0];
+
+  const cleanBannerLead = workCfg?.bannerLead
+    ? String(workCfg.bannerLead)
+        .replace(/,\s*Chiến dịch Brand Pitching & IMC\s*hoặc Toàn bộ 14 Slide[^.]*\.?/i, ' và Chiến dịch Brand Pitching & IMC.')
+        .replace(/\s*hoặc Toàn bộ 14 Slide[^.]*\.?/gi, '.')
+    : null;
 
   return (
     <main className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#14110F]">
@@ -58,21 +79,25 @@ export default function WorkPage() {
       <section className="page-banner border-b border-[rgba(20,17,15,0.08)] bg-white">
         <div className="container space-y-3">
           <p className="eyebrow">
-            HẠNG MỤC DỰ ÁN &amp; CÁC KÊNH TIKTOK
+            {workCfg?.bannerEyebrow || 'HẠNG MỤC DỰ ÁN & CÁC KÊNH TIKTOK'}
           </p>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight">
-            Dự Án Đã Thực Hiện
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#14110F] tracking-tight whitespace-pre-line">
+            {workCfg?.bannerTitle || 'Dự Án Đã Thực Hiện'}
           </h1>
 
-          <p className="page-lead">
-            Chọn danh mục bên dưới để lọc riêng từng kênh và dự án: 
-            Kênh <strong className="text-[#14110F]">Toạ Độ Gen Z (@toadogenz)</strong>, 
-            Kênh <strong className="text-[#14110F]">La Cà Một Chút (@la.camotchut)</strong>, 
-            Dự án <strong className="text-[#14110F]">Búp Sky Cuisine</strong>, 
-            Kênh <strong className="text-[#14110F]">Datbike Hồng Phương</strong>{' '}
-            và Chiến dịch Brand Pitching &amp; IMC.
-          </p>
+          {cleanBannerLead ? (
+            <p className="page-lead whitespace-pre-line">{cleanBannerLead}</p>
+          ) : (
+            <p className="page-lead">
+              Chọn danh mục bên dưới để lọc riêng từng kênh và dự án: 
+              Kênh <strong className="text-[#14110F]">Toạ Độ Gen Z (@toadogenz)</strong>, 
+              Kênh <strong className="text-[#14110F]">La Cà Một Chút (@la.camotchut)</strong>, 
+              Dự án <strong className="text-[#14110F]">Búp Sky Cuisine</strong>, 
+              Kênh <strong className="text-[#14110F]">Datbike Hồng Phương</strong>{' '}
+              và Chiến dịch Brand Pitching &amp; IMC.
+            </p>
+          )}
 
           {/* Interactive Category Switcher */}
           <div className="flex flex-wrap items-center gap-2 pt-4">
@@ -160,15 +185,16 @@ export default function WorkPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[rgba(20,17,15,0.08)]">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">
-                  Toạ Độ Gen Z (@toadogenz)
+                  {workCfg?.toadogenz?.title || 'Toạ Độ Gen Z (@toadogenz)'}
                 </h2>
                 <p className="text-xs sm:text-sm text-[#635952] mt-1">
-                  1.051 Follower • 8.727 Thích • Bản đồ ăn – chơi – chill của Gen Z
+                  {(workCfg?.toadogenz?.subtitle || '1.129 Follower • 8.729 Thích • Bản đồ ăn – chơi – chill của Gen Z')
+                    .replace('1.051 Follower • 8.727 Thích', '1.129 Follower • 8.729 Thích')}
                 </p>
               </div>
 
               <a
-                href="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
+                href={workCfg?.toadogenz?.url || 'https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -186,12 +212,28 @@ export default function WorkPage() {
                 <IPhone12ProMaxMockup
                   channelName="Toạ Độ Gen Z"
                   handle="@toadogenz"
-                  tiktokUrl="https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc"
-                  imageSrc="/images/channels/toadogenz_channel.jpg"
+                  tiktokUrl={workCfg?.toadogenz?.url || 'https://www.tiktok.com/@toadogenz?_r=1&_t=ZS-9BjNMmzw5vc'}
+                  imageSrc={workCfg?.toadogenz?.imageSrc || '/images/channels/toadogenz_grid.jpg'}
                   imageAlt="Giao diện kênh TikTok Toạ Độ Gen Z"
                   imageWidth={549}
-                  imageHeight={1024}
+                  imageHeight={466}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
+                  profileHeader={{
+                    name: 'Toạ độ gen Z',
+                    handle: '@toadogenz',
+                    avatarSrc: '/images/channels/toadogenz_avatar.jpg',
+                    following: '1',
+                    followers: '1.129',
+                    likes: '8.729',
+                    bioLines: [
+                      '📍 Bản đồ ăn – chơi – chill của Gen Z',
+                      '🔥 Update tọa độ hot & trend mới',
+                      '🍜 Ăn | ☕ Chill | 🎨 Chơi | 📸 Check-in',
+                      '👇 Không biết đi đâu? Xem ở đây.'
+                    ],
+                    actionBtn1: 'Theo dõi',
+                    actionBtn2: 'Nhắn tin'
+                  }}
                 />
               </div>
 
@@ -250,7 +292,7 @@ export default function WorkPage() {
                     {genzVideos.map((v) => (
                       <div
                         key={v.id}
-                        onClick={() => setActiveGenzVideo(v)}
+                        onClick={() => setActiveGenzId(v.id)}
                         className={`p-3.5 rounded-2xl cursor-pointer transition-all border text-left ${
                           activeGenzVideo.id === v.id
                             ? 'bg-white border-orange-500 shadow-md ring-1 ring-orange-500'
@@ -290,15 +332,17 @@ export default function WorkPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[rgba(20,17,15,0.08)]">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">
-                  La Cà Một Chút (@la.camotchut)
+                  {workCfg?.lacamotchut?.title || 'La Cà Một Chút (@la.camotchut)'}
                 </h2>
                 <p className="text-xs sm:text-sm text-[#635952] mt-1">
-                  Review Cafe, F&amp;B &amp; Không gian trải nghiệm thư thái
+                  {workCfg?.lacamotchut?.subtitle && workCfg.lacamotchut.subtitle !== 'Review Cafe, F&B & Không gian trải nghiệm thư thái'
+                    ? workCfg.lacamotchut.subtitle
+                    : '196 Follower • 4.496 Thích • Review Cafe, F&B & Không gian trải nghiệm thư thái'}
                 </p>
               </div>
 
               <a
-                href="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
+                href={workCfg?.lacamotchut?.url || 'https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -316,27 +360,24 @@ export default function WorkPage() {
                 <IPhone12ProMaxMockup
                   channelName="La Cà Một Chút"
                   handle="@la.camotchut"
-                  tiktokUrl="https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM"
-                  imageSrc="/images/channels/lacamotchut_channel.jpg"
+                  tiktokUrl={workCfg?.lacamotchut?.url || 'https://www.tiktok.com/@la.camotchut?_r=1&_t=ZS-9AlGxP5d7HM'}
+                  imageSrc={workCfg?.lacamotchut?.imageSrc || '/images/channels/lacamotchut_grid.jpg'}
                   imageAlt="Giao diện kênh TikTok La Cà Một Chút"
                   imageWidth={564}
-                  imageHeight={1024}
+                  imageHeight={984}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
                   profileHeader={{
                     name: 'La Cà Một Chút',
                     handle: '@la.camotchut',
                     avatarSrc: '/images/channels/lacamotchut_avatar.jpg',
-                    following: '48',
-                    followers: '18.2K',
-                    likes: '165.4K',
+                    following: '1',
+                    followers: '196',
+                    likes: '4.496',
                     bioLines: [
-                      '☕ La Cà Một Chút...',
-                      'Khám phá cafe, tiệm bánh & không gian trải nghiệm Sài Gòn',
-                      'Tone Be ấm áp & góc chill thư thái',
-                      '📩 Contact: lananhto2402@gmail.com'
+                      '🍜 Ăn | ☕ Chill | 🎨 Chơi | 📸 Check-in'
                     ],
-                    actionBtn1: 'Sửa hồ sơ',
-                    actionBtn2: 'Chia sẻ hồ sơ'
+                    actionBtn1: 'Theo dõi',
+                    actionBtn2: 'Nhắn tin'
                   }}
                 />
               </div>
@@ -396,7 +437,7 @@ export default function WorkPage() {
                     {fnbVideos.map((v) => (
                       <div
                         key={v.id}
-                        onClick={() => setActiveFnbVideo(v)}
+                        onClick={() => setActiveFnbId(v.id)}
                         className={`p-3.5 rounded-2xl cursor-pointer transition-all border text-left ${
                           activeFnbVideo.id === v.id
                             ? 'bg-white border-[#8C5A3C] shadow-md ring-1 ring-[#8C5A3C]'
@@ -436,15 +477,17 @@ export default function WorkPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[rgba(20,17,15,0.08)]">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">
-                  Búp Sky Cuisine
+                  {workCfg?.bupsky?.title || 'Búp Sky Cuisine (@bupskycuisine)'}
                 </h2>
                 <p className="text-xs sm:text-sm text-[#635952] mt-1">
-                  Nhà hàng Rooftop Tầng 10 • 65-69 Nguyễn Thái Bình, Q.1 (cách Chợ Bến Thành 4 phút)
+                  {workCfg?.bupsky?.subtitle && workCfg.bupsky.subtitle !== 'Nhà hàng Rooftop Tầng 10 • 65-69 Nguyễn Thái Bình, Q.1 (cách Chợ Bến Thành 4 phút)'
+                    ? workCfg.bupsky.subtitle
+                    : '838 Follower • 34.1K Thích • Nhà hàng Rooftop Tầng 10, 65-69 Nguyễn Thái Bình, Q.1'}
                 </p>
               </div>
 
               <a
-                href="https://www.tiktok.com/@bupskycuisine"
+                href={workCfg?.bupsky?.url || 'https://www.tiktok.com/@bupskycuisine'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -462,25 +505,22 @@ export default function WorkPage() {
                 <IPhone12ProMaxMockup
                   channelName="Búp Sky Cuisine"
                   handle="@bupskycuisine"
-                  tiktokUrl="https://www.tiktok.com/@bupskycuisine"
-                  imageSrc="/images/channels/bupsky_channel.jpg"
+                  tiktokUrl={workCfg?.bupsky?.url || 'https://www.tiktok.com/@bupskycuisine'}
+                  imageSrc={workCfg?.bupsky?.imageSrc || '/images/channels/bupsky_grid.jpg'}
                   imageAlt="Thông số và video thực tế kênh TikTok Búp Sky Cuisine"
                   imageWidth={559}
-                  imageHeight={1024}
+                  imageHeight={976}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
                   profileHeader={{
-                    name: 'Búp Sky Cuisine',
+                    name: 'bupskycuisine',
                     handle: '@bupskycuisine',
                     avatarSrc: '/images/channels/bupsky_avatar.jpg',
-                    following: '24',
-                    followers: '12.6K',
-                    likes: '320.5K',
+                    following: '82',
+                    followers: '838',
+                    likes: '34.1K',
                     bioLines: [
-                      'Búp Sky Cuisine 🥂',
-                      'Rooftop Restaurant & Lounge Tầng 10',
-                      '📍 65-69 Nguyễn Thái Bình, Q.1 (Cách Chợ Bến Thành 4p)',
-                      'Tiệc sinh nhật, kỷ niệm & ngắm hoàng hôn Sài Gòn',
-                      '📞 Hotline: 0942.077.335'
+                      'Where flavor meets lifestyle! ✨️🍽',
+                      'Tầng 10, 65-69 Nguyễn Thái Bình, Q.1, HCMC'
                     ],
                     actionBtn1: 'Theo dõi',
                     actionBtn2: 'Nhắn tin'
@@ -499,16 +539,16 @@ export default function WorkPage() {
 
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div className="p-3.5 rounded-xl bg-white border border-[rgba(20,17,15,0.08)]">
-                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">133.1K</div>
-                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">Tiệc sinh nhật riêng</div>
+                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">{workCfg?.bupsky?.stat1Val || '133.1K'}</div>
+                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">{workCfg?.bupsky?.stat1Label || 'Tiệc sinh nhật riêng'}</div>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-[rgba(20,17,15,0.08)]">
-                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">109K</div>
-                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">Clip tiệc âm nhạc</div>
+                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">{workCfg?.bupsky?.stat2Val || '109K'}</div>
+                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">{workCfg?.bupsky?.stat2Label || 'Clip tiệc âm nhạc'}</div>
                     </div>
                     <div className="p-3.5 rounded-xl bg-white border border-[rgba(20,17,15,0.08)]">
-                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">37.7K</div>
-                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">Rooftop Bến Thành</div>
+                      <div className="text-xl sm:text-2xl font-extrabold text-[#14110F]">{workCfg?.bupsky?.stat3Val || '37.7K'}</div>
+                      <div className="text-[10px] text-[#635952] font-semibold mt-0.5">{workCfg?.bupsky?.stat3Label || 'Rooftop Bến Thành'}</div>
                     </div>
                   </div>
 
@@ -542,7 +582,7 @@ export default function WorkPage() {
                     {bupskyVideos.map((v) => (
                       <a
                         key={v.id}
-                        href="https://www.tiktok.com/@bupskycuisine"
+                        href={v.tiktokUrl || 'https://www.tiktok.com/@bupskycuisine'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3.5 rounded-2xl bg-white border border-[rgba(20,17,15,0.08)] hover:shadow-sm hover:border-[#8C5A3C] transition-all block text-left group"
@@ -580,20 +620,20 @@ export default function WorkPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[rgba(20,17,15,0.08)]">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14110F] tracking-tight">
-                  Datbike Hồng Phương (@datbikehongphuong)
+                  {workCfg?.datbike?.title || 'Dat.bike Hồng Phương (@datbikehongphuong)'}
                 </h2>
                 <p className="text-xs sm:text-sm text-[#635952] mt-1">
-                  Kênh truyền thông xe máy điện thông minh Dat Bike tại đại lý Hồng Phương
+                  {workCfg?.datbike?.subtitle || '1.253 Follower • 6.148 Thích • Đại lý xe máy điện Dat.bike (38 Nguyễn Thị Định, P. Bình Trưng)'}
                 </p>
               </div>
 
               <a
-                href="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma"
+                href={workCfg?.datbike?.url || 'https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
               >
-                <span>Mở Kênh TikTok @datbikehongphuong</span>
+                <span>Mở Kênh TikTok {workCfg?.datbike?.handle || '@datbikehongphuong'}</span>
                 <ExternalLink className="w-4 h-4 text-[#D5CEBE]" />
               </a>
             </div>
@@ -604,27 +644,25 @@ export default function WorkPage() {
               {/* Virtual Interactive iPhone 12 Pro Max Mockup */}
               <div className="lg:col-span-5 flex flex-col items-center">
                 <IPhone12ProMaxMockup
-                  channelName="Datbike Hồng Phương"
+                  channelName="Dat.bike Hồng Phương"
                   handle="@datbikehongphuong"
                   tiktokUrl="https://www.tiktok.com/@datbikehongphuong?_r=1&_t=ZS-9Blz0Px6Pma"
-                  imageSrc="/images/channels/datbike_channel.jpg"
-                  imageAlt="Giao diện và video thực tế kênh TikTok Datbike Hồng Phương"
+                  imageSrc="/images/channels/datbike_grid.jpg"
+                  imageAlt="Giao diện và video thực tế kênh TikTok Dat.bike Hồng Phương"
                   imageWidth={552}
-                  imageHeight={1024}
+                  imageHeight={969}
                   badgeText="👆 Cuộn chuột hoặc Kéo vuốt để lướt màn hình ảo"
                   profileHeader={{
-                    name: 'Dat Bike Hồng Phương',
+                    name: 'Dat.bike Hồng Phương',
                     handle: '@datbikehongphuong',
                     avatarSrc: '/images/channels/datbike_avatar.jpg',
-                    following: '12',
-                    followers: '3.8K',
-                    likes: '48.2K',
+                    following: '60',
+                    followers: '1.253',
+                    likes: '6.148',
                     bioLines: [
-                      '⚡ Dat Bike Hồng Phương',
-                      'Đại lý ủy quyền xe máy điện thông minh Dat Bike',
-                      '🛵 Dòng Quantum S1, S2, S3 bứt tốc & pin siêu bền',
-                      '📍 Trải nghiệm lái thử & tư vấn trả góp 0% lãi suất',
-                      '📞 Hotline tư vấn: 0942.077.335'
+                      'Đại lý xe máy điện Dat.bike',
+                      '38 Nguyễn Thị Định, P. Bình Trưng',
+                      'ĐT: 0799700777'
                     ],
                     actionBtn1: 'Theo dõi',
                     actionBtn2: 'Nhắn tin'
@@ -764,27 +802,8 @@ export default function WorkPage() {
                     </div>
                   </div>
 
-                  {cs.slideImage && (
-                    <div 
-                      onClick={() => setLightboxSlide(4)}
-                      className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-white border border-[rgba(20,17,15,0.08)] cursor-pointer group"
-                    >
-                      <Image src={cs.slideImage} alt={cs.title} fill className="object-contain group-hover:scale-105 transition-transform" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center text-white opacity-0 group-hover:opacity-100">
-                        <Maximize2 className="w-5 h-5" />
-                      </div>
-                    </div>
-                  )}
-
                   <div className="pt-2 border-t border-[rgba(20,17,15,0.06)] flex items-center justify-between text-xs">
                     <span className="text-[#635952]">Vai trò: {cs.role}</span>
-                    <button 
-                      onClick={() => setLightboxSlide(4)}
-                      className="font-bold text-[#8C5A3C] hover:underline inline-flex items-center gap-1"
-                    >
-                      <span>Xem Slide</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </button>
                   </div>
                 </div>
               ))}
@@ -792,63 +811,6 @@ export default function WorkPage() {
 
           </div>
         </section>
-      )}
-
-      {/* Lightbox Modal for Slides */}
-      {lightboxSlide !== null && (
-        <div 
-          onClick={() => setLightboxSlide(null)}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-5xl w-full bg-zinc-950 rounded-2xl overflow-hidden border border-white/10 shadow-2xl space-y-3 p-4"
-          >
-            <div className="flex items-center justify-between px-2 pt-1 text-white">
-              <div className="text-sm font-bold">
-                Trang {lightboxSlide}/14: {allSlides.find(s => s.index === lightboxSlide)?.title}
-              </div>
-              <button
-                onClick={() => setLightboxSlide(null)}
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="relative aspect-[16/9] w-full bg-black rounded-xl overflow-hidden">
-              <Image
-                src={`/images/slides/slide_${lightboxSlide}.png`}
-                alt={`Slide ${lightboxSlide}`}
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
-
-            <div className="flex items-center justify-between px-2 pb-1 text-xs text-zinc-400">
-              <button
-                disabled={lightboxSlide <= 1}
-                onClick={() => setLightboxSlide(lightboxSlide - 1)}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/10 text-white transition-colors"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" />
-                <span>Trang trước</span>
-              </button>
-
-              <span>Trang {lightboxSlide} / 14</span>
-
-              <button
-                disabled={lightboxSlide >= 14}
-                onClick={() => setLightboxSlide(lightboxSlide + 1)}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/10 text-white transition-colors"
-              >
-                <span>Trang sau</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
       )}
 
       {/* Dynamic Custom Layout Blocks Added via /edit */}

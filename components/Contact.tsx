@@ -3,9 +3,16 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Download, Send, Sparkles, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { profileData } from '@/app/data';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 export default function Contact() {
   const [copiedType, setCopiedType] = useState<string | null>(null);
+  const { persisted } = useSiteData();
+
+  const profileCfg = persisted?.siteData?.profile || persisted?.profile;
+  const phone = profileCfg?.phone || profileData.phone;
+  const email = profileCfg?.email || profileData.email;
+  const address = profileCfg?.address || profileData.address;
 
   const copyToClipboard = (text: string, type: string) => {
     navigator.clipboard?.writeText(text);
@@ -46,15 +53,15 @@ export default function Contact() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
-                  href={`tel:${profileData.phone.replace(/[^0-9]/g, '')}`}
+                  href={`tel:${phone.replace(/[^0-9]/g, '')}`}
                   className="btn btn-primary"
                 >
                   <Phone className="w-4 h-4 text-[#D5CEBE]" />
-                  <span>Gọi: {profileData.phone}</span>
+                  <span>Gọi: {phone}</span>
                 </a>
 
                 <a
-                  href={`mailto:${profileData.email}`}
+                  href={`mailto:${email}`}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FAF7F2] border border-[#DECFC0] text-[#1E1611] text-xs sm:text-sm font-medium hover:bg-[#ECE4D8] transition-all"
                 >
                   <Mail className="w-4 h-4 text-[#9E6B47]" />
@@ -89,13 +96,13 @@ export default function Contact() {
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-[#7D5133]">Điện thoại / Zalo</div>
-                      <a href={`tel:${profileData.phone}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47]">
-                        {profileData.phone}
+                      <a href={`tel:${phone}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47]">
+                        {phone}
                       </a>
                     </div>
                   </div>
                   <button
-                    onClick={() => copyToClipboard(profileData.phone, 'phone')}
+                    onClick={() => copyToClipboard(phone, 'phone')}
                     className="p-1.5 rounded-lg text-[#7D5133] hover:text-[#1E1611] hover:bg-white transition-colors"
                     aria-label="Copy số điện thoại"
                   >
@@ -111,13 +118,13 @@ export default function Contact() {
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-[#7D5133]">Hòm thư Email</div>
-                      <a href={`mailto:${profileData.email}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47] break-all">
-                        {profileData.email}
+                      <a href={`mailto:${email}`} className="text-sm font-sans font-bold text-[#1E1611] hover:text-[#9E6B47] break-all">
+                        {email}
                       </a>
                     </div>
                   </div>
                   <button
-                    onClick={() => copyToClipboard(profileData.email, 'email')}
+                    onClick={() => copyToClipboard(email, 'email')}
                     className="p-1.5 rounded-lg text-[#7D5133] hover:text-[#1E1611] hover:bg-white transition-colors"
                     aria-label="Copy email"
                   >
@@ -133,7 +140,7 @@ export default function Contact() {
                   <div>
                     <div className="text-[11px] font-mono text-[#7D5133]">Địa bàn hoạt động</div>
                     <div className="text-xs font-medium text-[#1E1611] mt-0.5">
-                      {profileData.address}
+                      {address}
                     </div>
                   </div>
                 </div>

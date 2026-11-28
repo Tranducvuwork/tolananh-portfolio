@@ -3,10 +3,30 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Award, CheckCircle2, ExternalLink, Maximize2, X, Sparkles, ShieldCheck } from 'lucide-react';
-import { certificates, Certificate } from '@/app/data';
+import { certificates as defaultCertificates, Certificate } from '@/app/data';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 export default function CertificatesSection() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const { persisted } = useSiteData();
+
+  const savedCerts = persisted?.siteData?.experience?.certificates;
+  const certificates: Certificate[] =
+    savedCerts && Array.isArray(savedCerts) && savedCerts.length > 0
+      ? defaultCertificates.map((base, idx) => {
+          const override = savedCerts[idx];
+          if (!override) return base;
+          return {
+            ...base,
+            name: override.name || base.name,
+            organization: override.org || base.organization,
+            date: override.date || base.date,
+            rank: override.rank || base.rank,
+            description: override.desc || base.description,
+            imageUrl: override.imageSrc || base.imageUrl,
+          };
+        })
+      : defaultCertificates;
 
   return (
     <section className="space-y-8">
@@ -51,6 +71,7 @@ export default function CertificatesSection() {
                   src={cert.imageUrl}
                   alt={cert.name}
                   fill
+                  unoptimized={cert.imageUrl.startsWith('data:')}
                   className="object-contain group-hover:scale-102 transition-transform duration-300 p-2"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -146,6 +167,7 @@ export default function CertificatesSection() {
                 src={selectedCert.imageUrl}
                 alt={selectedCert.name}
                 fill
+                unoptimized={selectedCert.imageUrl.startsWith('data:')}
                 className="object-contain p-2"
                 priority
               />

@@ -44,9 +44,25 @@ export default function HeaderLayoutEditor({ config, onChange, onSave }: HeaderL
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        if (event.target?.result) {
-          updateConfig('avatarSrc', event.target.result as string);
-        }
+        const raw = event.target?.result as string;
+        if (!raw) return;
+        const img = new window.Image();
+        img.onload = () => {
+          const maxDim = 400;
+          const scale = Math.min(1, maxDim / Math.max(img.width || 1, img.height || 1));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(img.width * scale));
+          canvas.height = Math.max(1, Math.round(img.height * scale));
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            updateConfig('avatarSrc', canvas.toDataURL('image/jpeg', 0.85));
+          } else {
+            updateConfig('avatarSrc', raw);
+          }
+        };
+        img.onerror = () => updateConfig('avatarSrc', raw);
+        img.src = raw;
       };
       reader.readAsDataURL(file);
     }
@@ -136,11 +152,11 @@ export default function HeaderLayoutEditor({ config, onChange, onSave }: HeaderL
               {/* Brand Logo & Name */}
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full overflow-hidden bg-zinc-200 relative border border-[#DECFC0]">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={config.avatarSrc || '/images/lananh_vanlang_aodai.jpg'}
-                    alt={config.brandName}
-                    fill
-                    className="object-cover"
+                    alt={config.brandName || 'Logo'}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <span className="font-extrabold text-[#14110F] text-base tracking-tight">
@@ -262,11 +278,11 @@ export default function HeaderLayoutEditor({ config, onChange, onSave }: HeaderL
                 <label className="font-bold text-[#14110F] block mb-1">Ảnh Avatar / Logo:</label>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-100 relative border border-[#DECFC0] flex-shrink-0">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={config.avatarSrc || '/images/lananh_vanlang_aodai.jpg'}
                       alt="Logo"
-                      fill
-                      className="object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex-1 space-y-1.5">

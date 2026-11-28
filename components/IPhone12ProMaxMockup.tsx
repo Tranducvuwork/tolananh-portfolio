@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Grid3X3, Repeat2, Bookmark, Heart, ChevronDown } from 'lucide-react';
 
 export interface TikTokProfileHeader {
   name: string;
@@ -76,6 +76,11 @@ export default function IPhone12ProMaxMockup({
     };
   }, [isDragging, startY, initialScrollTop]);
 
+  const resolvedImageSrc =
+    profileHeader && /^\/images\/channels\/(toadogenz|lacamotchut|bupsky|datbike)_channel\.jpg$/.test(imageSrc)
+      ? imageSrc.replace('_channel.jpg', '_grid.jpg')
+      : imageSrc;
+
   return (
     <div className="w-full flex flex-col items-center">
       {/* Outer Phone Wrapper (Constrained responsive sizing) */}
@@ -104,8 +109,8 @@ export default function IPhone12ProMaxMockup({
           {/* Top Status Bar (9:41, 5G, Battery) with dark gradient background */}
           <div className="iphone-status-bar z-30">
             <span className="text-[11px] font-semibold tracking-tight text-white/90 pl-3">9:41</span>
-            <div className="flex items-center gap-1.5 pr-3 text-[10px] text-white/80 font-mono">
-              <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/15 text-white/90 font-medium">{handle}</span>
+            <div className="flex items-center gap-1.5 pr-3 text-[10px] text-white/85 font-semibold">
+              <span className="text-[10px] tracking-tight">5G</span>
               <div className="w-4 h-2 rounded-[2px] border border-white/60 p-[1px] flex items-center">
                 <div className="h-full w-full bg-emerald-400 rounded-[1px]" />
               </div>
@@ -126,21 +131,22 @@ export default function IPhone12ProMaxMockup({
               
               {/* Optional TikTok Profile Header (Profile info at top before video grid) */}
               {profileHeader && (
-                <div className="w-full bg-black text-white px-4 pt-1 pb-2 flex flex-col items-center border-b border-zinc-900/60">
+                <div className="w-full bg-black text-white px-4 pt-2 pb-0 flex flex-col items-center border-b border-zinc-800/80">
                   {/* Avatar */}
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-zinc-800 my-1 bg-zinc-900 shadow-md">
+                  <div className="relative w-[72px] h-[72px] sm:w-20 sm:h-20 rounded-full overflow-hidden border border-zinc-800 my-1 bg-zinc-900 shadow-md">
                     <Image
                       src={profileHeader.avatarSrc}
                       alt={profileHeader.name}
                       fill
+                      sizes="160px"
                       className="object-cover"
                     />
                   </div>
 
                   {/* Name & Handle */}
-                  <div className="flex items-center gap-1 mt-1">
+                  <div className="flex items-center gap-1 mt-1.5">
                     <span className="font-bold text-sm text-white tracking-tight">{profileHeader.name}</span>
-                    <span className="text-[10px] text-zinc-400">🔻</span>
+                    <ChevronDown className="w-3 h-3 text-zinc-400" />
                   </div>
                   <span className="text-[11px] text-zinc-400 font-mono mt-0.5">{profileHeader.handle}</span>
 
@@ -148,12 +154,14 @@ export default function IPhone12ProMaxMockup({
                   <div className="flex items-center justify-center gap-6 mt-3 text-center">
                     <div>
                       <div className="font-extrabold text-sm text-white tracking-tight">{profileHeader.following}</div>
-                      <div className="text-[10px] text-zinc-400 font-medium">Đang follow</div>
+                      <div className="text-[10px] text-zinc-400 font-medium">Đã follow</div>
                     </div>
+                    <div className="h-3 w-px bg-zinc-800" />
                     <div>
                       <div className="font-extrabold text-sm text-white tracking-tight">{profileHeader.followers}</div>
                       <div className="text-[10px] text-zinc-400 font-medium">Follower</div>
                     </div>
+                    <div className="h-3 w-px bg-zinc-800" />
                     <div>
                       <div className="font-extrabold text-sm text-white tracking-tight">{profileHeader.likes}</div>
                       <div className="text-[10px] text-zinc-400 font-medium">Thích</div>
@@ -161,38 +169,41 @@ export default function IPhone12ProMaxMockup({
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex items-center gap-2 mt-3 w-full max-w-[260px]">
-                    <button className="flex-1 py-1.5 px-3 rounded-md bg-zinc-800 text-white text-[11px] font-semibold pointer-events-none">
-                      {profileHeader.actionBtn1 || 'Sửa hồ sơ'}
+                  <div className="flex items-center gap-1.5 mt-3 w-full max-w-[240px]">
+                    <button
+                      className={`flex-1 py-1.5 px-3 rounded-md text-white text-[11px] font-semibold pointer-events-none ${
+                        (profileHeader.actionBtn1 || 'Theo dõi') === 'Theo dõi'
+                          ? 'bg-[#FE2C55]'
+                          : 'bg-zinc-800'
+                      }`}
+                    >
+                      {profileHeader.actionBtn1 || 'Theo dõi'}
                     </button>
                     <button className="flex-1 py-1.5 px-3 rounded-md bg-zinc-800 text-white text-[11px] font-semibold pointer-events-none">
-                      {profileHeader.actionBtn2 || 'Chia sẻ hồ sơ'}
+                      {profileHeader.actionBtn2 || 'Nhắn tin'}
                     </button>
                   </div>
 
                   {/* Bio lines */}
-                  <div className="mt-3 text-center text-[11px] text-zinc-300 leading-snug space-y-0.5">
+                  <div className="mt-2.5 text-center text-[11px] text-zinc-200 leading-snug space-y-0.5 px-1">
                     {profileHeader.bioLines.map((line, idx) => (
-                      <div key={idx} className="truncate max-w-[280px]">{line}</div>
+                      <div key={idx} className="max-w-[270px] mx-auto break-words">{line}</div>
                     ))}
                   </div>
 
                   {/* Tabs bar */}
-                  <div className="w-full flex items-center justify-around border-t border-zinc-800/80 mt-3 pt-2 text-zinc-400">
-                    <div className="flex flex-col items-center text-white pb-1 border-b-2 border-white px-3">
-                      <span className="text-xs">⊞</span>
+                  <div className="w-full flex items-center justify-around border-t border-zinc-800/80 mt-3 pt-2 text-zinc-500">
+                    <div className="flex flex-col items-center text-white pb-1.5 border-b-2 border-white px-4">
+                      <Grid3X3 className="w-3.5 h-3.5" />
                     </div>
-                    <div className="flex flex-col items-center px-3">
-                      <span className="text-xs">🔒</span>
+                    <div className="flex flex-col items-center pb-1.5 px-4">
+                      <Repeat2 className="w-3.5 h-3.5" />
                     </div>
-                    <div className="flex flex-col items-center px-3">
-                      <span className="text-xs">⇄</span>
+                    <div className="flex flex-col items-center pb-1.5 px-4">
+                      <Bookmark className="w-3.5 h-3.5" />
                     </div>
-                    <div className="flex flex-col items-center px-3">
-                      <span className="text-xs">🔖</span>
-                    </div>
-                    <div className="flex flex-col items-center px-3">
-                      <span className="text-xs">♡</span>
+                    <div className="flex flex-col items-center pb-1.5 px-4">
+                      <Heart className="w-3.5 h-3.5" />
                     </div>
                   </div>
                 </div>
@@ -200,7 +211,7 @@ export default function IPhone12ProMaxMockup({
 
               {/* Video Grid Image */}
               <Image
-                src={imageSrc}
+                src={resolvedImageSrc}
                 alt={imageAlt}
                 width={imageWidth}
                 height={imageHeight}

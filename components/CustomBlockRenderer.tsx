@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeContentEditable from './SafeContentEditable';
 import { 
   Sparkles, ArrowRight, Download, Phone, Mail, 
   ExternalLink, Quote, Play, CheckCircle2, Star, Layers
@@ -62,35 +63,34 @@ export default function CustomBlockRenderer({
       <div className={`p-8 md:p-12 rounded-2xl shadow-xs transition-all ${currentBg}`}>
         <div className={`max-w-3xl flex flex-col gap-4 ${alignClass}`}>
           {content.subheading && (
-            <div
-              contentEditable={isEditable}
-              suppressContentEditableWarning
-              onBlur={(e) => updateField('subheading', e.currentTarget.textContent || '')}
+            <SafeContentEditable
+              as="div"
+              editable={isEditable}
+              value={content.subheading}
+              onChange={(val) => updateField('subheading', val)}
               className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full w-fit ${
                 content.bgColor === 'dark' ? 'bg-white/10 text-[#C7B198]' : 'bg-[#FAF7F2] text-[#8C5A3C] border border-[#DECFC0]'
               }`}
-            >
-              {content.subheading}
-            </div>
+            />
           )}
 
-          <h2
-            contentEditable={isEditable}
-            suppressContentEditableWarning
-            onBlur={(e) => updateField('heading', e.currentTarget.textContent || '')}
+          <SafeContentEditable
+            as="h2"
+            editable={isEditable}
+            multiline
+            value={content.heading || 'Tiêu đề khối nội dung mới'}
+            onChange={(val) => updateField('heading', val)}
             className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug"
-          >
-            {content.heading || 'Tiêu đề khối nội dung mới'}
-          </h2>
+          />
 
-          <div
-            contentEditable={isEditable}
-            suppressContentEditableWarning
-            onBlur={(e) => updateField('body', e.currentTarget.textContent || '')}
-            className={`text-sm md:text-base leading-relaxed ${content.bgColor === 'dark' ? 'text-zinc-300' : 'text-[#635952]'}`}
-          >
-            {content.body || 'Nhấp vào đây để soạn thảo nội dung mô tả chi tiết cho khối này.'}
-          </div>
+          <SafeContentEditable
+            as="div"
+            editable={isEditable}
+            multiline
+            value={content.body || 'Nhấp vào đây để soạn thảo nội dung mô tả chi tiết cho khối này.'}
+            onChange={(val) => updateField('body', val)}
+            className={`text-sm md:text-base leading-relaxed whitespace-pre-line ${content.bgColor === 'dark' ? 'text-zinc-300' : 'text-[#635952]'}`}
+          />
 
           {content.btnText && (
             <div className="pt-2">
@@ -122,22 +122,22 @@ export default function CustomBlockRenderer({
           <span className="text-xs font-bold uppercase tracking-widest text-[#8C5A3C] bg-white/80 px-3.5 py-1 rounded-full border border-black/5">
             {content.subheading || 'Hợp Tác & Truyền Thông'}
           </span>
-          <h2
-            contentEditable={isEditable}
-            suppressContentEditableWarning
-            onBlur={(e) => updateField('heading', e.currentTarget.textContent || '')}
+          <SafeContentEditable
+            as="h2"
+            editable={isEditable}
+            multiline
+            value={content.heading || 'Sẵn sàng khởi động chiến dịch truyền thông bùng nổ?'}
+            onChange={(val) => updateField('heading', val)}
             className="text-2xl sm:text-4xl font-extrabold tracking-tight"
-          >
-            {content.heading || 'Sẵn sàng khởi động chiến dịch truyền thông bùng nổ?'}
-          </h2>
-          <p
-            contentEditable={isEditable}
-            suppressContentEditableWarning
-            onBlur={(e) => updateField('body', e.currentTarget.textContent || '')}
-            className={`text-sm sm:text-base ${content.bgColor === 'dark' ? 'text-zinc-300' : 'text-[#635952]'}`}
-          >
-            {content.body || 'Liên hệ ngay cùng Tô Lan Anh để cùng lên ý tưởng kịch bản và sản xuất video TikTok triệu view.'}
-          </p>
+          />
+          <SafeContentEditable
+            as="p"
+            editable={isEditable}
+            multiline
+            value={content.body || 'Liên hệ ngay cùng Tô Lan Anh để cùng lên ý tưởng kịch bản và sản xuất video TikTok triệu view.'}
+            onChange={(val) => updateField('body', val)}
+            className={`text-sm sm:text-base whitespace-pre-line ${content.bgColor === 'dark' ? 'text-zinc-300' : 'text-[#635952]'}`}
+          />
           <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
             <a
               href={content.btnUrl || 'tel:0942077335'}
@@ -206,6 +206,7 @@ export default function CustomBlockRenderer({
                   src={item.image || '/images/lananh_vanlang_aodai.jpg'}
                   alt={item.title || 'Gallery image'}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -226,40 +227,39 @@ export default function CustomBlockRenderer({
     return (
       <div className={`p-8 md:p-10 rounded-2xl shadow-xs relative ${currentBg}`}>
         <Quote className="w-10 h-10 text-[#8C5A3C]/20 mb-4" />
-        <blockquote
-          contentEditable={isEditable}
-          suppressContentEditableWarning
-          onBlur={(e) => updateField('body', e.currentTarget.textContent || '')}
+        <SafeContentEditable
+          as="blockquote"
+          editable={isEditable}
+          multiline
+          value={content.body || 'Tô Lan Anh là một bạn trẻ rất năng động, nắm bắt xu hướng nhanh nhạy và có tư duy hình ảnh, kịch bản video ngắn cực kỳ chỉn chu.'}
+          onChange={(val) => updateField('body', val)}
           className="text-lg sm:text-xl font-medium italic leading-relaxed mb-6"
-        >
-          &ldquo;{content.body || 'Tô Lan Anh là một bạn trẻ rất năng động, nắm bắt xu hướng nhanh nhạy và có tư duy hình ảnh, kịch bản video ngắn cực kỳ chỉn chu.'}&rdquo;
-        </blockquote>
+        />
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-200 relative border border-[#DECFC0]">
             <Image
               src={content.quoteAvatar || '/images/lananh_vanlang_aodai.jpg'}
               alt={content.quoteAuthor || 'Author'}
               fill
+              unoptimized
               className="object-cover"
             />
           </div>
           <div>
-            <div
-              contentEditable={isEditable}
-              suppressContentEditableWarning
-              onBlur={(e) => updateField('quoteAuthor', e.currentTarget.textContent || '')}
+            <SafeContentEditable
+              as="div"
+              editable={isEditable}
+              value={content.quoteAuthor || 'Mentor / Giảng Viên PR Văn Lang'}
+              onChange={(val) => updateField('quoteAuthor', val)}
               className="text-sm font-bold text-[#14110F]"
-            >
-              {content.quoteAuthor || 'Mentor / Giảng Viên PR Văn Lang'}
-            </div>
-            <div
-              contentEditable={isEditable}
-              suppressContentEditableWarning
-              onBlur={(e) => updateField('quoteRole', e.currentTarget.textContent || '')}
+            />
+            <SafeContentEditable
+              as="div"
+              editable={isEditable}
+              value={content.quoteRole || 'Khoa Quan hệ Công chúng — Truyền thông'}
+              onChange={(val) => updateField('quoteRole', val)}
               className="text-xs text-[#7A6E65]"
-            >
-              {content.quoteRole || 'Khoa Quan hệ Công chúng — Truyền thông'}
-            </div>
+            />
           </div>
         </div>
       </div>
@@ -281,22 +281,22 @@ export default function CustomBlockRenderer({
             <span className="text-xs font-bold uppercase tracking-wider text-[#8C5A3C] bg-[#FAF7F2] px-2.5 py-0.5 rounded-full border border-[#DECFC0]">
               {content.subheading || 'TikTok Video Nổi Bật'}
             </span>
-            <h3
-              contentEditable={isEditable}
-              suppressContentEditableWarning
-              onBlur={(e) => updateField('heading', e.currentTarget.textContent || '')}
+            <SafeContentEditable
+              as="h3"
+              editable={isEditable}
+              multiline
+              value={content.heading || 'Chiến dịch video viral TikTok'}
+              onChange={(val) => updateField('heading', val)}
               className="text-xl sm:text-2xl font-extrabold tracking-tight"
-            >
-              {content.heading || 'Chiến dịch video viral TikTok'}
-            </h3>
-            <p
-              contentEditable={isEditable}
-              suppressContentEditableWarning
-              onBlur={(e) => updateField('body', e.currentTarget.textContent || '')}
+            />
+            <SafeContentEditable
+              as="p"
+              editable={isEditable}
+              multiline
+              value={content.body || 'Video ngắn sáng tạo bắt kịp trào lưu, tỷ lệ giữ chân người xem cao và tương tác tự nhiên.'}
+              onChange={(val) => updateField('body', val)}
               className="text-xs sm:text-sm text-[#635952]"
-            >
-              {content.body || 'Video ngắn sáng tạo bắt kịp trào lưu, tỷ lệ giữ chân người xem cao và tương tác tự nhiên.'}
-            </p>
+            />
             <div className="pt-2">
               <a
                 href={content.btnUrl || 'https://www.tiktok.com/@toadogenz'}
