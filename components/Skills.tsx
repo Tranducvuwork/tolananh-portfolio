@@ -2,9 +2,13 @@
 
 import { Sparkles, Scissors, Palette, Layout, BarChart3, Smartphone, FolderOpen, CheckCircle2, Video, PenTool, Layers, Target } from 'lucide-react';
 import { profileData } from '@/app/data';
+import { useSiteData } from '@/components/SiteDataProvider';
 
 export default function Skills() {
-  const tools = [
+  const { persisted } = useSiteData();
+  const savedSkills = persisted?.siteData?.skills;
+
+  const baseTools = [
     { name: 'CapCut Pro', desc: 'Dựng short-form video nhịp điệu cao & sound effect', icon: Scissors, tag: 'Chuyên sâu' },
     { name: 'Photoshop', desc: 'Chứng chỉ ColorMe 2025 · Xử lý ảnh & layout poster', icon: Palette, tag: 'Chứng chỉ' },
     { name: 'Canva Pro', desc: 'Thiết kế ấn phẩm truyền thông & slide pitching', icon: Layout, tag: 'Thành thạo' },
@@ -12,6 +16,16 @@ export default function Skills() {
     { name: 'TikTok Studio', desc: 'Phân tích insight người xem, SEO từ khóa & trend', icon: Smartphone, tag: 'Chuyên môn' },
     { name: 'Google Workspace', desc: 'Docs, Sheets, Drive quản lý dữ liệu sản xuất', icon: FolderOpen, tag: 'Tối ưu' },
   ];
+
+  const tools =
+    savedSkills?.technical && Array.isArray(savedSkills.technical) && savedSkills.technical.length > 0
+      ? savedSkills.technical.map((t: any, idx: number) => ({
+          name: t.name || baseTools[idx % baseTools.length].name,
+          desc: t.level || baseTools[idx % baseTools.length].desc,
+          icon: baseTools[idx % baseTools.length].icon,
+          tag: baseTools[idx % baseTools.length].tag,
+        }))
+      : baseTools;
 
   const focusAreas = [
     {
@@ -109,7 +123,7 @@ export default function Skills() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
-            {tools.map((tool, idx) => {
+            {tools.map((tool: any, idx: number) => {
               const IconComp = tool.icon;
               return (
                 <div 
