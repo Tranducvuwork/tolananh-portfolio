@@ -75,8 +75,8 @@ export default function AddBlockModal({ isOpen, onClose, onSelectType }: AddBloc
   ];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
-      <div className="bg-[#FAF7F2] border border-[#DECFC0] w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-[200] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in">
+      <div className="bg-[#FAF7F2] border border-[#DECFC0] w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] my-auto">
         
         {/* Header */}
         <div className="p-5 bg-white border-b border-[#ECE4D8] flex items-center justify-between">
